@@ -27,3 +27,7 @@ __pycache__/
 *.py[cod]
 .venv/
 venv/
+
+# Dead local launchers, replaced by GitHub Actions
+run_demo.bat
+run_demo.ps1
