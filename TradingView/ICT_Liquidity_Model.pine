@@ -1,0 +1,182 @@
+//@version=6
+// =============================================================================
+//  ICT / SMC Liquidity Model  -  independent cross-check of the Python engine
+// =============================================================================
+//  This is the SAME strategy as engine/strategy.py, written again from scratch
+//  in Pine so it runs on TradingView's data with TradingView's fill logic.
+//
+//  The point is disagreement. Two implementations, two data sources, two fill
+//  engines. If the results line up, the edge is probably real. If they diverge,
+//  one of us has a bug and it is worth knowing which.
+//
+//  Sequence, from the two courses:
+//     1. BUILD-UP     equal highs / equal lows form a liquidity pool
+//     2. INDUCEMENT   price wicks through the pool and CLOSES BACK
+//     3. BOS          structure then breaks the other way, on a CLOSE
+//     4. IMBALANCE    the move away left a 3-candle gap
+//     5. ENTRY        limit at the far edge of the gap
+//     6. STOP         beyond the sweep extreme
+//     7. TARGET       capped at max R
+// =============================================================================
+strategy("ICT Liquidity Model", overlay = true,
+     initial_capital = 100000,
+     default_qty_type = strategy.percent_of_equity,
+     default_qty_value = 100,
+     commission_type = strategy.commission.percent,
+     commission_value = 0.002,
+     slippage = 1,
+     calc_on_every_tick = false,
+     process_orders_on_close = true)
+
+// ---------------------------------------------------------------- inputs
+grpS = "Structure"
+pivLen   = input.int(2,   "Swing strength (internal)", minval = 1, maxval = 10, group = grpS)
+eqTolPct = input.float(0.05, "Equal-level tolerance %", step = 0.01, group = grpS)
+sweepLB  = input.int(30,  "Sweep stays live for N bars", minval = 5, group = grpS)
+fvgLB    = input.int(12,  "Look back N bars for the gap", minval = 3, group = grpS)
+
+grpR = "Risk"
+minStopPct = input.float(0.05, "Min stop as % of price", step = 0.01, group = grpR,
+     tooltip = "Phase 8: a stop that tight means the move had no force. Skip it.")
+maxStopPct = input.float(1.00, "Max stop as % of price", step = 0.05, group = grpR)
+maxRR      = input.float(3.0,  "Max reward:risk", step = 0.5, group = grpR)
+riskPct    = input.float(1.0,  "Risk % of equity per trade", step = 0.25, group = grpR)
+
+grpF = "Filters"
+useSession = input.bool(false, "Only trade a session window", group = grpF)
+sessSpec   = input.session("0930-1230", "Session (exchange time)", group = grpF)
+useHTF     = input.bool(true,  "Require higher timeframe agreement", group = grpF)
+htfTF      = input.timeframe("60", "Higher timeframe", group = grpF)
+
+// ---------------------------------------------------------------- structure
+ph = ta.pivothigh(high, pivLen, pivLen)
+pl = ta.pivotlow(low,  pivLen, pivLen)
+
+var float lastPH  = na
+var float prevPH  = na
+var float lastPL  = na
+var float prevPL  = na
+
+if not na(ph)
+    prevPH := lastPH
+    lastPH := ph
+if not na(pl)
+    prevPL := lastPL
+    lastPL := pl
+
+// equal highs / equal lows: the build-up. Two pivots within tolerance.
+tol      = close * eqTolPct / 100.0
+poolHigh = not na(lastPH) and not na(prevPH) and math.abs(lastPH - prevPH) <= tol
+poolLow  = not na(lastPL) and not na(prevPL) and math.abs(lastPL - prevPL) <= tol
+poolHiPx = poolHigh ? math.avg(lastPH, prevPH) : na
+poolLoPx = poolLow  ? math.avg(lastPL, prevPL) : na
+
+// ---------------------------------------------------------------- inducement
+// A sweep wicks THROUGH the level and closes back. The closing back is what
+// separates a sweep from a genuine break, and both courses lean on it hard.
+sweptHigh = poolHigh and high > poolHiPx and close < poolHiPx
+sweptLow  = poolLow  and low  < poolLoPx and close > poolLoPx
+
+var int   swHiBar = na
+var float swHiExt = na
+var int   swLoBar = na
+var float swLoExt = na
+
+if sweptHigh
+    swHiBar := bar_index
+    swHiExt := high
+if sweptLow
+    swLoBar := bar_index
+    swLoExt := low
+
+hiLive = not na(swHiBar) and (bar_index - swHiBar) <= sweepLB
+loLive = not na(swLoBar) and (bar_index - swLoBar) <= sweepLB
+
+// ---------------------------------------------------------------- BOS
+// TJR is explicit: a break of structure needs a candle CLOSURE, not a wick.
+bosDown = not na(lastPL) and close < lastPL and close[1] >= lastPL
+bosUp   = not na(lastPH) and close > lastPH and close[1] <= lastPH
+
+// ---------------------------------------------------------------- HTF bias
+htfClose = request.security(syminfo.tickerid, htfTF, close, lookahead = barmerge.lookahead_off)
+htfMA    = request.security(syminfo.tickerid, htfTF, ta.sma(close, 20), lookahead = barmerge.lookahead_off)
+htfBull  = not useHTF or (not na(htfMA) and htfClose > htfMA)
+htfBear  = not useHTF or (not na(htfMA) and htfClose < htfMA)
+
+// ---------------------------------------------------------------- imbalance
+// Bearish gap: low[i+2] > high[i]  ->  the space between is the gap.
+findBearGap() =>
+    float gTop = na
+    float gBot = na
+    for i = 0 to fvgLB
+        if na(gTop) and low[i + 2] > high[i]
+            gTop := low[i + 2]
+            gBot := high[i]
+    [gTop, gBot]
+
+findBullGap() =>
+    float gTop = na
+    float gBot = na
+    for i = 0 to fvgLB
+        if na(gBot) and high[i + 2] < low[i]
+            gBot := high[i + 2]
+            gTop := low[i]
+    [gTop, gBot]
+
+[bearTop, bearBot] = findBearGap()
+[bullTop, bullBot] = findBullGap()
+
+// ---------------------------------------------------------------- session
+inSession = not useSession or not na(time(timeframe.period, sessSpec))
+
+// ---------------------------------------------------------------- entries
+canShort = hiLive and bosDown and htfBear and inSession and not na(bearTop)
+canLong  = loLive and bosUp   and htfBull and inSession and not na(bullBot)
+
+shortEntry = bearTop
+shortStop  = math.max(nz(swHiExt, high), high)
+longEntry  = bullBot
+longStop   = math.min(nz(swLoExt, low), low)
+
+validShort = canShort and shortStop > shortEntry
+validLong  = canLong  and longStop  < longEntry
+
+sStopPct = validShort ? (shortStop - shortEntry) / shortEntry * 100 : na
+lStopPct = validLong  ? (longEntry - longStop)  / longEntry  * 100 : na
+
+okShort = validShort and sStopPct >= minStopPct and sStopPct <= maxStopPct
+okLong  = validLong  and lStopPct >= minStopPct and lStopPct <= maxStopPct
+
+shortTarget = shortEntry - (shortStop - shortEntry) * maxRR
+longTarget  = longEntry  + (longEntry - longStop)  * maxRR
+
+// size from the stop distance, never the other way round
+qtyFor(entryPx, stopPx) =>
+    riskCash = strategy.equity * riskPct / 100.0
+    dist     = math.abs(entryPx - stopPx)
+    dist > 0 ? riskCash / dist : 0.0
+
+if okShort and strategy.opentrades == 0
+    q = qtyFor(shortEntry, shortStop)
+    strategy.entry("S", strategy.short, qty = q, limit = shortEntry)
+    strategy.exit("S-x", from_entry = "S", stop = shortStop, limit = shortTarget)
+
+if okLong and strategy.opentrades == 0
+    q = qtyFor(longEntry, longStop)
+    strategy.entry("L", strategy.long, qty = q, limit = longEntry)
+    strategy.exit("L-x", from_entry = "L", stop = longStop, limit = longTarget)
+
+// ---------------------------------------------------------------- visuals
+plotshape(sweptHigh, "swept high", shape.triangledown, location.abovebar,
+     color.new(color.red, 0), size = size.tiny)
+plotshape(sweptLow,  "swept low",  shape.triangleup,   location.belowbar,
+     color.new(color.green, 0), size = size.tiny)
+plotshape(bosDown, "BOS down", shape.xcross, location.belowbar,
+     color.new(color.maroon, 0), size = size.tiny)
+plotshape(bosUp,   "BOS up",   shape.xcross, location.abovebar,
+     color.new(color.teal, 0), size = size.tiny)
+
+plot(poolHigh ? poolHiPx : na, "equal highs", color.new(color.red, 40),
+     style = plot.style_linebr)
+plot(poolLow ? poolLoPx : na, "equal lows", color.new(color.green, 40),
+     style = plot.style_linebr)

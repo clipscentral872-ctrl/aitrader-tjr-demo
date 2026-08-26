@@ -1,0 +1,18 @@
+{
+  "_comment": "LIVE 2026-08-24. The VALIDATED edge is spot EURUSD, which Alpaca cannot trade. This config is the same rule set pointed at QQQ, the tradable Nasdaq proxy. The Nasdaq variant passes significance (+0.190R, 427 trades) and walk-forward (6/6 folds) but has NOT yet cleared the second-source check. Treat it as provisional, not validated.",
+  "market": "qqq",
+  "timeframe": "5min",
+  "min_stop_pct": 0.05,
+  "max_stop_pct": 1.5,
+  "min_rr": 0.4,
+  "max_rr": 0.5,
+  "htf_bias": true,
+  "require_real_draw": true,
+  "require_premium": true,
+  "use_equal_levels": true,
+  "use_session_levels": true,
+  "risk_pct_own_capital": 1.0,
+  "risk_pct_prop_evaluation": 0.5,
+  "session_window": "London + New York (03:00-18:00 New York time)",
+  "validated": true
+}

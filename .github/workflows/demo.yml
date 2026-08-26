@@ -1,0 +1,62 @@
+name: TJR paper demo
+
+# One poll per run, state committed back to the repo.
+#
+# A continuous runner cannot live here: GitHub caps a job at six hours and the
+# London+NY window needs thirteen. So the demo was rewritten to do exactly one
+# poll and exit, carrying everything that matters in state/demo_state.json.
+#
+# Times below are UTC. New York is UTC-4 in summer:
+#   London opens    03:00 NY = 07:00 UTC
+#   New York closes 16:00 NY = 20:00 UTC
+#
+# Cron on GitHub is best-effort and can run late under load, sometimes by
+# fifteen minutes or more. That is on top of the ten-minute delay on the free
+# CME feed. Entries rest at levels marked in advance, so lateness costs less
+# here than it would for a market-order strategy, but it is not free.
+
+on:
+  schedule:
+    - cron: "*/15 7-20 * * 1-5"      # every 15 min, weekdays, London through NY close
+  workflow_dispatch:                  # and on demand, for testing
+
+permissions:
+  contents: write                     # needed to commit the state back
+
+concurrency:
+  group: tjr-demo                     # never let two polls race the same state
+  cancel-in-progress: false
+
+jobs:
+  poll:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Poll once
+        run: python poll_once.py
+
+      - name: Commit state
+        run: |
+          git config user.name  "tjr-demo"
+          git config user.email "tjr-demo@users.noreply.github.com"
+          git add state/
+          # nothing changed on a quiet poll, and an empty commit would be noise
+          if git diff --staged --quiet; then
+            echo "no state change this poll"
+          else
+            git commit -m "demo state $(date -u '+%Y-%m-%d %H:%M') UTC"
+            # another poll may have pushed while this one ran
+            git pull --rebase --autostash origin "${GITHUB_REF_NAME}"
+            git push
+          fi

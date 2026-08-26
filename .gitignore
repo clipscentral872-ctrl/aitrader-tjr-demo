@@ -1,0 +1,29 @@
+# SECRETS — never commit. This repo is public.
+config/*.key
+config/*.secret
+.env
+*.env
+
+# Market data. 177MB of parquet, and the poll fetches live data anyway, so
+# there is nothing here CI needs.
+data/store/
+data/cache/
+*.parquet
+
+# Local run output
+results/
+state/demo_log.txt.bak
+scratchpad/
+*.log
+
+# Backups made while editing
+*.bak
+*.bak2
+*.bak3
+*.bak4
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/

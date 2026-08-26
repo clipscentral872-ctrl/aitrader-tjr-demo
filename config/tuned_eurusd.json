@@ -1,0 +1,18 @@
+{
+  "_comment": "VALIDATED 2026-08-23. First configuration to clear all five checks in evaluate.py: +0.147R over 788 trades, 74% win rate, 6/6 walk-forward folds, two vendors agreeing over 5 years, and above the luck bar for all 516 hypotheses the project tested. Roughly $500/month on $50k at 0.98% risk. Backtested only.",
+  "market": "eurusd",
+  "timeframe": "5min",
+  "min_stop_pct": 0.05,
+  "max_stop_pct": 1.5,
+  "min_rr": 0.4,
+  "max_rr": 0.5,
+  "htf_bias": true,
+  "require_real_draw": true,
+  "require_premium": true,
+  "use_equal_levels": true,
+  "use_session_levels": true,
+  "risk_pct_own_capital": 1.0,
+  "risk_pct_prop_evaluation": 0.5,
+  "session_window": "London + New York (03:00-18:00 New York time)",
+  "validated": true
+}

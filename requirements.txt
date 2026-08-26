@@ -1,0 +1,6 @@
+# Only what one poll actually needs. The poll fetches live bars from Yahoo, so
+# none of the historical parquet in data/store is required in CI (and it is
+# gitignored anyway, at 177MB).
+pandas>=2.0
+numpy>=1.24
+pyarrow>=14.0

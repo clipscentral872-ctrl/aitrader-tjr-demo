@@ -1,0 +1,36 @@
+{
+  "_comment": "CANDIDATE, 2026-08-24. Not yet validated. Best held-out result of the 1-minute rebuild: $4,232/month on $50k, +0.085R over 4,251 trades, 77.9% win. MEASURED ON NSXUSD, THE CASH INDEX, not the futures contract. The second-source check on that feed has not run. Do not trade this until it passes.",
+  "status": "candidate_unvalidated",
+  "market": "nasdaq",
+  "instrument": "MNQ micro futures",
+  "entry_timeframe": "1min",
+  "confirmation_timeframe": "5min",
+  "bias_timeframe": "4h",
+  "sessions": [
+    "London 03:00-08:30 NY",
+    "New York 09:30-16:00 NY"
+  ],
+  "sessions_excluded": [
+    "Asia 18:00-03:00 NY  (+0.007R, dilutes by 30%)"
+  ],
+  "min_stop_pct": 0.03,
+  "max_stop_pct": 1.5,
+  "min_rr": 0.4,
+  "max_rr": 0.5,
+  "htf_bias": true,
+  "htf_factor": 48,
+  "require_real_draw": true,
+  "require_premium": true,
+  "use_session_levels": true,
+  "use_equal_levels": true,
+  "entry_mode": "tjr",
+  "require_valid_gap": true,
+  "risk_pct": 0.548,
+  "max_total_drawdown_pct": 10.0,
+  "expected": {
+    "trades_per_year": 2175,
+    "expectancy_r": 0.085,
+    "win_rate": 77.9,
+    "monthly_on_50k": 4232
+  }
+}
