@@ -1,36 +1,41 @@
 name: TJR paper demo
 
-# One poll per run, state committed back to the repo.
+# TWO LONG JOBS A DAY, each polling internally. Not a frequent cron.
 #
-# A continuous runner cannot live here: GitHub caps a job at six hours and the
-# London+NY window needs thirteen. So the demo was rewritten to do exactly one
-# poll and exit, carrying everything that matters in state/demo_state.json.
+# The first version asked for */15 across 07:00-20:00 UTC. GitHub ran it FOUR
+# times in two days instead of ~112, twice outside the hours specified. That is
+# documented behaviour rather than a fault: scheduled workflows on public repos
+# are best-effort, are dropped under load, and high-frequency crons are the
+# first thing throttled. At two polls a day the demo would almost never be
+# looking when a setup appeared, and four months would yield nothing.
 #
-# Times below are UTC. New York is UTC-4 in summer:
+# So the cron only has to fire twice, which GitHub does manage, and each job
+# polls every 60 seconds for just under the six-hour job limit. State lives in
+# state/demo_state.json and is committed as it goes, so a job that dies loses
+# minutes rather than a session, and the next one picks up where it left off.
+#
+# Times are UTC. New York is UTC-4 in summer:
 #   London opens    03:00 NY = 07:00 UTC
 #   New York closes 16:00 NY = 20:00 UTC
-#
-# Cron on GitHub is best-effort and can run late under load, sometimes by
-# fifteen minutes or more. That is on top of the ten-minute delay on the free
-# CME feed. Entries rest at levels marked in advance, so lateness costs less
-# here than it would for a market-order strategy, but it is not free.
+# 06:50 covers London open onward; 12:50 covers the New York session.
 
 on:
   schedule:
-    - cron: "*/15 7-20 * * 1-5"      # every 15 min, weekdays, London through NY close
-  workflow_dispatch:                  # and on demand, for testing
+    - cron: "50 6 * * 1-5"     # London open, runs ~5.8h
+    - cron: "50 12 * * 1-5"    # New York session, runs ~5.8h
+  workflow_dispatch:
 
 permissions:
-  contents: write                     # needed to commit the state back
+  contents: write
 
 concurrency:
-  group: tjr-demo                     # never let two polls race the same state
+  group: tjr-demo              # never let two jobs race the same state
   cancel-in-progress: false
 
 jobs:
   poll:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 350       # just under GitHub's 360-minute ceiling
 
     steps:
       - uses: actions/checkout@v4
@@ -43,20 +48,40 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
-      - name: Poll once
-        run: python poll_once.py
-
-      - name: Commit state
+      - name: Configure git
         run: |
           git config user.name  "tjr-demo"
           git config user.email "tjr-demo@users.noreply.github.com"
+
+      - name: Poll for the session
+        run: |
+          set +e
+          END=$(( $(date +%s) + 340*60 ))     # leave margin under the timeout
+          i=0
+          while [ "$(date +%s)" -lt "$END" ]; do
+            i=$((i+1))
+            python poll_once.py
+            # commit every 15 polls, so a job that dies loses ~15 minutes of
+            # state rather than the whole session
+            if [ $((i % 15)) -eq 0 ]; then
+              git add state/
+              if ! git diff --staged --quiet; then
+                git commit -m "demo state $(date -u '+%Y-%m-%d %H:%M') UTC"
+                git pull --rebase --autostash origin "${GITHUB_REF_NAME}" || true
+                git push || true
+              fi
+            fi
+            sleep 60
+          done
+
+      - name: Commit final state
+        if: always()
+        run: |
           git add state/
-          # nothing changed on a quiet poll, and an empty commit would be noise
           if git diff --staged --quiet; then
-            echo "no state change this poll"
+            echo "no state change this session"
           else
-            git commit -m "demo state $(date -u '+%Y-%m-%d %H:%M') UTC"
-            # another poll may have pushed while this one ran
-            git pull --rebase --autostash origin "${GITHUB_REF_NAME}"
+            git commit -m "demo state $(date -u '+%Y-%m-%d %H:%M') UTC (final)"
+            git pull --rebase --autostash origin "${GITHUB_REF_NAME}" || true
             git push
           fi
