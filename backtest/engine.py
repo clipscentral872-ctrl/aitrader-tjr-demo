@@ -96,6 +96,15 @@ class Execution:
     through_ticks: float = 1.0
     gap_stops: bool = True         # a stop that gaps fills at the open
     queue_ahead: bool = True       # a touch-and-turn bar does not fill
+    # SCALING OUT. He does not take one exit: he banks a partial at the first
+    # significant level, moves the stop to break-even, and lets the rest run to
+    # further draws. That changes what a trade even IS. A move that reaches the
+    # first target then reverses is a LOSS here and a WIN for him, which is a
+    # large part of why his win rate reads 64% against our all-or-nothing 42%.
+    # 0.0 keeps the original behaviour so the two can be compared.
+    partial_frac: float = 0.0      # fraction banked at the first target
+    breakeven_after: bool = True   # move the stop to entry once banked
+    extend_mult: float = 2.0       # runner target, as a multiple of the first
 
 
 def run(df, setups, costs=None, fill_window=60, max_hold=240, execution=None):
@@ -148,29 +157,47 @@ def run(df, setups, costs=None, fill_window=60, max_hold=240, execution=None):
 
         # ---- manage the position --------------------------------------
         out, exit_bar, exit_px = "timeout", min(fill + max_hold, n - 1), None
+        stop_now = s.stop
+        banked_r = 0.0          # R already taken off the table
+        left = 1.0              # fraction of the position still open
+        first_r = abs(s.target - s.entry) / risk
+        runner = (s.entry - (s.target - s.entry) * -ex.extend_mult
+                  if s.side == "short" else
+                  s.entry + (s.target - s.entry) * ex.extend_mult)
         for i in range(fill, min(fill + max_hold, n)):
-            hit_stop = (h[i] >= s.stop) if s.side == "short" else (l[i] <= s.stop)
-            hit_tgt = (l[i] <= s.target) if s.side == "short" else (h[i] >= s.target)
+            hit_stop = (h[i] >= stop_now) if s.side == "short" else (l[i] <= stop_now)
+            want = s.target if left == 1.0 else runner
+            hit_tgt = (l[i] <= want) if s.side == "short" else (h[i] >= want)
             if hit_stop:
-                px = s.stop
+                px = stop_now
                 if ex.gap_stops and i > fill:
                     # a stop is a market order. If the bar opened beyond it,
                     # that gap is where you actually get out.
-                    if s.side == "long" and o_[i] < s.stop:
+                    if s.side == "long" and o_[i] < stop_now:
                         px = o_[i]
-                    elif s.side == "short" and o_[i] > s.stop:
+                    elif s.side == "short" and o_[i] > stop_now:
                         px = o_[i]
                 # both inside one bar: assume the stop. Pessimistic on purpose.
                 out, exit_bar, exit_px = "loss", i, px
                 break
             if hit_tgt:
-                out, exit_bar, exit_px = "win", i, s.target
+                if ex.partial_frac > 0.0 and left == 1.0:
+                    # bank the partial, move to break-even, let the rest run
+                    banked_r += ex.partial_frac * first_r
+                    left -= ex.partial_frac
+                    if ex.breakeven_after:
+                        stop_now = s.entry
+                    continue
+                out, exit_bar, exit_px = "win", i, want
                 break
         if exit_px is None:
             exit_px = float(df["close"].iloc[exit_bar])
 
         raw = (s.entry - exit_px) if s.side == "short" else (exit_px - s.entry)
-        r = raw / risk - cost_r
+        r = banked_r + left * (raw / risk) - cost_r
+        if ex.partial_frac > 0.0:
+            # a scratch is neither: the partial paid and the rest came back
+            out = "win" if r > 0 else ("loss" if r < 0 else "scratch")
 
         trades.append(Trade(
             entry_bar=fill, exit_bar=exit_bar,

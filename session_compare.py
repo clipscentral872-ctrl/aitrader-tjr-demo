@@ -75,9 +75,29 @@ def main():
     a = ap.parse_args()
 
     nq, es = load()
-    end = min(nq.index[-1], es.index[-1])
-    start = end - pd.Timedelta(days=int(a.months * 30.44))
+
+    # Anchor the window to TODAY, not to wherever the data happens to stop.
+    # Anchoring to the data's end meant that with feeds ending 2025-12-31,
+    # "trailing 12 months" silently became January-December 2025: a window
+    # ending eight months ago, reported as recent. The whole point of judging
+    # on recent data is defeated if "recent" is defined by the stale file.
+    now = pd.Timestamp.now("UTC")
+    want_start = now - pd.Timedelta(days=int(a.months * 30.44))
+    have_end = min(nq.index[-1], es.index[-1])
+
+    missing = (now - have_end).days
+    if missing > 21:
+        print(f"  WARNING: the window you asked for ends {now.date()}, but the")
+        print(f"  data stops at {have_end.date()}, {missing} days short. This is")
+        print(f"  measuring {want_start.date()} to {have_end.date()}, NOT the")
+        print(f"  {a.months} months to today. Treat it accordingly.")
+        print()
+
+    start, end = want_start, have_end
     nq = nq[(nq.index >= start) & (nq.index <= end)]
+    if nq.empty:
+        print(f"  no data at all inside {start.date()} to {end.date()}")
+        return
 
     cfg = live.Runner._tuned()
     costs = costs_for("MNQ")
@@ -88,9 +108,10 @@ def main():
     print(f"  {start.date()} to {end.date()}   {len(nq):,} five-minute bars")
     print(f"  config: {cfg.min_rr}-{cfg.max_rr}R, stop_rule={cfg.stop_rule}, "
           f"veto={cfg.require_index_align}")
-    if (pd.Timestamp.utcnow() - end).days > 45:
-        print(f"  WARNING: data ends {(pd.Timestamp.utcnow() - end).days} days ago, "
-              f"so this is not actually recent")
+    stale = (now - end).days
+    if stale > 45:
+        print(f"  WARNING: data ends {stale} days ago, so this is not "
+              f"actually recent")
     print()
 
     print(f"  {'session':<22} {'n':>5} {'exp R':>8} {'win %':>7} "

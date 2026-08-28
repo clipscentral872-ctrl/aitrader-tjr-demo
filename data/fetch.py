@@ -45,7 +45,7 @@ def _month(symbol, interval, year, month, quiet=True):
 
     start = pd.Timestamp(year=year, month=month, day=1, tz="UTC")
     end = start + pd.offsets.MonthBegin(1)
-    now = pd.Timestamp.utcnow()
+    now = pd.Timestamp.now("UTC")
     if start > now:
         return pd.DataFrame(columns=COLS)
 
@@ -76,7 +76,7 @@ def _month(symbol, interval, year, month, quiet=True):
 def binance(symbol="BTCUSDT", interval="1m", start="2021-01-01", end=None, quiet=False):
     """Assemble a date range from monthly chunks, downloading only what is missing."""
     s = pd.Timestamp(start, tz="UTC")
-    e = pd.Timestamp(end, tz="UTC") if end else pd.Timestamp.utcnow()
+    e = pd.Timestamp(end, tz="UTC") if end else pd.Timestamp.now("UTC")
     parts, cur = [], pd.Timestamp(year=s.year, month=s.month, day=1, tz="UTC")
     while cur < e:
         parts.append(_month(symbol, interval, cur.year, cur.month, quiet))

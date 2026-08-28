@@ -112,7 +112,7 @@ if __name__ == "__main__":
     if a.status:
         status()
     else:
-        print(f"collecting  {pd.Timestamp.utcnow():%Y-%m-%d %H:%M} UTC", flush=True)
+        print(f"collecting  {pd.Timestamp.now("UTC"):%Y-%m-%d %H:%M} UTC", flush=True)
         n = collect()
         print(f"\n  {n:,} new bars stored")
         print()
