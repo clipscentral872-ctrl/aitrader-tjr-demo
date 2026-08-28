@@ -1,9 +1,55 @@
 {
- "equity": 50000.0,
+ "equity": 50478.5,
  "position": null,
- "trades": [],
+ "trades": [
+  {
+   "symbol": "MES",
+   "side": "long",
+   "size": 58.0,
+   "entry": 7747.0,
+   "stop": 7745.75,
+   "target": 7748.0,
+   "exit": 7748.0,
+   "outcome": "win",
+   "r": 0.44,
+   "pnl": 159.5,
+   "cost_r": 0.36,
+   "opened_at": "2026-08-28 12:42:58+00:00",
+   "closed_at": "2026-08-28 12:43:00+00:00"
+  },
+  {
+   "symbol": "MES",
+   "side": "long",
+   "size": 58.0,
+   "entry": 7747.0,
+   "stop": 7745.75,
+   "target": 7748.0,
+   "exit": 7748.0,
+   "outcome": "win",
+   "r": 0.44,
+   "pnl": 159.5,
+   "cost_r": 0.36,
+   "opened_at": "2026-08-28 12:43:59+00:00",
+   "closed_at": "2026-08-28 12:44:00+00:00"
+  },
+  {
+   "symbol": "MES",
+   "side": "long",
+   "size": 58.0,
+   "entry": 7747.0,
+   "stop": 7745.75,
+   "target": 7748.0,
+   "exit": 7748.0,
+   "outcome": "win",
+   "r": 0.44,
+   "pnl": 159.5,
+   "cost_r": 0.36,
+   "opened_at": "2026-08-28 12:45:00+00:00",
+   "closed_at": "2026-08-28 12:46:00+00:00"
+  }
+ ],
  "refused": [],
  "last_bar": {},
- "polls": 5,
+ "polls": 20,
  "started": "2026-08-26T17:25:33.754971+00:00"
 }

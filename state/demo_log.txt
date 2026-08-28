@@ -1,0 +1,6 @@
+[2026-08-28 08:53 NY] OPEN MES long 58 @ 7,747.00  stop 7,745.75  target 7,748.00  rr 0.80  risk $362  [htf_trend|follow_through]
+[2026-08-28 08:54 NY] CLOSE MES win at 7,748.00  +0.44R  $+160  equity $50,160
+[2026-08-28 08:54 NY] OPEN MES long 58 @ 7,747.00  stop 7,745.75  target 7,748.00  rr 0.80  risk $362  [htf_trend|follow_through]
+[2026-08-28 08:55 NY] CLOSE MES win at 7,748.00  +0.44R  $+160  equity $50,319
+[2026-08-28 08:55 NY] OPEN MES long 58 @ 7,747.00  stop 7,745.75  target 7,748.00  rr 0.80  risk $362  [htf_trend|follow_through]
+[2026-08-28 08:56 NY] CLOSE MES win at 7,748.00  +0.44R  $+160  equity $50,478
