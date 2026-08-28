@@ -49,6 +49,7 @@ from engine.multiframe import find_setups_mtf            # noqa: E402
 from data.fetch import yahoo, resample                   # noqa: E402
 from paper.risk import RiskGate, RiskRules, INSTRUMENTS  # noqa: E402
 from tjr_exact import window                             # noqa: E402
+from futures import costs_for                            # noqa: E402
 import live                                              # noqa: E402
 
 STATE_DIR = os.path.join(ROOT, "state")
@@ -146,15 +147,21 @@ def manage_position(state, data):
 
 def close_position(state, pos, price, ts, outcome, inst):
     move = (pos["entry"] - price) if pos["side"] == "short" else (price - pos["entry"])
-    cash = move / inst.tick_size * inst.tick_value * pos["size"]
     risk = abs(pos["entry"] - pos["stop"])
-    r = move / risk if risk else 0.0
+    # CHARGE THE ROUND TRIP, exactly as backtest/engine.py does. Without this
+    # the demo reported R multiples about 0.02 too generous on every trade,
+    # roughly 12% of the measured edge, and four months of forward results
+    # would not have been comparable to the backtest that justified running it.
+    cost_r = costs_for(pos["symbol"]).cost_in_r(pos["entry"], pos["stop"])
+    r = (move / risk - cost_r) if risk else 0.0
+    cash = r * risk / inst.tick_size * inst.tick_value * pos["size"]
     state["equity"] = round(state["equity"] + cash, 2)
     state["trades"].append({
         "symbol": pos["symbol"], "side": pos["side"], "size": pos["size"],
         "entry": pos["entry"], "stop": pos["stop"], "target": pos["target"],
         "exit": round(float(price), 2), "outcome": outcome,
         "r": round(float(r), 3), "pnl": round(float(cash), 2),
+        "cost_r": round(float(cost_r), 4),
         "opened_at": pos["opened_at"], "closed_at": str(ts),
     })
     state["position"] = None
