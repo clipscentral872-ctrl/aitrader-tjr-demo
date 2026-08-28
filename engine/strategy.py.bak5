@@ -135,18 +135,6 @@ class Config:
     # it stops us taking. Distinct from SMT, which compares swings at a sweep.
     require_index_align: bool = False
     align_window: int = 6           # bars either side to find the pair's break
-    # His timeframe hierarchy, in his order: the 4-hour and 1-hour give the
-    # bias because that is where the trend lives, the 15-minute breaks it down,
-    # the 5-minute is where break of structure and gaps are read, and the
-    # 1-minute is only the entry. The engine read the 4-hour, the 5-minute and
-    # the 1-minute, and consulted neither the 1-hour nor the 15-minute at all.
-    # Factors are in 5-minute bars: 12 = one hour, 3 = fifteen minutes.
-    use_h1: bool = True             # measure the 1-hour trend
-    use_m15: bool = True            # measure the 15-minute trend
-    h1_factor: int = 12
-    m15_factor: int = 3
-    require_h1_align: bool = False  # refuse trades against the 1-hour
-    require_m15_align: bool = False # refuse trades against the 15-minute
     gap_mode: str = "recent"        # recent | all
     min_gap_pts: float = 0.0        # ignore gaps thinner than this
     draw_mode: str = "nearest"      # nearest | bias
@@ -239,46 +227,29 @@ def find_setups(df, cfg=None, session_filter=None, smt_df=None):
             smt_divs, smt_at = None, None
 
     # ---- higher timeframe bias (Phase 6: major = DIRECTION) --------------
-    def _tf_state(factor):
-        """Trend state on a higher timeframe, built by folding 5-minute bars.
+    htf_state = None
+    if cfg.htf_bias:
+        f = cfg.htf_factor
+        m = n // f * f
+        if m >= f * 10:
+            hh = h[:m].reshape(-1, f).max(1)
+            ll = l[:m].reshape(-1, f).min(1)
+            hsw = S.find_swings(hh, ll, 2, 2)
+            htf_state = [S.structure_state(hsw, b)[0] for b in range(len(hh))]
 
-        One builder for all of them, so the 1-hour and 15-minute cannot drift
-        from the 4-hour in how they are derived.
-        """
-        m = n // factor * factor
-        if m < factor * 10:
-            return None
-        hh = h[:m].reshape(-1, factor).max(1)
-        ll = l[:m].reshape(-1, factor).min(1)
-        sw = S.find_swings(hh, ll, 2, 2)
-        return [S.structure_state(sw, b)[0] for b in range(len(hh))]
-
-    htf_state = _tf_state(cfg.htf_factor) if cfg.htf_bias else None
-    h1_state = _tf_state(cfg.h1_factor) if (cfg.use_h1 or cfg.require_h1_align) else None
-    m15_state = _tf_state(cfg.m15_factor) if (cfg.use_m15 or cfg.require_m15_align) else None
-
-    def _tf_at(state, factor, bar):
-        """That timeframe's bias as of its last COMPLETED bar.
+    def htf_at(bar):
+        """Higher-timeframe bias as of the last COMPLETED higher-timeframe bar.
 
         Reading the bar we are currently inside would consult a candle that has
         not closed yet, and whose high and low include five-minute bars still in
         the future. That is a small leak, and small leaks are how the Nasdaq
         result happened. One bar back costs a little responsiveness and removes
-        the doubt entirely. Every timeframe uses the same guard.
+        the doubt entirely.
         """
-        if not state:
+        if not htf_state:
             return None
-        j = bar // factor - 1
-        return state[j] if 0 <= j < len(state) else None
-
-    def htf_at(bar):
-        return _tf_at(htf_state, cfg.htf_factor, bar)
-
-    def h1_at(bar):
-        return _tf_at(h1_state, cfg.h1_factor, bar)
-
-    def m15_at(bar):
-        return _tf_at(m15_state, cfg.m15_factor, bar)
+        j = bar // cfg.htf_factor - 1
+        return htf_state[j] if 0 <= j < len(htf_state) else None
 
     setups = []
     recent = []       # live sweeps: (bar, kind, level, extreme)
@@ -523,18 +494,6 @@ def find_setups(df, cfg=None, session_filter=None, smt_df=None):
                 tags.append("pool3+")                    # stronger build-up
             if htf_at(i) in ("bull", "bear"):
                 tags.append("htf_trend")                 # major = direction
-            # His hierarchy: the 4-hour and 1-hour give the bias, the 15-minute
-            # breaks it down. Tagged rather than required, so each layer can be
-            # measured before anything is gated on it. htf_trend earned its
-            # place that way; these have not yet.
-            if h1_at(i) == direction:
-                tags.append("h1_trend")                  # 1-hour agrees
-            if m15_at(i) == direction:
-                tags.append("m15_trend")                 # 15-minute agrees
-            if cfg.require_h1_align and h1_at(i) not in (direction, None):
-                continue
-            if cfg.require_m15_align and m15_at(i) not in (direction, None):
-                continue
             if S.internal_counter_trend(int_sw, i, direction):
                 tags.append("complex_pullback")          # proper internal retrace
             if eff >= 0.95:
@@ -566,17 +525,7 @@ def find_setups(df, cfg=None, session_filter=None, smt_df=None):
                     continue
                 lo_k = max(0, k - cfg.align_window)
                 hi_k = k + cfg.align_window + 1
-                same = any(b in pair_bos[direction] for b in range(lo_k, hi_k))
-                other = "bull" if direction == "bear" else "bear"
-                opposed = any(b in pair_bos[other] for b in range(lo_k, hi_k))
-                # SILENCE IS NOT DISAGREEMENT. His rule refuses trades when the
-                # two indexes CONTRADICT each other ("if ES is bullish and
-                # NASDAQ is bearish I don't want to take the trade"), not when
-                # one of them simply has not set up. On 28 May he takes the
-                # NASDAQ trade precisely because ES did not get the
-                # manipulation. Requiring the pair to confirm was vetoing the
-                # trades he actually takes.
-                if opposed and not same:
+                if not any(b in pair_bos[direction] for b in range(lo_k, hi_k)):
                     continue
 
             # his condition: divergence only counts AT a sweep, never on its
