@@ -59,12 +59,39 @@ SESSIONS = [
 ]
 
 
-def load():
-    """Nasdaq on five-minute bars, and the S&P as the pair for the veto."""
-    nq = resample(pd.read_parquet(
-        os.path.join(ROOT, "data", "store", "nsxusd_1m.parquet")), "5min")
-    es = pd.read_parquet(
-        os.path.join(ROOT, "data", "store", "sp500_duka_5m.parquet"))
+def load(months):
+    """Nasdaq on five-minute bars, and the S&P as the pair for the veto.
+
+    Two Nasdaq series exist and they end at different times. HistData is denser
+    (89% of a 24-hour weekday series against Dukascopy's 63%) but stops at
+    2025-12-31. Dukascopy is sparser but now runs to 2026-08-27.
+
+    This used to load HistData unconditionally, so after fetching 2026 the
+    comparison still measured 2025 and reported it under a "trailing 12 months"
+    heading. Pick whichever actually covers the window asked for, and say which
+    one was used, because the two disagree on 23% of bar highs by more than 20
+    points and a sweep of a high is the whole strategy.
+    """
+    store = os.path.join(ROOT, "data", "store")
+    want_start = pd.Timestamp.now("UTC") - pd.Timedelta(days=int(months * 30.44))
+
+    options = []
+    hist = os.path.join(store, "nsxusd_1m.parquet")
+    if os.path.exists(hist):
+        options.append(("HistData (denser, 89%)",
+                        resample(pd.read_parquet(hist), "5min")))
+    duka = os.path.join(store, "nasdaq_duka_5m.parquet")
+    if os.path.exists(duka):
+        options.append(("Dukascopy (sparser, 63%)", pd.read_parquet(duka)))
+
+    # prefer the one whose end is nearest to today; break ties on density
+    options.sort(key=lambda o: o[1].index[-1], reverse=True)
+    label, nq = options[0]
+    covered = (nq.index[-1] - max(nq.index[0], want_start)).days
+    print(f"  Nasdaq source: {label}, to {nq.index[-1].date()} "
+          f"({covered} days of the window covered)")
+
+    es = pd.read_parquet(os.path.join(store, "sp500_duka_5m.parquet"))
     return nq, es
 
 
@@ -72,9 +99,13 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--months", type=int, default=12,
                     help="trailing window; 12 is the declared default")
+    ap.add_argument("--no-veto", action="store_true",
+                    help="run without the index-alignment veto. Needed when the "
+                         "pair does not cover the window, e.g. Nasdaq 2026 has "
+                         "landed but the S&P has not. NOT the live config.")
     a = ap.parse_args()
 
-    nq, es = load()
+    nq, es = load(a.months)
 
     # Anchor the window to TODAY, not to wherever the data happens to stop.
     # Anchoring to the data's end meant that with feeds ending 2025-12-31,
@@ -83,7 +114,11 @@ def main():
     # on recent data is defeated if "recent" is defined by the stale file.
     now = pd.Timestamp.now("UTC")
     want_start = now - pd.Timedelta(days=int(a.months * 30.44))
-    have_end = min(nq.index[-1], es.index[-1])
+    # only let the PAIR clamp the window when the pair is actually used.
+    # Taking min() unconditionally meant the S&P ending 2025-12-31 dragged the
+    # window back a year even with the veto off, so the freshly fetched 2026
+    # Nasdaq was loaded and then sliced away.
+    have_end = nq.index[-1] if a.no_veto else min(nq.index[-1], es.index[-1])
 
     missing = (now - have_end).days
     if missing > 21:
@@ -100,6 +135,9 @@ def main():
         return
 
     cfg = live.Runner._tuned()
+    if a.no_veto:
+        import dataclasses
+        cfg = dataclasses.replace(cfg, require_index_align=False)
     costs = costs_for("MNQ")
 
     print("=" * 74)
@@ -108,6 +146,9 @@ def main():
     print(f"  {start.date()} to {end.date()}   {len(nq):,} five-minute bars")
     print(f"  config: {cfg.min_rr}-{cfg.max_rr}R, stop_rule={cfg.stop_rule}, "
           f"veto={cfg.require_index_align}")
+    if not cfg.require_index_align:
+        print("  NOTE: the veto is OFF, so this is not the configuration that "
+              "runs live.")
     stale = (now - end).days
     if stale > 45:
         print(f"  WARNING: data ends {stale} days ago, so this is not "
@@ -118,7 +159,8 @@ def main():
           f"{'95% range':>20} {'safe%':>6} {'$/mo':>9}")
     rows = []
     for name, wf in SESSIONS:
-        s = find_setups(nq, cfg, session_filter=wf, smt_df=es)
+        s = find_setups(nq, cfg, session_filter=wf,
+                        smt_df=(None if a.no_veto else es))
         if not s:
             print(f"  {name:<22} {0:>5}   no setups")
             continue

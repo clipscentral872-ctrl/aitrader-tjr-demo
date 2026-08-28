@@ -20,6 +20,8 @@ Nothing peeks forward. Every decision at bar i uses bars <= i only.
 """
 from dataclasses import dataclass, asdict
 import numpy as np
+import pandas as pd          # higher timeframes fold on the clock, not on a
+                             # bar count, so the index has to be resampled
 
 from . import structure as S
 
@@ -240,24 +242,40 @@ def find_setups(df, cfg=None, session_filter=None, smt_df=None):
 
     # ---- higher timeframe bias (Phase 6: major = DIRECTION) --------------
     def _tf_state(factor):
-        """Trend state on a higher timeframe, built by folding 5-minute bars.
+        """Trend state on a higher timeframe, folded by TIME not by bar count.
 
-        One builder for all of them, so the 1-hour and 15-minute cannot drift
-        from the 4-hour in how they are derived.
+        Counting bars only equals the intended timeframe when no bars are
+        missing. On the Dukascopy series, which carries about 63% of a 24-hour
+        weekday grid, 48 five-minute bars span FIVE real hours rather than four,
+        so the "4-hour" bias was reading a 5-hour chart, the "1-hour" 75
+        minutes, and the "15-minute" nearly 19. Resampling on the clock makes
+        each timeframe mean what it says whatever the density.
+
+        Returns (states, bucket_index) where bucket_index maps every 5-minute
+        bar to its position in the higher-timeframe series.
         """
-        m = n // factor * factor
-        if m < factor * 10:
-            return None
-        hh = h[:m].reshape(-1, factor).max(1)
-        ll = l[:m].reshape(-1, factor).min(1)
+        if n < factor * 10:
+            return None, None
+        rule = f"{factor * 5}min"
+        hh = pd.Series(h, index=idx).resample(rule).max().dropna()
+        ll = pd.Series(l, index=idx).resample(rule).min().dropna()
+        both = hh.index.intersection(ll.index)
+        if len(both) < 10:
+            return None, None
+        hh, ll = hh.loc[both].to_numpy(), ll.loc[both].to_numpy()
         sw = S.find_swings(hh, ll, 2, 2)
-        return [S.structure_state(sw, b)[0] for b in range(len(hh))]
+        states = [S.structure_state(sw, b)[0] for b in range(len(hh))]
+        # which higher-timeframe candle each 5-minute bar falls inside
+        pos = both.searchsorted(idx, side="right") - 1
+        return states, pos
 
-    htf_state = _tf_state(cfg.htf_factor) if cfg.htf_bias else None
-    h1_state = _tf_state(cfg.h1_factor) if (cfg.use_h1 or cfg.require_h1_align) else None
-    m15_state = _tf_state(cfg.m15_factor) if (cfg.use_m15 or cfg.require_m15_align) else None
+    htf_state, htf_pos = _tf_state(cfg.htf_factor) if cfg.htf_bias else (None, None)
+    h1_state, h1_pos = (_tf_state(cfg.h1_factor)
+                        if (cfg.use_h1 or cfg.require_h1_align) else (None, None))
+    m15_state, m15_pos = (_tf_state(cfg.m15_factor)
+                          if (cfg.use_m15 or cfg.require_m15_align) else (None, None))
 
-    def _tf_at(state, factor, bar):
+    def _tf_at(state, pos, bar):
         """That timeframe's bias as of its last COMPLETED bar.
 
         Reading the bar we are currently inside would consult a candle that has
@@ -266,19 +284,19 @@ def find_setups(df, cfg=None, session_filter=None, smt_df=None):
         result happened. One bar back costs a little responsiveness and removes
         the doubt entirely. Every timeframe uses the same guard.
         """
-        if not state:
+        if not state or pos is None:
             return None
-        j = bar // factor - 1
+        j = int(pos[bar]) - 1          # the last CLOSED higher-timeframe candle
         return state[j] if 0 <= j < len(state) else None
 
     def htf_at(bar):
-        return _tf_at(htf_state, cfg.htf_factor, bar)
+        return _tf_at(htf_state, htf_pos, bar)
 
     def h1_at(bar):
-        return _tf_at(h1_state, cfg.h1_factor, bar)
+        return _tf_at(h1_state, h1_pos, bar)
 
     def m15_at(bar):
-        return _tf_at(m15_state, cfg.m15_factor, bar)
+        return _tf_at(m15_state, m15_pos, bar)
 
     setups = []
     recent = []       # live sweeps: (bar, kind, level, extreme)
