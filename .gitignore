@@ -17,10 +17,9 @@ scratchpad/
 *.log
 
 # Backups made while editing
-*.bak
-*.bak2
-*.bak3
-*.bak4
+# any backup suffix, not a hand-kept list. strategy.py.bak5 slipped into a
+# public commit because the list stopped at bak4.
+*.bak*
 
 # Python
 __pycache__/
