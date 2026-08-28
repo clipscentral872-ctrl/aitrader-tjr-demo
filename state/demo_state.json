@@ -1,17 +1,6 @@
 {
- "equity": 50478.5,
- "position": {
-  "symbol": "MNQ",
-  "side": "long",
-  "size": 17.0,
-  "entry": 29661.25,
-  "stop": 29651.0,
-  "target": 29669.35,
-  "rr": 0.79,
-  "tags": "htf_trend|engulf|real_gap|deep_pd",
-  "reason": "swept low@29603.3 -> bull BOS, eff 0.38, target asia_high+capped | 1m gap inversion",
-  "opened_at": "2026-08-28 13:07:52+00:00"
- },
+ "equity": 50104.5,
+ "position": null,
  "trades": [
   {
    "symbol": "MES",
@@ -57,10 +46,25 @@
    "cost_r": 0.36,
    "opened_at": "2026-08-28 12:45:00+00:00",
    "closed_at": "2026-08-28 12:46:00+00:00"
+  },
+  {
+   "symbol": "MNQ",
+   "side": "long",
+   "size": 17.0,
+   "entry": 29661.25,
+   "stop": 29651.0,
+   "target": 29669.35,
+   "exit": 29651.0,
+   "outcome": "loss",
+   "r": -1.073,
+   "pnl": -374.0,
+   "cost_r": 0.0732,
+   "opened_at": "2026-08-28 13:07:52+00:00",
+   "closed_at": "2026-08-28 13:19:00+00:00"
   }
  ],
  "refused": [],
  "last_bar": {},
- "polls": 35,
+ "polls": 50,
  "started": "2026-08-26T17:25:33.754971+00:00"
 }
