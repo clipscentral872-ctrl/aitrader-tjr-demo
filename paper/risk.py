@@ -74,10 +74,14 @@ class RiskRules:
     max_trades_per_day: int = 5
     max_losses_per_day: int = 3
     max_open_positions: int = 1
-    # These MUST match config/tuned.json. The strategy now caps reward at 1.5R,
-    # so a gate demanding >=1.5R would reject almost every setup it produced.
-    max_rr: float = 1.5
-    min_rr: float = 1.0
+    # These MUST match config/tuned.json, so they are READ from it rather than
+    # written here. Hardcoding them meant that every time the band moved, a
+    # bare RiskRules() silently refused every setup with "reward too small",
+    # which reads like a quiet market rather than a misconfiguration. That
+    # happened twice: at 0.5R against a 1.0 floor, and again at 0.8R.
+    # None means "resolve from the config"; an explicit value still wins.
+    max_rr: float = None
+    min_rr: float = None
     # Stop trading once the day is up by this much. A profit target is a real
     # discipline: it stops a good day being handed back. Set it to 0 to disable.
     # Note this can only ever REDUCE returns, never raise them, since it refuses
@@ -86,6 +90,23 @@ class RiskRules:
     daily_profit_target: float = 0.0   # in account currency
     max_daily_loss_pct: float = 3.0   # hard stop on the day
     max_total_drawdown_pct: float = 10.0
+
+    def __post_init__(self):
+        if self.min_rr is not None and self.max_rr is not None:
+            return
+        import json as _json, os as _os
+        p = _os.path.join(_os.path.dirname(_os.path.dirname(_os.path.abspath(__file__))),
+                          "config", "tuned.json")
+        d = {}
+        if _os.path.exists(p):
+            try:
+                d = _json.load(open(p, encoding="utf-8"))
+            except Exception:
+                d = {}
+        if self.min_rr is None:
+            self.min_rr = float(d.get("min_rr", 0.4))
+        if self.max_rr is None:
+            self.max_rr = float(d.get("max_rr", 0.5))
 
 
 @dataclass

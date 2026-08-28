@@ -1,0 +1,14 @@
+==================================================================
+  TRADING REPORT  -  today
+  generated 2026-08-26 19:34
+==================================================================
+
+  No trades closed in this period.
+
+  The system did look. Here is why it stood aside:
+        4  rejected: news window: Core PCE Price Index m/m
+
+  Refusing to trade is the system working. A day with no setup
+  is more common than a day with one, and forcing a trade to
+  fill the day is the most expensive habit in this business.
+==================================================================
