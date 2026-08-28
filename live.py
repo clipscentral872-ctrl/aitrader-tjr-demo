@@ -41,6 +41,13 @@ SYM_MAP = {"nq":  ("NQ",  "NQ=F", "nq"),
            "nsx": ("NSXUSD", "NQ=F", "nsxusd")}
 
 
+# The correlated instrument, for his index-alignment veto: he refuses a trade
+# when NQ and ES disagree about direction. find_setups needs the OTHER index to
+# check that, and live.py never supplied it, so the veto would raise here while
+# working fine in poll_once and evaluate.
+PAIR_FEED = {"NQ=F": "ES=F", "ES=F": "NQ=F", "QQQ": "SPY", "SPY": "QQQ"}
+
+
 # --------------------------------------------------------------------------
 # session windows  (TJR: the New York window)
 # --------------------------------------------------------------------------
@@ -228,11 +235,35 @@ class Runner:
                  f"({s.confluences} confluences, risk ${d.risk_cash:,.0f})")
 
     # ---- setup discovery -------------------------------------------------
+    def pair_feed(self, interval="5m"):
+        """The correlated index, for the alignment veto and for SMT.
+
+        Returns None when the config does not need it, so a run with the veto
+        off pays nothing for this. `pair_df` can be set by a caller (replay
+        against history, tests) and is used in preference to fetching.
+        """
+        if not (getattr(self.cfg, "require_index_align", False)
+                or getattr(self.cfg, "use_smt", False)):
+            return None
+        if getattr(self, "pair_df", None) is not None:
+            return self.pair_df
+        sym = PAIR_FEED.get(self.feed_sym)
+        if sym is None:
+            return None
+        try:
+            # same 45-second cache as the main feed: a longer one would compare
+            # a live chart against a stale one and call that disagreement
+            return yahoo(sym, interval, "5d", max_age=45)
+        except Exception as e:
+            self.log(f"  pair feed {sym} unavailable: {type(e).__name__}")
+            return None
+
     def find(self, df, session_filter=None):
         """Where setups come from. One seam, so a subclass can change the
         entry timeframe without duplicating the polling loop. Whatever it
         returns must be indexed against `df`, because step() looks up by bar."""
-        return find_setups(df, self.cfg, session_filter=session_filter)
+        return find_setups(df, self.cfg, session_filter=session_filter,
+                           smt_df=self.pair_feed())
 
     # ---- replay ----------------------------------------------------------
     def replay(self, df, session_filter=None):
