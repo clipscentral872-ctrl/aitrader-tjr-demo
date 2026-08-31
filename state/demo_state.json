@@ -1,6 +1,17 @@
 {
  "equity": 50275.35,
- "position": null,
+ "position": {
+  "symbol": "MNQ",
+  "side": "long",
+  "size": 8.0,
+  "entry": 29416.21,
+  "stop": 29394.25,
+  "target": 29433.78,
+  "rr": 0.8,
+  "tags": "htf_trend|complex_pullback|full_efficiency|engulf|follow_through|real_gap|deep_pd",
+  "reason": "swept low@29382.6 -> bull BOS, eff 1.11, target equal_highs+capped | 1m gap inversion",
+  "opened_at": "2026-08-31 16:41:09+00:00"
+ },
  "trades": [
   {
    "symbol": "MES",
@@ -80,6 +91,6 @@
  ],
  "refused": [],
  "last_bar": {},
- "polls": 468,
+ "polls": 483,
  "started": "2026-08-26T17:25:33.754971+00:00"
 }
