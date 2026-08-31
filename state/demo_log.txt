@@ -12,3 +12,7 @@
 [2026-08-31 13:01 NY] CLOSE MNQ win at 29,433.78  +0.77R  $+269  equity $50,544
 [2026-08-31 13:01 NY] OPEN MNQ long 29 @ 29,416.00  stop 29,409.75  target 29,421.00  rr 0.80  risk $362  [htf_trend|complex_pullback|full_efficiency|real_gap]
 [2026-08-31 13:02 NY] CLOSE MNQ win at 29,421.00  +0.68R  $+246  equity $50,791
+[2026-08-31 13:22 NY] OPEN MES long 67 @ 7,684.35  stop 7,683.25  target 7,685.23  rr 0.80  risk $369  [deep_pd]
+[2026-08-31 13:24 NY] CLOSE MES win at 7,685.23  +0.39R  $+144  equity $50,935
+[2026-08-31 13:24 NY] OPEN MES long 67 @ 7,684.35  stop 7,683.25  target 7,685.23  rr 0.80  risk $369  [deep_pd]
+[2026-08-31 13:25 NY] CLOSE MES win at 7,685.23  +0.39R  $+144  equity $51,079
