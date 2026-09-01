@@ -112,9 +112,37 @@ def feeds():
     return out
 
 
-def manage_position(state, data):
+# TWO BOOKS, ONE FEED.
+#
+# The tuned config takes 0.6-0.8 reward to risk. It wins about nine times in ten
+# and the round trip still eats close to half of each win, because a stop that
+# tight cannot carry the cost. Chris trades a 1.3 minimum and TJR coaches the
+# same thing, so the two shapes disagree and no amount of arguing settles it.
+#
+# They are therefore run side by side against the SAME bars at the SAME moment.
+# Only the reward-to-risk band differs, so whatever separates them after a few
+# hundred trades is the shape and not the luck of different entries.
+#
+# "main" keeps the original top level keys so the record already collected is
+# not thrown away. "wide" gets its own book.
+TRACKS = [("main", 0.6, 0.8), ("wide", 1.3, 2.2)]
+
+
+def book_of(state, track):
+    """The equity, position and trades belonging to one track."""
+    if track == "main":
+        return state
+    b = state.setdefault(track, None)
+    if not b:
+        b = {"equity": EQUITY_START, "position": None, "trades": [],
+             "refused": [], "started": dt.datetime.now(dt.timezone.utc).isoformat()}
+        state[track] = b
+    return b
+
+
+def manage_position(state, book, data):
     """Walk any bars that printed since the last poll and resolve the trade."""
-    pos = state.get("position")
+    pos = book.get("position")
     if not pos:
         return
     d = data.get(pos["symbol"])
@@ -138,14 +166,14 @@ def manage_position(state, data):
                 px = op
             elif pos["side"] == "long" and op < pos["stop"]:
                 px = op
-            close_position(state, pos, px, ts, "loss", inst)   # stop wins ties
+            close_position(state, book, pos, px, ts, "loss", inst)  # stop wins ties
             return
         if hit_tgt:
-            close_position(state, pos, pos["target"], ts, "win", inst)
+            close_position(state, book, pos, pos["target"], ts, "win", inst)
             return
 
 
-def close_position(state, pos, price, ts, outcome, inst):
+def close_position(state, book, pos, price, ts, outcome, inst):
     move = (pos["entry"] - price) if pos["side"] == "short" else (price - pos["entry"])
     risk = abs(pos["entry"] - pos["stop"])
     # CHARGE THE ROUND TRIP, exactly as backtest/engine.py does. Without this
@@ -155,8 +183,8 @@ def close_position(state, pos, price, ts, outcome, inst):
     cost_r = costs_for(pos["symbol"]).cost_in_r(pos["entry"], pos["stop"])
     r = (move / risk - cost_r) if risk else 0.0
     cash = r * risk / inst.tick_size * inst.tick_value * pos["size"]
-    state["equity"] = round(state["equity"] + cash, 2)
-    state["trades"].append({
+    book["equity"] = round(book["equity"] + cash, 2)
+    book["trades"].append({
         "symbol": pos["symbol"], "side": pos["side"], "size": pos["size"],
         "entry": pos["entry"], "stop": pos["stop"], "target": pos["target"],
         "exit": round(float(price), 2), "outcome": outcome,
@@ -164,56 +192,18 @@ def close_position(state, pos, price, ts, outcome, inst):
         "cost_r": round(float(cost_r), 4),
         "opened_at": pos["opened_at"], "closed_at": str(ts),
     })
-    state["position"] = None
-    log(state, f"CLOSE {pos['symbol']} {outcome} at {price:,.2f}  "
-               f"{r:+.2f}R  ${cash:+,.0f}  equity ${state['equity']:,.0f}")
+    book["position"] = None
+    log(state, f"CLOSE {book.get('_name', 'main')} {pos['symbol']} {outcome} "
+               f"at {price:,.2f}  {r:+.2f}R  ${cash:+,.0f}  "
+               f"equity ${book['equity']:,.0f}")
 
 
-def main():
-    ap = argparse.ArgumentParser()
-    ap.add_argument("--dry-run", action="store_true",
-                    help="decide and print, but write no state")
-    a = ap.parse_args()
-
-    state = load_state()
-    state["polls"] = state.get("polls", 0) + 1
-    now_ny = dt.datetime.now(dt.timezone.utc) - dt.timedelta(hours=4)
-
-    cfg = live.Runner._tuned()
-    rules = RiskRules(risk_pct=RISK_PCT, min_rr=cfg.min_rr, max_rr=cfg.max_rr,
-                      max_total_drawdown_pct=10.0)
-
-    print(f"poll {state['polls']}   {now_ny:%Y-%m-%d %H:%M} New York   "
-          f"equity ${state['equity']:,.0f}   trades {len(state['trades'])}")
-
-    data = feeds()
-    if not data:
-        print("  no usable feed this poll")
-        if not a.dry_run:
-            save_state(state)
+def scan_and_open(state, book, track, cfg, rules, data, now_ny):
+    """Look for a setup for one book, and take it if the gate approves."""
+    if book.get("position"):
+        print(f"  [{track}] holding {book['position']['symbol']}")
         return
 
-    for name in data:
-        print(f"  {name}: last {data[name]['m1'].index[-1]:%H:%M} UTC, "
-              f"lag {data[name]['lag']:.0f}m")
-
-    manage_position(state, data)
-
-    in_window = SCAN(pd.Timestamp(dt.datetime.now(dt.timezone.utc)))
-    if not in_window:
-        print("  outside the London+NY window, not scanning")
-        if not a.dry_run:
-            save_state(state)
-        return
-
-    if state.get("position"):
-        print(f"  holding {state['position']['symbol']}, "
-              f"one position across the correlated group")
-        if not a.dry_run:
-            save_state(state)
-        return
-
-    # ---- look for a setup on each instrument, take the better one --------
     best = None
     for name, d in data.items():
         if d["lag"] > FEED_LAG_LIMIT_MIN:
@@ -236,17 +226,16 @@ def main():
         # the code cannot. Ten trades in a row came out long while an offline
         # reconstruction of the same period produced more shorts than longs, and
         # four theories about why were all wrong. Rather than guess a fifth time,
-        # the poller now writes down what it was actually offered.
-        if setups:
-            state.setdefault("seen", []).append({
-                "when": now_ny.isoformat(), "symbol": name,
-                "all": len(setups), "fresh": len(fresh),
-                "long": sum(1 for x in setups if x.side == "long"),
-                "short": sum(1 for x in setups if x.side == "short"),
-                "fresh_long": sum(1 for x in fresh if x.side == "long"),
-                "fresh_short": sum(1 for x in fresh if x.side == "short"),
-            })
-            state["seen"] = state["seen"][-4000:]
+        # the poller writes down what it was actually offered.
+        state.setdefault("seen", []).append({
+            "when": now_ny.isoformat(), "track": track, "symbol": name,
+            "all": len(setups), "fresh": len(fresh),
+            "long": sum(1 for x in setups if x.side == "long"),
+            "short": sum(1 for x in setups if x.side == "short"),
+            "fresh_long": sum(1 for x in fresh if x.side == "long"),
+            "fresh_short": sum(1 for x in fresh if x.side == "short"),
+        })
+        state["seen"] = state["seen"][-4000:]
 
         if not fresh:
             continue
@@ -255,49 +244,94 @@ def main():
             best = (name, s)
 
     if best is None:
-        print("  no setup")
-        if not a.dry_run:
-            save_state(state)
+        print(f"  [{track}] no setup")
         return
 
     name, s = best
     gate = RiskGate(rules, start_equity=EQUITY_START)
-    d = gate.check(s, state["equity"], dt.datetime.now(dt.timezone.utc),
+    d = gate.check(s, book["equity"], dt.datetime.now(dt.timezone.utc),
                    INSTRUMENTS[name], open_positions=0)
     if not d.approved:
-        log(state, f"{name} refused by the gate: {d.reason}")
-        state["refused"].append({"when": now_ny.isoformat(), "symbol": name,
-                                 "why": d.reason})
-    else:
-        # A setup stays "fresh" for three bars, so when a position closes inside
-        # that window the next poll finds the SAME setup and opens it again. It
-        # produced 17 trades out of 10 real setups, which inflated the record and
-        # would have inflated any conclusion drawn from it. One setup, one trade.
-        inst = INSTRUMENTS[name]
-        setup_bar = str(data[name]["m1"].index[min(s.bar, len(data[name]["m1"]) - 1)])
-        ident = f"{name}|{s.side}|{setup_bar}|{s.entry:.2f}|{s.stop:.2f}"
-        if state.get("last_setup") == ident:
-            log(state, f"{name} same setup as the last trade, not re-entering")
-            if not a.dry_run:
-                save_state(state)
-            return
-        state["last_setup"] = ident
+        log(state, f"[{track}] {name} refused by the gate: {d.reason}")
+        book.setdefault("refused", []).append(
+            {"when": now_ny.isoformat(), "symbol": name, "why": d.reason})
+        return
 
-        # Futures trade in ticks. Nine of the first seventeen entries were prices
-        # that cannot exist, e.g. MES at 7,722.65, because the raw feed close was
-        # used as the fill. Snap every level to the tick the contract deals in.
-        tick = float(getattr(inst, "tick_size", 0.25)) or 0.25
-        snap = lambda v: round(round(float(v) / tick) * tick, 4)
-        state["position"] = {
-            "symbol": name, "side": s.side, "size": d.size,
-            "entry": snap(s.entry), "stop": snap(s.stop),
-            "target": snap(s.target), "rr": round(float(s.rr), 2),
-            "tags": s.tags, "reason": s.reason,
-            "opened_at": str(data[name]["m1"].index[-1]),
-        }
-        log(state, f"OPEN {name} {s.side} {d.size:g} @ {s.entry:,.2f}  "
-                   f"stop {s.stop:,.2f}  target {s.target:,.2f}  "
-                   f"rr {s.rr:.2f}  risk ${d.risk_cash:,.0f}  [{s.tags}]")
+    # A setup stays "fresh" for three bars, so when a position closes inside that
+    # window the next poll finds the SAME setup and opens it again. It produced
+    # 17 trades out of 10 real setups, which inflated the record and anything
+    # concluded from it. One setup, one trade.
+    inst = INSTRUMENTS[name]
+    setup_bar = str(data[name]["m1"].index[min(s.bar, len(data[name]["m1"]) - 1)])
+    ident = f"{name}|{s.side}|{setup_bar}|{s.entry:.2f}|{s.stop:.2f}"
+    if book.get("last_setup") == ident:
+        log(state, f"[{track}] {name} same setup as the last trade, not re-entering")
+        return
+    book["last_setup"] = ident
+
+    # Futures trade in ticks. Nine of the first seventeen entries were prices
+    # that cannot exist, e.g. MES at 7,722.65, because the raw feed close was
+    # used as the fill. Snap every level to the tick the contract deals in.
+    tick = float(getattr(inst, "tick_size", 0.25)) or 0.25
+    snap = lambda v: round(round(float(v) / tick) * tick, 4)
+    book["position"] = {
+        "symbol": name, "side": s.side, "size": d.size,
+        "entry": snap(s.entry), "stop": snap(s.stop),
+        "target": snap(s.target), "rr": round(float(s.rr), 2),
+        "tags": s.tags, "reason": s.reason,
+        "opened_at": str(data[name]["m1"].index[-1]),
+    }
+    log(state, f"OPEN [{track}] {name} {s.side} {d.size:g} @ {snap(s.entry):,.2f}  "
+               f"stop {snap(s.stop):,.2f}  target {snap(s.target):,.2f}  "
+               f"rr {s.rr:.2f}  risk ${d.risk_cash:,.0f}  [{s.tags}]")
+
+
+def main():
+    import dataclasses
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--dry-run", action="store_true",
+                    help="decide and print, but write no state")
+    a = ap.parse_args()
+
+    state = load_state()
+    state["polls"] = state.get("polls", 0) + 1
+    now_ny = dt.datetime.now(dt.timezone.utc) - dt.timedelta(hours=4)
+    cfg_base = live.Runner._tuned()
+
+    books = " ".join(
+        f"{t}=${book_of(state, t)['equity']:,.0f}/{len(book_of(state, t)['trades'])}"
+        for t, _, _ in TRACKS)
+    print(f"poll {state['polls']}   {now_ny:%Y-%m-%d %H:%M} New York   {books}")
+
+    data = feeds()
+    if not data:
+        print("  no usable feed this poll")
+        if not a.dry_run:
+            save_state(state)
+        return
+
+    for name in data:
+        print(f"  {name}: last {data[name]['m1'].index[-1]:%H:%M} UTC, "
+              f"lag {data[name]['lag']:.0f}m")
+
+    for track, _, _ in TRACKS:
+        b = book_of(state, track)
+        b["_name"] = track
+        manage_position(state, b, data)
+
+    if not SCAN(pd.Timestamp(dt.datetime.now(dt.timezone.utc))):
+        print("  outside the London+NY window, not scanning")
+        if not a.dry_run:
+            save_state(state)
+        return
+
+    for track, lo_rr, hi_rr in TRACKS:
+        b = book_of(state, track)
+        b["_name"] = track
+        cfg = dataclasses.replace(cfg_base, min_rr=lo_rr, max_rr=hi_rr)
+        rules = RiskRules(risk_pct=RISK_PCT, min_rr=lo_rr, max_rr=hi_rr,
+                          max_total_drawdown_pct=10.0)
+        scan_and_open(state, b, track, cfg, rules, data, now_ny)
 
     if not a.dry_run:
         save_state(state)
