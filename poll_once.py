@@ -231,6 +231,23 @@ def main():
             continue
         last = len(d["m1"]) - 1
         fresh = [s for s in setups if s.bar >= last - 2]
+
+        # Every candidate this poll saw, kept so the record can answer questions
+        # the code cannot. Ten trades in a row came out long while an offline
+        # reconstruction of the same period produced more shorts than longs, and
+        # four theories about why were all wrong. Rather than guess a fifth time,
+        # the poller now writes down what it was actually offered.
+        if setups:
+            state.setdefault("seen", []).append({
+                "when": now_ny.isoformat(), "symbol": name,
+                "all": len(setups), "fresh": len(fresh),
+                "long": sum(1 for x in setups if x.side == "long"),
+                "short": sum(1 for x in setups if x.side == "short"),
+                "fresh_long": sum(1 for x in fresh if x.side == "long"),
+                "fresh_short": sum(1 for x in fresh if x.side == "short"),
+            })
+            state["seen"] = state["seen"][-4000:]
+
         if not fresh:
             continue
         s = max(fresh, key=lambda x: (x.confluences, x.rr))
