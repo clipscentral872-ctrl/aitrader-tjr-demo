@@ -55,7 +55,10 @@ def run_poll_side(pos, df, inst_name="MNQ"):
     state = poll_once.blank_state()
     state["position"] = dict(pos)
     data = {inst_name: {"m1": df, "m5": df, "lag": 0.0}}
-    poll_once.manage_position(state, data)
+    # position management now works on a book, so that the tuned and the wide
+    # reward-to-risk tracks can run side by side. For "main" the book is the
+    # state itself, which is what keeps the record already collected intact.
+    poll_once.manage_position(state, poll_once.book_of(state, "main"), data)
     if not state["trades"]:
         return None, None
     t = state["trades"][-1]
