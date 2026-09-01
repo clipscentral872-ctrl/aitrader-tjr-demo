@@ -252,10 +252,29 @@ def main():
         state["refused"].append({"when": now_ny.isoformat(), "symbol": name,
                                  "why": d.reason})
     else:
+        # A setup stays "fresh" for three bars, so when a position closes inside
+        # that window the next poll finds the SAME setup and opens it again. It
+        # produced 17 trades out of 10 real setups, which inflated the record and
+        # would have inflated any conclusion drawn from it. One setup, one trade.
+        inst = INSTRUMENTS[name]
+        setup_bar = str(data[name]["m1"].index[min(s.bar, len(data[name]["m1"]) - 1)])
+        ident = f"{name}|{s.side}|{setup_bar}|{s.entry:.2f}|{s.stop:.2f}"
+        if state.get("last_setup") == ident:
+            log(state, f"{name} same setup as the last trade, not re-entering")
+            if not a.dry_run:
+                save_state(state)
+            return
+        state["last_setup"] = ident
+
+        # Futures trade in ticks. Nine of the first seventeen entries were prices
+        # that cannot exist, e.g. MES at 7,722.65, because the raw feed close was
+        # used as the fill. Snap every level to the tick the contract deals in.
+        tick = float(getattr(inst, "tick_size", 0.25)) or 0.25
+        snap = lambda v: round(round(float(v) / tick) * tick, 4)
         state["position"] = {
             "symbol": name, "side": s.side, "size": d.size,
-            "entry": round(float(s.entry), 2), "stop": round(float(s.stop), 2),
-            "target": round(float(s.target), 2), "rr": round(float(s.rr), 2),
+            "entry": snap(s.entry), "stop": snap(s.stop),
+            "target": snap(s.target), "rr": round(float(s.rr), 2),
             "tags": s.tags, "reason": s.reason,
             "opened_at": str(data[name]["m1"].index[-1]),
         }
