@@ -39,3 +39,4 @@
 [2026-09-02 08:16 NY] [main] MNQ same setup as the last trade, not re-entering
 [2026-09-02 08:16 NY] [wide] MNQ same setup as the last trade, not re-entering
 [2026-09-02 10:50 NY] OPEN [main] MNQ long 8 @ 29,190.50  stop 29,168.50  target 29,208.25  rr 0.80  risk $353  [m15_trend|engulf|follow_through]
+[2026-09-02 10:58 NY] CLOSE main MNQ loss at 29,168.50  -1.03R  $-364  equity $52,774
