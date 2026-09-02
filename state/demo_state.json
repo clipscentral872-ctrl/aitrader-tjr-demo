@@ -1,5 +1,5 @@
 {
- "equity": 52773.57,
+ "equity": 52179.07,
  "position": null,
  "trades": [
   {
@@ -286,11 +286,26 @@
    "cost_r": 0.0341,
    "opened_at": "2026-09-02 14:40:51+00:00",
    "closed_at": "2026-09-02 14:48:00+00:00"
+  },
+  {
+   "symbol": "MES",
+   "side": "short",
+   "size": 82.0,
+   "entry": 7679.5,
+   "stop": 7680.5,
+   "target": 7679.0,
+   "exit": 7680.5,
+   "outcome": "loss",
+   "r": -1.45,
+   "pnl": -594.5,
+   "cost_r": 0.45,
+   "opened_at": "2026-09-02 15:57:43+00:00",
+   "closed_at": "2026-09-02 15:58:00+00:00"
   }
  ],
  "refused": [],
  "last_bar": {},
- "polls": 1550,
+ "polls": 1565,
  "started": "2026-08-26T17:25:33.754971+00:00",
  "seen": [
   {
@@ -14892,10 +14907,626 @@
    "short": 6,
    "fresh_long": 0,
    "fresh_short": 0
+  },
+  {
+   "when": "2026-09-02T11:54:15.446350+00:00",
+   "track": "main",
+   "symbol": "MNQ",
+   "all": 22,
+   "fresh": 0,
+   "long": 12,
+   "short": 10,
+   "fresh_long": 0,
+   "fresh_short": 0
+  },
+  {
+   "when": "2026-09-02T11:54:15.446350+00:00",
+   "track": "main",
+   "symbol": "MES",
+   "all": 12,
+   "fresh": 0,
+   "long": 4,
+   "short": 8,
+   "fresh_long": 0,
+   "fresh_short": 0
+  },
+  {
+   "when": "2026-09-02T11:54:15.446350+00:00",
+   "track": "wide",
+   "symbol": "MNQ",
+   "all": 18,
+   "fresh": 0,
+   "long": 9,
+   "short": 9,
+   "fresh_long": 0,
+   "fresh_short": 0
+  },
+  {
+   "when": "2026-09-02T11:54:15.446350+00:00",
+   "track": "wide",
+   "symbol": "MES",
+   "all": 13,
+   "fresh": 0,
+   "long": 7,
+   "short": 6,
+   "fresh_long": 0,
+   "fresh_short": 0
+  },
+  {
+   "when": "2026-09-02T11:55:17.703679+00:00",
+   "track": "main",
+   "symbol": "MNQ",
+   "all": 22,
+   "fresh": 0,
+   "long": 12,
+   "short": 10,
+   "fresh_long": 0,
+   "fresh_short": 0
+  },
+  {
+   "when": "2026-09-02T11:55:17.703679+00:00",
+   "track": "main",
+   "symbol": "MES",
+   "all": 12,
+   "fresh": 0,
+   "long": 4,
+   "short": 8,
+   "fresh_long": 0,
+   "fresh_short": 0
+  },
+  {
+   "when": "2026-09-02T11:55:17.703679+00:00",
+   "track": "wide",
+   "symbol": "MNQ",
+   "all": 18,
+   "fresh": 0,
+   "long": 9,
+   "short": 9,
+   "fresh_long": 0,
+   "fresh_short": 0
+  },
+  {
+   "when": "2026-09-02T11:55:17.703679+00:00",
+   "track": "wide",
+   "symbol": "MES",
+   "all": 13,
+   "fresh": 0,
+   "long": 7,
+   "short": 6,
+   "fresh_long": 0,
+   "fresh_short": 0
+  },
+  {
+   "when": "2026-09-02T11:56:19.957463+00:00",
+   "track": "main",
+   "symbol": "MNQ",
+   "all": 22,
+   "fresh": 0,
+   "long": 12,
+   "short": 10,
+   "fresh_long": 0,
+   "fresh_short": 0
+  },
+  {
+   "when": "2026-09-02T11:56:19.957463+00:00",
+   "track": "main",
+   "symbol": "MES",
+   "all": 12,
+   "fresh": 0,
+   "long": 4,
+   "short": 8,
+   "fresh_long": 0,
+   "fresh_short": 0
+  },
+  {
+   "when": "2026-09-02T11:56:19.957463+00:00",
+   "track": "wide",
+   "symbol": "MNQ",
+   "all": 18,
+   "fresh": 0,
+   "long": 9,
+   "short": 9,
+   "fresh_long": 0,
+   "fresh_short": 0
+  },
+  {
+   "when": "2026-09-02T11:56:19.957463+00:00",
+   "track": "wide",
+   "symbol": "MES",
+   "all": 13,
+   "fresh": 0,
+   "long": 7,
+   "short": 6,
+   "fresh_long": 0,
+   "fresh_short": 0
+  },
+  {
+   "when": "2026-09-02T11:57:22.314225+00:00",
+   "track": "main",
+   "symbol": "MNQ",
+   "all": 22,
+   "fresh": 0,
+   "long": 12,
+   "short": 10,
+   "fresh_long": 0,
+   "fresh_short": 0
+  },
+  {
+   "when": "2026-09-02T11:57:22.314225+00:00",
+   "track": "main",
+   "symbol": "MES",
+   "all": 12,
+   "fresh": 0,
+   "long": 4,
+   "short": 8,
+   "fresh_long": 0,
+   "fresh_short": 0
+  },
+  {
+   "when": "2026-09-02T11:57:22.314225+00:00",
+   "track": "wide",
+   "symbol": "MNQ",
+   "all": 18,
+   "fresh": 0,
+   "long": 9,
+   "short": 9,
+   "fresh_long": 0,
+   "fresh_short": 0
+  },
+  {
+   "when": "2026-09-02T11:57:22.314225+00:00",
+   "track": "wide",
+   "symbol": "MES",
+   "all": 13,
+   "fresh": 0,
+   "long": 7,
+   "short": 6,
+   "fresh_long": 0,
+   "fresh_short": 0
+  },
+  {
+   "when": "2026-09-02T11:58:24.573190+00:00",
+   "track": "main",
+   "symbol": "MNQ",
+   "all": 22,
+   "fresh": 0,
+   "long": 12,
+   "short": 10,
+   "fresh_long": 0,
+   "fresh_short": 0
+  },
+  {
+   "when": "2026-09-02T11:58:24.573190+00:00",
+   "track": "main",
+   "symbol": "MES",
+   "all": 12,
+   "fresh": 0,
+   "long": 4,
+   "short": 8,
+   "fresh_long": 0,
+   "fresh_short": 0
+  },
+  {
+   "when": "2026-09-02T11:58:24.573190+00:00",
+   "track": "wide",
+   "symbol": "MNQ",
+   "all": 18,
+   "fresh": 0,
+   "long": 9,
+   "short": 9,
+   "fresh_long": 0,
+   "fresh_short": 0
+  },
+  {
+   "when": "2026-09-02T11:58:24.573190+00:00",
+   "track": "wide",
+   "symbol": "MES",
+   "all": 13,
+   "fresh": 0,
+   "long": 7,
+   "short": 6,
+   "fresh_long": 0,
+   "fresh_short": 0
+  },
+  {
+   "when": "2026-09-02T11:59:26.846296+00:00",
+   "track": "main",
+   "symbol": "MNQ",
+   "all": 22,
+   "fresh": 0,
+   "long": 12,
+   "short": 10,
+   "fresh_long": 0,
+   "fresh_short": 0
+  },
+  {
+   "when": "2026-09-02T11:59:26.846296+00:00",
+   "track": "main",
+   "symbol": "MES",
+   "all": 12,
+   "fresh": 0,
+   "long": 4,
+   "short": 8,
+   "fresh_long": 0,
+   "fresh_short": 0
+  },
+  {
+   "when": "2026-09-02T11:59:26.846296+00:00",
+   "track": "wide",
+   "symbol": "MNQ",
+   "all": 18,
+   "fresh": 0,
+   "long": 9,
+   "short": 9,
+   "fresh_long": 0,
+   "fresh_short": 0
+  },
+  {
+   "when": "2026-09-02T11:59:26.846296+00:00",
+   "track": "wide",
+   "symbol": "MES",
+   "all": 13,
+   "fresh": 0,
+   "long": 7,
+   "short": 6,
+   "fresh_long": 0,
+   "fresh_short": 0
+  },
+  {
+   "when": "2026-09-02T12:00:29.103669+00:00",
+   "track": "main",
+   "symbol": "MNQ",
+   "all": 22,
+   "fresh": 0,
+   "long": 12,
+   "short": 10,
+   "fresh_long": 0,
+   "fresh_short": 0
+  },
+  {
+   "when": "2026-09-02T12:00:29.103669+00:00",
+   "track": "main",
+   "symbol": "MES",
+   "all": 12,
+   "fresh": 0,
+   "long": 4,
+   "short": 8,
+   "fresh_long": 0,
+   "fresh_short": 0
+  },
+  {
+   "when": "2026-09-02T12:00:29.103669+00:00",
+   "track": "wide",
+   "symbol": "MNQ",
+   "all": 18,
+   "fresh": 0,
+   "long": 9,
+   "short": 9,
+   "fresh_long": 0,
+   "fresh_short": 0
+  },
+  {
+   "when": "2026-09-02T12:00:29.103669+00:00",
+   "track": "wide",
+   "symbol": "MES",
+   "all": 13,
+   "fresh": 0,
+   "long": 7,
+   "short": 6,
+   "fresh_long": 0,
+   "fresh_short": 0
+  },
+  {
+   "when": "2026-09-02T12:01:31.421422+00:00",
+   "track": "main",
+   "symbol": "MNQ",
+   "all": 22,
+   "fresh": 0,
+   "long": 12,
+   "short": 10,
+   "fresh_long": 0,
+   "fresh_short": 0
+  },
+  {
+   "when": "2026-09-02T12:01:31.421422+00:00",
+   "track": "main",
+   "symbol": "MES",
+   "all": 12,
+   "fresh": 0,
+   "long": 4,
+   "short": 8,
+   "fresh_long": 0,
+   "fresh_short": 0
+  },
+  {
+   "when": "2026-09-02T12:01:31.421422+00:00",
+   "track": "wide",
+   "symbol": "MNQ",
+   "all": 18,
+   "fresh": 0,
+   "long": 9,
+   "short": 9,
+   "fresh_long": 0,
+   "fresh_short": 0
+  },
+  {
+   "when": "2026-09-02T12:01:31.421422+00:00",
+   "track": "wide",
+   "symbol": "MES",
+   "all": 13,
+   "fresh": 0,
+   "long": 7,
+   "short": 6,
+   "fresh_long": 0,
+   "fresh_short": 0
+  },
+  {
+   "when": "2026-09-02T12:02:33.697240+00:00",
+   "track": "main",
+   "symbol": "MNQ",
+   "all": 22,
+   "fresh": 0,
+   "long": 12,
+   "short": 10,
+   "fresh_long": 0,
+   "fresh_short": 0
+  },
+  {
+   "when": "2026-09-02T12:02:33.697240+00:00",
+   "track": "main",
+   "symbol": "MES",
+   "all": 12,
+   "fresh": 0,
+   "long": 4,
+   "short": 8,
+   "fresh_long": 0,
+   "fresh_short": 0
+  },
+  {
+   "when": "2026-09-02T12:02:33.697240+00:00",
+   "track": "wide",
+   "symbol": "MNQ",
+   "all": 18,
+   "fresh": 0,
+   "long": 9,
+   "short": 9,
+   "fresh_long": 0,
+   "fresh_short": 0
+  },
+  {
+   "when": "2026-09-02T12:02:33.697240+00:00",
+   "track": "wide",
+   "symbol": "MES",
+   "all": 13,
+   "fresh": 0,
+   "long": 7,
+   "short": 6,
+   "fresh_long": 0,
+   "fresh_short": 0
+  },
+  {
+   "when": "2026-09-02T12:03:36.053772+00:00",
+   "track": "main",
+   "symbol": "MNQ",
+   "all": 22,
+   "fresh": 0,
+   "long": 12,
+   "short": 10,
+   "fresh_long": 0,
+   "fresh_short": 0
+  },
+  {
+   "when": "2026-09-02T12:03:36.053772+00:00",
+   "track": "main",
+   "symbol": "MES",
+   "all": 12,
+   "fresh": 0,
+   "long": 4,
+   "short": 8,
+   "fresh_long": 0,
+   "fresh_short": 0
+  },
+  {
+   "when": "2026-09-02T12:03:36.053772+00:00",
+   "track": "wide",
+   "symbol": "MNQ",
+   "all": 18,
+   "fresh": 0,
+   "long": 9,
+   "short": 9,
+   "fresh_long": 0,
+   "fresh_short": 0
+  },
+  {
+   "when": "2026-09-02T12:03:36.053772+00:00",
+   "track": "wide",
+   "symbol": "MES",
+   "all": 13,
+   "fresh": 0,
+   "long": 7,
+   "short": 6,
+   "fresh_long": 0,
+   "fresh_short": 0
+  },
+  {
+   "when": "2026-09-02T12:04:38.424084+00:00",
+   "track": "main",
+   "symbol": "MNQ",
+   "all": 22,
+   "fresh": 0,
+   "long": 12,
+   "short": 10,
+   "fresh_long": 0,
+   "fresh_short": 0
+  },
+  {
+   "when": "2026-09-02T12:04:38.424084+00:00",
+   "track": "main",
+   "symbol": "MES",
+   "all": 12,
+   "fresh": 0,
+   "long": 4,
+   "short": 8,
+   "fresh_long": 0,
+   "fresh_short": 0
+  },
+  {
+   "when": "2026-09-02T12:04:38.424084+00:00",
+   "track": "wide",
+   "symbol": "MNQ",
+   "all": 18,
+   "fresh": 0,
+   "long": 9,
+   "short": 9,
+   "fresh_long": 0,
+   "fresh_short": 0
+  },
+  {
+   "when": "2026-09-02T12:04:38.424084+00:00",
+   "track": "wide",
+   "symbol": "MES",
+   "all": 13,
+   "fresh": 0,
+   "long": 7,
+   "short": 6,
+   "fresh_long": 0,
+   "fresh_short": 0
+  },
+  {
+   "when": "2026-09-02T12:05:40.795969+00:00",
+   "track": "main",
+   "symbol": "MNQ",
+   "all": 22,
+   "fresh": 0,
+   "long": 12,
+   "short": 10,
+   "fresh_long": 0,
+   "fresh_short": 0
+  },
+  {
+   "when": "2026-09-02T12:05:40.795969+00:00",
+   "track": "main",
+   "symbol": "MES",
+   "all": 12,
+   "fresh": 0,
+   "long": 4,
+   "short": 8,
+   "fresh_long": 0,
+   "fresh_short": 0
+  },
+  {
+   "when": "2026-09-02T12:05:40.795969+00:00",
+   "track": "wide",
+   "symbol": "MNQ",
+   "all": 18,
+   "fresh": 0,
+   "long": 9,
+   "short": 9,
+   "fresh_long": 0,
+   "fresh_short": 0
+  },
+  {
+   "when": "2026-09-02T12:05:40.795969+00:00",
+   "track": "wide",
+   "symbol": "MES",
+   "all": 14,
+   "fresh": 1,
+   "long": 7,
+   "short": 7,
+   "fresh_long": 0,
+   "fresh_short": 1
+  },
+  {
+   "when": "2026-09-02T12:06:43.180097+00:00",
+   "track": "main",
+   "symbol": "MNQ",
+   "all": 22,
+   "fresh": 0,
+   "long": 12,
+   "short": 10,
+   "fresh_long": 0,
+   "fresh_short": 0
+  },
+  {
+   "when": "2026-09-02T12:06:43.180097+00:00",
+   "track": "main",
+   "symbol": "MES",
+   "all": 12,
+   "fresh": 0,
+   "long": 4,
+   "short": 8,
+   "fresh_long": 0,
+   "fresh_short": 0
+  },
+  {
+   "when": "2026-09-02T12:07:44.817830+00:00",
+   "track": "main",
+   "symbol": "MNQ",
+   "all": 22,
+   "fresh": 0,
+   "long": 12,
+   "short": 10,
+   "fresh_long": 0,
+   "fresh_short": 0
+  },
+  {
+   "when": "2026-09-02T12:07:44.817830+00:00",
+   "track": "main",
+   "symbol": "MES",
+   "all": 13,
+   "fresh": 1,
+   "long": 4,
+   "short": 9,
+   "fresh_long": 0,
+   "fresh_short": 1
+  },
+  {
+   "when": "2026-09-02T12:08:46.435153+00:00",
+   "track": "main",
+   "symbol": "MNQ",
+   "all": 22,
+   "fresh": 0,
+   "long": 12,
+   "short": 10,
+   "fresh_long": 0,
+   "fresh_short": 0
+  },
+  {
+   "when": "2026-09-02T12:08:46.435153+00:00",
+   "track": "main",
+   "symbol": "MES",
+   "all": 13,
+   "fresh": 1,
+   "long": 4,
+   "short": 9,
+   "fresh_long": 0,
+   "fresh_short": 1
+  },
+  {
+   "when": "2026-09-02T12:08:46.435153+00:00",
+   "track": "wide",
+   "symbol": "MNQ",
+   "all": 18,
+   "fresh": 0,
+   "long": 9,
+   "short": 9,
+   "fresh_long": 0,
+   "fresh_short": 0
+  },
+  {
+   "when": "2026-09-02T12:08:46.435153+00:00",
+   "track": "wide",
+   "symbol": "MES",
+   "all": 14,
+   "fresh": 0,
+   "long": 7,
+   "short": 7,
+   "fresh_long": 0,
+   "fresh_short": 0
   }
  ],
  "wide": {
-  "equity": 50741.0,
+  "equity": 50309.75,
   "position": null,
   "trades": [
    {
@@ -14912,13 +15543,28 @@
     "cost_r": 0.1579,
     "opened_at": "2026-09-02 12:04:55+00:00",
     "closed_at": "2026-09-02 12:05:00+00:00"
+   },
+   {
+    "symbol": "MES",
+    "side": "short",
+    "size": 25.0,
+    "entry": 7679.5,
+    "stop": 7682.5,
+    "target": 7673.25,
+    "exit": 7682.5,
+    "outcome": "loss",
+    "r": -1.15,
+    "pnl": -431.25,
+    "cost_r": 0.15,
+    "opened_at": "2026-09-02 15:55:39+00:00",
+    "closed_at": "2026-09-02 15:58:00+00:00"
    }
   ],
   "refused": [],
   "started": "2026-09-01T16:12:02.041615+00:00",
   "_name": "wide",
-  "last_setup": "MNQ|long|2026-09-02 12:04:00+00:00|29079.75|29075.00"
+  "last_setup": "MES|short|2026-09-02 15:55:00+00:00|7679.57|7682.50"
  },
  "_name": "main",
- "last_setup": "MNQ|long|2026-09-02 14:40:00+00:00|29190.59|29168.50"
+ "last_setup": "MES|short|2026-09-02 15:57:00+00:00|7679.57|7680.50"
 }
