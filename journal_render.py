@@ -38,7 +38,7 @@ BAD = {"stop wrong side", "slipped", "cut short", "closed early"}
 
 META = os.path.join(ROOT, "journal_data", "meta.json")
 LIB = os.path.join(ROOT, "For Learning")
-GROUPS = ["Daily", "Weekly", "Overall"]
+GROUPS = ["Daily", "By Weekday", "Weekly", "Overall"]
 
 
 def library():

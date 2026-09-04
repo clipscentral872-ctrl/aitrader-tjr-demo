@@ -43,3 +43,4 @@ replay/bundle/
 replay/out/
 replay/node_modules/
 replay/.props.json
+journal_data/artifact.html
