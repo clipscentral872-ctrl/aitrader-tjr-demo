@@ -176,6 +176,36 @@ def sweep(high, low, close, bar, level, side):
     return low[bar] < level and close[bar] > level
 
 
+def pool_spent(pool, high, low, bar, lookback=60):
+    """Has the liquidity at this level already been taken?
+
+    A pool is a shelf of resting stops, and it is the reason price is drawn
+    there at all. Once price has traded through it those orders are filled and
+    there is nothing left to reach for.
+
+    This is the mistake TJR walks through on the losing trade in his teaching
+    session: every step of the setup was right, but the lows below had already
+    been swept earlier in the move. Entering short into spent liquidity puts
+    you in exactly where the desk that filled those orders is taking profit,
+    which is the opposite side of the trade you think you are on.
+
+    Measured from the pool's last touch when the pool knows it (equal highs and
+    lows carry `last_idx`), and over a bounded recent window when it does not
+    (the named session and daily levels carry no index).
+    """
+    a = int(pool["last_idx"]) if pool.get("last_idx") is not None \
+        else bar - int(lookback)
+    a = max(0, min(a, bar - 1))
+    if a >= bar:
+        return False
+    seg_hi, seg_lo = high[a + 1:bar + 1], low[a + 1:bar + 1]
+    if len(seg_hi) == 0:
+        return False
+    if pool["kind"] == "low":
+        return float(np.min(seg_lo)) < pool["price"]
+    return float(np.max(seg_hi)) > pool["price"]
+
+
 # --------------------------------------------------------------------------
 # order blocks and imbalances  (Phase 5, Phase 8)
 # --------------------------------------------------------------------------

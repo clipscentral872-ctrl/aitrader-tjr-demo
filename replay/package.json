@@ -1,0 +1,21 @@
+{
+  "name": "trade-replay",
+  "version": "1.0.0",
+  "private": true,
+  "license": "UNLICENSED",
+  "dependencies": {
+    "@remotion/cli": "4.0.505",
+    "@remotion/google-fonts": "^4.0.505",
+    "react": "19.2.3",
+    "react-dom": "19.2.3",
+    "remotion": "4.0.505"
+  },
+  "devDependencies": {
+    "@types/react": "19.2.7",
+    "typescript": "5.9.3"
+  },
+  "scripts": {
+    "dev": "remotion studio",
+    "render": "remotion render Diary out/traders-diary.mp4"
+  }
+}

@@ -152,6 +152,11 @@ class Config:
     gap_mode: str = "recent"        # recent | all
     min_gap_pts: float = 0.0        # ignore gaps thinner than this
     draw_mode: str = "nearest"      # nearest | bias
+    # Refuse the setup when every pool in the target direction has already been
+    # traded through. Spent liquidity is not a draw: it is where the desk that
+    # filled those orders takes profit. Off by default so existing tuned
+    # configs keep behaving exactly as they were measured.
+    require_fresh_draw: bool = False
     aligned_reach: float = 1.0      # with the 4h trend, a further pool is live
     against_reach: float = 0.15     # against it, this is likely just a retrace
     smt_window: int = 6             # bars either side of the sweep it may sit
@@ -497,13 +502,21 @@ def find_setups(df, cfg=None, session_filter=None, smt_df=None):
                                         min_run=cfg.stack_min_run)
                 if draw is not None:
                     draw_src = "swing_stack"
+            # Only pools that still hold orders can pull price. One already
+            # traded through is spent, and aiming at it is aiming at where the
+            # fill happened rather than where price is going.
+            draw_pools = pools
+            if cfg.require_fresh_draw:
+                draw_pools = [p for p in pools
+                              if not S.pool_spent(p, h, l, i, cfg.sweep_lookback)]
+
             if draw is None:
                 if cfg.draw_mode == "bias":
-                    draw = S.draw_by_bias(pools, entry, direction, htf_at(i),
+                    draw = S.draw_by_bias(draw_pools, entry, direction, htf_at(i),
                                           aligned_reach=cfg.aligned_reach,
                                           against_reach=cfg.against_reach)
                 else:
-                    draw = S.draw_on_liquidity(pools, entry, direction)
+                    draw = S.draw_on_liquidity(draw_pools, entry, direction)
                 if draw is not None:
                     # WHICH high or low we are drawing to. The setup recorded
                     # the sweep but never the target, so there was no way to
@@ -514,7 +527,7 @@ def find_setups(df, cfg=None, session_filter=None, smt_df=None):
                     # rather than letting them fall through as anonymous
                     draw_src = next(
                         (q.get("source") or ("equal_" + q["kind"] + "s")
-                         for q in pools if abs(q["price"] - draw) < 1e-9),
+                         for q in draw_pools if abs(q["price"] - draw) < 1e-9),
                         "swing")
             if draw is None:
                 if cfg.require_real_draw:
@@ -522,6 +535,15 @@ def find_setups(df, cfg=None, session_filter=None, smt_df=None):
                 draw = (entry - risk * cfg.max_rr if direction == "bear"
                         else entry + risk * cfg.max_rr)
                 draw_src = "no_pool"
+
+            # The stacked target and the fallback do not come from the pool
+            # list, so they are checked here too. Whatever the path, the level
+            # being aimed at must not already have been traded through.
+            if cfg.require_fresh_draw and S.pool_spent(
+                    {"kind": "low" if direction == "bear" else "high",
+                     "price": draw, "last_idx": None},
+                    h, l, i, cfg.sweep_lookback):
+                continue
             rr = abs(draw - entry) / risk
             if rr > cfg.max_rr:
                 # his pool sits further than the ceiling allows, so we exit

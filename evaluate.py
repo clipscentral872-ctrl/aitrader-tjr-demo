@@ -76,6 +76,19 @@ def get_data(name):
         f = _os.path.join(_os.path.dirname(_os.path.abspath(__file__)),
                           "data", "store", "nasdaq_duka_5m.parquet")
         return (_pd.read_parquet(f) if _os.path.exists(f) else None), IDX, 0.08, 24
+    if name in ("nqf", "esf"):
+        # REAL FUTURES, charged per contract rather than as a percentage.
+        # Only ~70 days exist: Yahoo caps 5-minute history at 60 days and there
+        # is no free deeper source. Note these come from the same Yahoo feed the
+        # live demo polls, so they are NOT an independent second source for each
+        # other; collector.py fetches via data.fetch.yahoo.
+        import pandas as _pd, os as _os
+        from futures import costs_for as _cf
+        tag = "nq" if name == "nqf" else "es"
+        f = _os.path.join(_os.path.dirname(_os.path.abspath(__file__)),
+                          "data", "store", f"{tag}_5m.parquet")
+        c = _cf("MNQ" if name == "nqf" else "MES")
+        return (_pd.read_parquet(f) if _os.path.exists(f) else None), c, 0.03, 24
     if name == "sp500":
         # The CORRELATED INDEX, not a second source. Used as the pair for the
         # index-alignment veto: he refuses a trade when NQ and ES disagree.

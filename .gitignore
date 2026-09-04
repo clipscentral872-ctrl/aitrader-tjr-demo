@@ -30,3 +30,16 @@ venv/
 # Dead local launchers, replaced by GitHub Actions
 run_demo.bat
 run_demo.ps1
+journal_data/*.csv
+journal_data/journal.html
+
+# YOUR TRADES. This repo is public. The journal store, the video library and
+# everything generated from them stay on this machine.
+journal_data/
+For Learning/
+trade_review.json
+replay/src/trades.ts
+replay/bundle/
+replay/out/
+replay/node_modules/
+replay/.props.json
