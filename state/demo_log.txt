@@ -1389,3 +1389,7 @@
 [2026-09-07 14:40 NY] MES refused: feed 4182 min behind
 [2026-09-07 14:40 NY] MNQ refused: feed 4182 min behind
 [2026-09-07 14:40 NY] MES refused: feed 4182 min behind
+[2026-09-07 14:41 NY] MNQ refused: feed 4183 min behind
+[2026-09-07 14:41 NY] MES refused: feed 4183 min behind
+[2026-09-07 14:41 NY] MNQ refused: feed 4183 min behind
+[2026-09-07 14:41 NY] MES refused: feed 4183 min behind
