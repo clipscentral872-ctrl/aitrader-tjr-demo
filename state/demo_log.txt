@@ -1393,3 +1393,15 @@
 [2026-09-07 14:41 NY] MES refused: feed 4183 min behind
 [2026-09-07 14:41 NY] MNQ refused: feed 4183 min behind
 [2026-09-07 14:41 NY] MES refused: feed 4183 min behind
+[2026-09-08 08:19 NY] OPEN [main] MNQ long 32 @ 29,578.25  stop 29,572.25  target 29,583.00  rr 0.80  risk $382  [htf_trend|h1_trend|m15_trend|full_efficiency|engulf|follow_through|real_gap|smt]
+[2026-09-08 08:19 NY] OPEN [wide] MNQ long 30 @ 29,578.25  stop 29,572.25  target 29,591.25  rr 2.20  risk $358  [htf_trend|h1_trend|m15_trend|full_efficiency|engulf|follow_through|real_gap|smt]
+[2026-09-08 08:20 NY] CLOSE main MNQ loss at 29,572.25  -1.12R  $-432  equity $52,973
+[2026-09-08 08:20 NY] CLOSE wide MNQ loss at 29,572.25  -1.12R  $-405  equity $49,368
+[2026-09-08 08:20 NY] [main] MNQ same setup as the last trade, not re-entering
+[2026-09-08 08:20 NY] [wide] MNQ same setup as the last trade, not re-entering
+[2026-09-08 08:28 NY] OPEN [main] MES long 38 @ 7,698.25  stop 7,696.25  target 7,699.75  rr 0.80  risk $380  [pool3+|m15_trend|complex_pullback|engulf|follow_through|real_gap|deep_pd|smt]
+[2026-09-08 08:28 NY] OPEN [wide] MES long 35 @ 7,698.25  stop 7,696.25  target 7,702.75  rr 2.20  risk $350  [pool3+|m15_trend|complex_pullback|engulf|follow_through|real_gap|deep_pd|smt]
+[2026-09-08 08:29 NY] CLOSE main MES win at 7,699.75  +0.53R  $+200  equity $53,173
+[2026-09-08 08:29 NY] CLOSE wide MES win at 7,702.75  +2.02R  $+709  equity $50,077
+[2026-09-08 08:29 NY] [main] MES same setup as the last trade, not re-entering
+[2026-09-08 08:29 NY] [wide] MES same setup as the last trade, not re-entering
