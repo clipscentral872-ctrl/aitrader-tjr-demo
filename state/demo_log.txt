@@ -1433,3 +1433,4 @@
 [2026-09-08 12:23 NY] CLOSE main MES win at 7,692.00  +0.53R  $+205  equity $54,132
 [2026-09-08 12:23 NY] [main] MES same setup as the last trade, not re-entering
 [2026-09-08 12:26 NY] CLOSE wide MES win at 7,689.00  +2.02R  $+729  equity $50,392
+[2026-09-08 13:23 NY] OPEN [wide] MNQ long 20 @ 29,627.75  stop 29,619.00  target 29,644.50  rr 1.92  risk $350  [pool3+|htf_trend|complex_pullback|engulf|follow_through]
