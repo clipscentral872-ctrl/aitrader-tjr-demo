@@ -1447,3 +1447,5 @@
 [2026-09-09 09:45 NY] CLOSE wide MNQ win at 29,469.75  +2.15R  $+762  equity $51,510
 [2026-09-09 09:45 NY] [main] MNQ same setup as the last trade, not re-entering
 [2026-09-09 09:45 NY] [wide] MNQ same setup as the last trade, not re-entering
+[2026-09-09 11:52 NY] OPEN [wide] MNQ long 10 @ 29,423.75  stop 29,405.75  target 29,453.25  rr 1.64  risk $360  [complex_pullback|follow_through|real_gap|deep_pd]
+[2026-09-09 12:00 NY] CLOSE wide MNQ win at 29,453.25  +1.60R  $+575  equity $52,085
