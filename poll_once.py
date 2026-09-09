@@ -54,6 +54,8 @@ import live                                              # noqa: E402
 
 STATE_DIR = os.path.join(ROOT, "state")
 STATE_FILE = os.path.join(STATE_DIR, "demo_state.json")
+# The small one the web app reads. See save_state.
+SUMMARY_FILE = os.path.join(STATE_DIR, "demo_summary.json")
 LOG_FILE = os.path.join(STATE_DIR, "demo_log.txt")
 
 # London 03:00 through the New York close, in New York time
@@ -79,10 +81,65 @@ def load_state():
     return s
 
 
+def _book_summary(node):
+    """One book, carrying only what a reader outside this repo needs."""
+    return {
+        "equity": node.get("equity"),
+        "position": node.get("position"),
+        # Only the two fields anything downstream reads. The full trade rows
+        # stay in demo_state.json for research.
+        "trades": [{"pnl": t.get("pnl"), "r": t.get("r")}
+                   for t in (node.get("trades") or [])],
+    }
+
+
+def _seen_totals(seen):
+    """The six running totals, instead of four thousand rows of workings."""
+    keys = ("all", "fresh", "long", "short", "fresh_long", "fresh_short")
+    out = {k: 0 for k in keys}
+    for row in seen or []:
+        for k in keys:
+            out[k] += row.get(k) or 0
+    out["observations"] = len(seen or [])
+    return out
+
+
+def save_summary(state):
+    """A small public view of the state, for the Traders Diary web app.
+
+    demo_state.json is 794 KB and 82% of that is `seen`, four thousand rows of
+    what the poller was offered. That log earns its place here: it is what
+    answered why the early record was almost all longs. But the app only ever
+    turned it into six running totals, and it was downloading the whole thing
+    to do it, on every visit, over a CDN that started returning 503 under the
+    load. So the totals are computed once, here, and the workings stay behind.
+
+    Roughly three kilobytes instead of eight hundred.
+    """
+    out = dict(_book_summary(state))
+    out.update({
+        "polls": state.get("polls", 0),
+        "started": state.get("started"),
+        # The app shows how old this is, and had nothing to show it with.
+        "updated": dt.datetime.now(dt.timezone.utc).isoformat(),
+        "seen_totals": _seen_totals(state.get("seen")),
+    })
+    if state.get("wide"):
+        out["wide"] = _book_summary(state["wide"])
+    with open(SUMMARY_FILE, "w", encoding="utf-8") as fh:
+        json.dump(out, fh, separators=(",", ":"))
+
+
 def save_state(state):
     os.makedirs(STATE_DIR, exist_ok=True)
     with open(STATE_FILE, "w", encoding="utf-8") as fh:
         json.dump(state, fh, indent=1)
+    # Never let the small file take the poller down with it: the state is the
+    # thing that must survive, and it is already written by this point.
+    try:
+        save_summary(state)
+    except Exception as e:                                   # noqa: BLE001
+        print("  could not write the summary: %s" % e)
 
 
 def log(state, line):
