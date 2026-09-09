@@ -8,6 +8,8 @@ By Weekday  all your Mondays together, all your Tuesdays, and so on, split into
             losers and winners. A weekday you consistently lose on is a real
             pattern and it is invisible in a day-by-day list
 Weekly      each week, losers only and winners only
+Per Trade   one video per trade, so the diary can play the exact trade you are
+            looking at rather than the whole day it happened in
 Overall     every loser you have ever taken, and every winner
 
 The point of the split is that reviewing losers back to back shows you the same
@@ -90,6 +92,25 @@ def cuts(trades):
             "mode": "winners", "from": w, "to": end,
             "title": "Winning Trades", "subtitle": "Week in review"}))
 
+    # One per trade. Named from the stored stamp rather than from anything on
+    # screen, so the app can match a video to a trade without caring which
+    # clock it happens to be showing.
+    for t in sorted(trades, key=lambda x: x["open_t"]):
+        stamp = t["open_t"]
+        key = t["symbol"] + stamp
+        won = t["pnl"] > 0
+        # Seconds included, not just minutes. Two NQ shorts thirty seconds
+        # apart on 2 September produced the same filename and one silently
+        # overwrote the other, so the library held fifteen videos for sixteen
+        # trades and nothing said so.
+        name = (f"Trade {t['symbol']} {stamp[:10]} "
+                f"{stamp[11:13]}{stamp[14:16]}{stamp[17:19]} {t['side']} - "
+                f"{'Winner' if won else 'Loser'}")
+        out.append(("Per Trade", name, {
+            "mode": "all", "only": key,
+            "title": f"{t['symbol']} {t['side']}",
+            "subtitle": dayname(stamp[:10]) + " " + stamp[11:16]}))
+
     out.append(("Overall", "All Losers", {
         "mode": "losers", "title": "Losing Trades", "subtitle": "Everything so far"}))
     out.append(("Overall", "All Winners", {
@@ -101,6 +122,8 @@ def matching(trades, p):
     keys = []
     for t in trades:
         d = t["open_t"][:10]
+        if p.get("only") and t["symbol"] + t["open_t"] != p["only"]:
+            continue
         if p.get("from") and d < p["from"]:
             continue
         if p.get("to") and d > p["to"]:

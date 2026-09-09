@@ -946,7 +946,7 @@ function details(){
     val("stop", t.stop!=null ? px(t.stop)+"<small>"+t.risk_pts+" pts</small>" : "&mdash;", "loss"),
     val("target", t.target!=null ? px(t.target) +
         (t.planned_rr!=null?"<small>"+t.planned_rr.toFixed(2)+"R</small>":"") : "&mdash;", "win"),
-    val("exit", px(t.exit)+"<small>"+t.exit_type.toLowerCase()+"</small>",
+    val("exit", px(t.exit)+"<small>"+(t.exit_type||"").toLowerCase()+"</small>",
         t.got_r>=0?"win":"loss"),
     val("in", t.open_t.slice(11,16)),
     val("out", t.close_t.slice(11,16)+"<small>"+t.held_min+" min</small>"),
