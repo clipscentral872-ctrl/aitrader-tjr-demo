@@ -1459,3 +1459,9 @@
 [2026-09-10 07:58 NY] OPEN [main] MES short 31 @ 7,643.25  stop 7,645.75  target 7,644.75  rr 0.64  risk $388  [m15_trend]
 [2026-09-10 07:59 NY] CLOSE main MES win at 7,644.75  -0.78R  $-302  equity $54,400
 [2026-09-10 07:59 NY] [main] MES same setup as the last trade, not re-entering
+[2026-09-10 08:26 NY] OPEN [main] MES short 45 @ 7,632.50  stop 7,634.25  target 7,631.00  rr 0.80  risk $394  [engulf|follow_through]
+[2026-09-10 08:26 NY] OPEN [wide] MES short 43 @ 7,632.50  stop 7,634.25  target 7,628.75  rr 2.14  risk $376  [engulf|follow_through]
+[2026-09-10 08:27 NY] CLOSE main MES win at 7,631.00  +0.60R  $+236  equity $54,636
+[2026-09-10 08:27 NY] CLOSE wide MES win at 7,628.75  +1.89R  $+710  equity $52,794
+[2026-09-10 08:27 NY] [main] MES same setup as the last trade, not re-entering
+[2026-09-10 08:27 NY] [wide] MES same setup as the last trade, not re-entering
