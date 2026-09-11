@@ -1,5 +1,5 @@
 {
- "equity": 55516.07,
+ "equity": 55812.07,
  "position": null,
  "trades": [
   {
@@ -676,321 +676,28 @@
    "cost_r": 0.36,
    "opened_at": "2026-09-11 16:31:57+00:00",
    "closed_at": "2026-09-11 16:32:00+00:00"
+  },
+  {
+   "symbol": "MNQ",
+   "side": "short",
+   "size": 8.0,
+   "entry": 29417.75,
+   "stop": 29441.5,
+   "target": 29398.5,
+   "exit": 29398.5,
+   "outcome": "win",
+   "r": 0.779,
+   "pnl": 296.0,
+   "cost_r": 0.0316,
+   "opened_at": "2026-09-11 16:35:03+00:00",
+   "closed_at": "2026-09-11 16:39:00+00:00"
   }
  ],
  "refused": [],
  "last_bar": {},
- "polls": 3890,
+ "polls": 3905,
  "started": "2026-08-26T17:25:33.754971+00:00",
  "seen": [
-  {
-   "when": "2026-09-08T12:06:03.653134+00:00",
-   "track": "wide",
-   "symbol": "MNQ",
-   "all": 18,
-   "fresh": 0,
-   "long": 9,
-   "short": 9,
-   "fresh_long": 0,
-   "fresh_short": 0
-  },
-  {
-   "when": "2026-09-08T12:06:03.653134+00:00",
-   "track": "wide",
-   "symbol": "MES",
-   "all": 13,
-   "fresh": 0,
-   "long": 7,
-   "short": 6,
-   "fresh_long": 0,
-   "fresh_short": 0
-  },
-  {
-   "when": "2026-09-08T12:07:05.402250+00:00",
-   "track": "main",
-   "symbol": "MNQ",
-   "all": 25,
-   "fresh": 0,
-   "long": 11,
-   "short": 14,
-   "fresh_long": 0,
-   "fresh_short": 0
-  },
-  {
-   "when": "2026-09-08T12:07:05.402250+00:00",
-   "track": "main",
-   "symbol": "MES",
-   "all": 16,
-   "fresh": 0,
-   "long": 8,
-   "short": 8,
-   "fresh_long": 0,
-   "fresh_short": 0
-  },
-  {
-   "when": "2026-09-08T12:07:05.402250+00:00",
-   "track": "wide",
-   "symbol": "MNQ",
-   "all": 18,
-   "fresh": 0,
-   "long": 9,
-   "short": 9,
-   "fresh_long": 0,
-   "fresh_short": 0
-  },
-  {
-   "when": "2026-09-08T12:07:05.402250+00:00",
-   "track": "wide",
-   "symbol": "MES",
-   "all": 13,
-   "fresh": 0,
-   "long": 7,
-   "short": 6,
-   "fresh_long": 0,
-   "fresh_short": 0
-  },
-  {
-   "when": "2026-09-08T12:08:07.244233+00:00",
-   "track": "main",
-   "symbol": "MNQ",
-   "all": 25,
-   "fresh": 0,
-   "long": 11,
-   "short": 14,
-   "fresh_long": 0,
-   "fresh_short": 0
-  },
-  {
-   "when": "2026-09-08T12:08:07.244233+00:00",
-   "track": "main",
-   "symbol": "MES",
-   "all": 16,
-   "fresh": 0,
-   "long": 8,
-   "short": 8,
-   "fresh_long": 0,
-   "fresh_short": 0
-  },
-  {
-   "when": "2026-09-08T12:08:07.244233+00:00",
-   "track": "wide",
-   "symbol": "MNQ",
-   "all": 18,
-   "fresh": 0,
-   "long": 9,
-   "short": 9,
-   "fresh_long": 0,
-   "fresh_short": 0
-  },
-  {
-   "when": "2026-09-08T12:08:07.244233+00:00",
-   "track": "wide",
-   "symbol": "MES",
-   "all": 13,
-   "fresh": 0,
-   "long": 7,
-   "short": 6,
-   "fresh_long": 0,
-   "fresh_short": 0
-  },
-  {
-   "when": "2026-09-08T12:09:10.687452+00:00",
-   "track": "main",
-   "symbol": "MNQ",
-   "all": 25,
-   "fresh": 0,
-   "long": 11,
-   "short": 14,
-   "fresh_long": 0,
-   "fresh_short": 0
-  },
-  {
-   "when": "2026-09-08T12:09:10.687452+00:00",
-   "track": "main",
-   "symbol": "MES",
-   "all": 16,
-   "fresh": 0,
-   "long": 8,
-   "short": 8,
-   "fresh_long": 0,
-   "fresh_short": 0
-  },
-  {
-   "when": "2026-09-08T12:09:10.687452+00:00",
-   "track": "wide",
-   "symbol": "MNQ",
-   "all": 18,
-   "fresh": 0,
-   "long": 9,
-   "short": 9,
-   "fresh_long": 0,
-   "fresh_short": 0
-  },
-  {
-   "when": "2026-09-08T12:09:10.687452+00:00",
-   "track": "wide",
-   "symbol": "MES",
-   "all": 13,
-   "fresh": 0,
-   "long": 7,
-   "short": 6,
-   "fresh_long": 0,
-   "fresh_short": 0
-  },
-  {
-   "when": "2026-09-08T12:10:12.749215+00:00",
-   "track": "main",
-   "symbol": "MNQ",
-   "all": 25,
-   "fresh": 0,
-   "long": 11,
-   "short": 14,
-   "fresh_long": 0,
-   "fresh_short": 0
-  },
-  {
-   "when": "2026-09-08T12:10:12.749215+00:00",
-   "track": "main",
-   "symbol": "MES",
-   "all": 16,
-   "fresh": 0,
-   "long": 8,
-   "short": 8,
-   "fresh_long": 0,
-   "fresh_short": 0
-  },
-  {
-   "when": "2026-09-08T12:10:12.749215+00:00",
-   "track": "wide",
-   "symbol": "MNQ",
-   "all": 18,
-   "fresh": 0,
-   "long": 9,
-   "short": 9,
-   "fresh_long": 0,
-   "fresh_short": 0
-  },
-  {
-   "when": "2026-09-08T12:10:12.749215+00:00",
-   "track": "wide",
-   "symbol": "MES",
-   "all": 13,
-   "fresh": 0,
-   "long": 7,
-   "short": 6,
-   "fresh_long": 0,
-   "fresh_short": 0
-  },
-  {
-   "when": "2026-09-08T12:11:14.675970+00:00",
-   "track": "main",
-   "symbol": "MNQ",
-   "all": 25,
-   "fresh": 0,
-   "long": 11,
-   "short": 14,
-   "fresh_long": 0,
-   "fresh_short": 0
-  },
-  {
-   "when": "2026-09-08T12:11:14.675970+00:00",
-   "track": "main",
-   "symbol": "MES",
-   "all": 16,
-   "fresh": 0,
-   "long": 8,
-   "short": 8,
-   "fresh_long": 0,
-   "fresh_short": 0
-  },
-  {
-   "when": "2026-09-08T12:11:14.675970+00:00",
-   "track": "wide",
-   "symbol": "MNQ",
-   "all": 18,
-   "fresh": 0,
-   "long": 9,
-   "short": 9,
-   "fresh_long": 0,
-   "fresh_short": 0
-  },
-  {
-   "when": "2026-09-08T12:11:14.675970+00:00",
-   "track": "wide",
-   "symbol": "MES",
-   "all": 13,
-   "fresh": 0,
-   "long": 7,
-   "short": 6,
-   "fresh_long": 0,
-   "fresh_short": 0
-  },
-  {
-   "when": "2026-09-08T12:12:16.595882+00:00",
-   "track": "main",
-   "symbol": "MNQ",
-   "all": 25,
-   "fresh": 0,
-   "long": 11,
-   "short": 14,
-   "fresh_long": 0,
-   "fresh_short": 0
-  },
-  {
-   "when": "2026-09-08T12:12:16.595882+00:00",
-   "track": "main",
-   "symbol": "MES",
-   "all": 17,
-   "fresh": 1,
-   "long": 9,
-   "short": 8,
-   "fresh_long": 1,
-   "fresh_short": 0
-  },
-  {
-   "when": "2026-09-08T12:12:16.595882+00:00",
-   "track": "wide",
-   "symbol": "MNQ",
-   "all": 18,
-   "fresh": 0,
-   "long": 9,
-   "short": 9,
-   "fresh_long": 0,
-   "fresh_short": 0
-  },
-  {
-   "when": "2026-09-08T12:12:16.595882+00:00",
-   "track": "wide",
-   "symbol": "MES",
-   "all": 13,
-   "fresh": 0,
-   "long": 7,
-   "short": 6,
-   "fresh_long": 0,
-   "fresh_short": 0
-  },
-  {
-   "when": "2026-09-08T12:13:18.283892+00:00",
-   "track": "wide",
-   "symbol": "MNQ",
-   "all": 18,
-   "fresh": 0,
-   "long": 9,
-   "short": 9,
-   "fresh_long": 0,
-   "fresh_short": 0
-  },
-  {
-   "when": "2026-09-08T12:13:18.283892+00:00",
-   "track": "wide",
-   "symbol": "MES",
-   "all": 13,
-   "fresh": 0,
-   "long": 7,
-   "short": 6,
-   "fresh_long": 0,
-   "fresh_short": 0
-  },
   {
    "when": "2026-09-08T12:14:19.567602+00:00",
    "track": "wide",
@@ -44682,11 +44389,330 @@
    "short": 10,
    "fresh_long": 0,
    "fresh_short": 1
+  },
+  {
+   "when": "2026-09-11T12:44:02.206931+00:00",
+   "track": "main",
+   "symbol": "MNQ",
+   "all": 18,
+   "fresh": 0,
+   "long": 9,
+   "short": 9,
+   "fresh_long": 0,
+   "fresh_short": 0
+  },
+  {
+   "when": "2026-09-11T12:44:02.206931+00:00",
+   "track": "main",
+   "symbol": "MES",
+   "all": 18,
+   "fresh": 0,
+   "long": 8,
+   "short": 10,
+   "fresh_long": 0,
+   "fresh_short": 0
+  },
+  {
+   "when": "2026-09-11T12:44:02.206931+00:00",
+   "track": "wide",
+   "symbol": "MNQ",
+   "all": 17,
+   "fresh": 0,
+   "long": 9,
+   "short": 8,
+   "fresh_long": 0,
+   "fresh_short": 0
+  },
+  {
+   "when": "2026-09-11T12:44:02.206931+00:00",
+   "track": "wide",
+   "symbol": "MES",
+   "all": 16,
+   "fresh": 0,
+   "long": 6,
+   "short": 10,
+   "fresh_long": 0,
+   "fresh_short": 0
+  },
+  {
+   "when": "2026-09-11T12:45:04.269479+00:00",
+   "track": "main",
+   "symbol": "MNQ",
+   "all": 19,
+   "fresh": 1,
+   "long": 9,
+   "short": 10,
+   "fresh_long": 0,
+   "fresh_short": 1
+  },
+  {
+   "when": "2026-09-11T12:45:04.269479+00:00",
+   "track": "main",
+   "symbol": "MES",
+   "all": 18,
+   "fresh": 0,
+   "long": 8,
+   "short": 10,
+   "fresh_long": 0,
+   "fresh_short": 0
+  },
+  {
+   "when": "2026-09-11T12:45:04.269479+00:00",
+   "track": "wide",
+   "symbol": "MNQ",
+   "all": 18,
+   "fresh": 1,
+   "long": 9,
+   "short": 9,
+   "fresh_long": 0,
+   "fresh_short": 1
+  },
+  {
+   "when": "2026-09-11T12:45:04.269479+00:00",
+   "track": "wide",
+   "symbol": "MES",
+   "all": 16,
+   "fresh": 0,
+   "long": 6,
+   "short": 10,
+   "fresh_long": 0,
+   "fresh_short": 0
+  },
+  {
+   "when": "2026-09-11T12:49:08.906108+00:00",
+   "track": "main",
+   "symbol": "MNQ",
+   "all": 19,
+   "fresh": 0,
+   "long": 9,
+   "short": 10,
+   "fresh_long": 0,
+   "fresh_short": 0
+  },
+  {
+   "when": "2026-09-11T12:49:08.906108+00:00",
+   "track": "main",
+   "symbol": "MES",
+   "all": 18,
+   "fresh": 0,
+   "long": 8,
+   "short": 10,
+   "fresh_long": 0,
+   "fresh_short": 0
+  },
+  {
+   "when": "2026-09-11T12:50:10.142340+00:00",
+   "track": "main",
+   "symbol": "MNQ",
+   "all": 19,
+   "fresh": 0,
+   "long": 9,
+   "short": 10,
+   "fresh_long": 0,
+   "fresh_short": 0
+  },
+  {
+   "when": "2026-09-11T12:50:10.142340+00:00",
+   "track": "main",
+   "symbol": "MES",
+   "all": 18,
+   "fresh": 0,
+   "long": 8,
+   "short": 10,
+   "fresh_long": 0,
+   "fresh_short": 0
+  },
+  {
+   "when": "2026-09-11T12:51:11.235953+00:00",
+   "track": "main",
+   "symbol": "MNQ",
+   "all": 19,
+   "fresh": 0,
+   "long": 9,
+   "short": 10,
+   "fresh_long": 0,
+   "fresh_short": 0
+  },
+  {
+   "when": "2026-09-11T12:51:11.235953+00:00",
+   "track": "main",
+   "symbol": "MES",
+   "all": 18,
+   "fresh": 0,
+   "long": 8,
+   "short": 10,
+   "fresh_long": 0,
+   "fresh_short": 0
+  },
+  {
+   "when": "2026-09-11T12:52:12.376183+00:00",
+   "track": "main",
+   "symbol": "MNQ",
+   "all": 19,
+   "fresh": 0,
+   "long": 9,
+   "short": 10,
+   "fresh_long": 0,
+   "fresh_short": 0
+  },
+  {
+   "when": "2026-09-11T12:52:12.376183+00:00",
+   "track": "main",
+   "symbol": "MES",
+   "all": 18,
+   "fresh": 0,
+   "long": 8,
+   "short": 10,
+   "fresh_long": 0,
+   "fresh_short": 0
+  },
+  {
+   "when": "2026-09-11T12:53:13.660967+00:00",
+   "track": "main",
+   "symbol": "MNQ",
+   "all": 19,
+   "fresh": 0,
+   "long": 9,
+   "short": 10,
+   "fresh_long": 0,
+   "fresh_short": 0
+  },
+  {
+   "when": "2026-09-11T12:53:13.660967+00:00",
+   "track": "main",
+   "symbol": "MES",
+   "all": 18,
+   "fresh": 0,
+   "long": 8,
+   "short": 10,
+   "fresh_long": 0,
+   "fresh_short": 0
+  },
+  {
+   "when": "2026-09-11T12:54:15.214004+00:00",
+   "track": "main",
+   "symbol": "MNQ",
+   "all": 19,
+   "fresh": 0,
+   "long": 9,
+   "short": 10,
+   "fresh_long": 0,
+   "fresh_short": 0
+  },
+  {
+   "when": "2026-09-11T12:54:15.214004+00:00",
+   "track": "main",
+   "symbol": "MES",
+   "all": 18,
+   "fresh": 0,
+   "long": 8,
+   "short": 10,
+   "fresh_long": 0,
+   "fresh_short": 0
+  },
+  {
+   "when": "2026-09-11T12:55:16.601941+00:00",
+   "track": "main",
+   "symbol": "MNQ",
+   "all": 19,
+   "fresh": 0,
+   "long": 9,
+   "short": 10,
+   "fresh_long": 0,
+   "fresh_short": 0
+  },
+  {
+   "when": "2026-09-11T12:55:16.601941+00:00",
+   "track": "main",
+   "symbol": "MES",
+   "all": 18,
+   "fresh": 0,
+   "long": 8,
+   "short": 10,
+   "fresh_long": 0,
+   "fresh_short": 0
+  },
+  {
+   "when": "2026-09-11T12:56:18.144377+00:00",
+   "track": "main",
+   "symbol": "MNQ",
+   "all": 19,
+   "fresh": 0,
+   "long": 9,
+   "short": 10,
+   "fresh_long": 0,
+   "fresh_short": 0
+  },
+  {
+   "when": "2026-09-11T12:56:18.144377+00:00",
+   "track": "main",
+   "symbol": "MES",
+   "all": 18,
+   "fresh": 0,
+   "long": 8,
+   "short": 10,
+   "fresh_long": 0,
+   "fresh_short": 0
+  },
+  {
+   "when": "2026-09-11T12:57:19.587317+00:00",
+   "track": "main",
+   "symbol": "MNQ",
+   "all": 19,
+   "fresh": 0,
+   "long": 9,
+   "short": 10,
+   "fresh_long": 0,
+   "fresh_short": 0
+  },
+  {
+   "when": "2026-09-11T12:57:19.587317+00:00",
+   "track": "main",
+   "symbol": "MES",
+   "all": 18,
+   "fresh": 0,
+   "long": 8,
+   "short": 10,
+   "fresh_long": 0,
+   "fresh_short": 0
+  },
+  {
+   "when": "2026-09-11T12:58:21.452182+00:00",
+   "track": "main",
+   "symbol": "MNQ",
+   "all": 19,
+   "fresh": 0,
+   "long": 9,
+   "short": 10,
+   "fresh_long": 0,
+   "fresh_short": 0
+  },
+  {
+   "when": "2026-09-11T12:58:21.452182+00:00",
+   "track": "main",
+   "symbol": "MES",
+   "all": 18,
+   "fresh": 0,
+   "long": 8,
+   "short": 10,
+   "fresh_long": 0,
+   "fresh_short": 0
   }
  ],
  "wide": {
   "equity": 54386.75,
-  "position": null,
+  "position": {
+   "symbol": "MNQ",
+   "side": "short",
+   "size": 9.0,
+   "entry": 29420.75,
+   "stop": 29441.5,
+   "target": 29390.0,
+   "rr": 1.47,
+   "tags": "full_efficiency|follow_through|deep_pd|smt",
+   "reason": "swept high@29399.0 -> bear BOS, eff 1.19, target equal_lows+capped | 1m gap inversion",
+   "opened_at": "2026-09-11 16:35:03+00:00"
+  },
   "trades": [
    {
     "symbol": "MNQ",
@@ -44992,8 +45018,8 @@
   "refused": [],
   "started": "2026-09-01T16:12:02.041615+00:00",
   "_name": "wide",
-  "last_setup": "MES|short|2026-09-11 16:31:00+00:00|7671.75|7673.00"
+  "last_setup": "MNQ|short|2026-09-11 16:35:03+00:00|29420.69|29441.50"
  },
  "_name": "main",
- "last_setup": "MES|short|2026-09-11 16:31:00+00:00|7671.75|7673.00"
+ "last_setup": "MNQ|short|2026-09-11 16:35:00+00:00|29417.66|29441.50"
 }
