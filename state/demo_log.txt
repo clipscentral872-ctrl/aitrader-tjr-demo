@@ -1488,3 +1488,4 @@
 [2026-09-11 12:45 NY] OPEN [main] MNQ short 8 @ 29,417.75  stop 29,441.50  target 29,398.50  rr 0.80  risk $381  [full_efficiency|follow_through|deep_pd|smt]
 [2026-09-11 12:45 NY] OPEN [wide] MNQ short 9 @ 29,420.75  stop 29,441.50  target 29,390.00  rr 1.47  risk $375  [full_efficiency|follow_through|deep_pd|smt]
 [2026-09-11 12:49 NY] CLOSE main MNQ win at 29,398.50  +0.78R  $+296  equity $55,812
+[2026-09-11 13:10 NY] CLOSE wide MNQ loss at 29,441.50  -1.04R  $-387  equity $54,000
