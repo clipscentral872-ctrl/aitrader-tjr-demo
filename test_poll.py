@@ -137,6 +137,11 @@ def main():
     tmp = os.path.join(tempfile.gettempdir(), "poll_state_test.json")
     real = poll_once.STATE_FILE
     poll_once.STATE_FILE = tmp
+    # save_state writes the small public summary too. Left pointing at the
+    # real one, this test overwrote state/demo_summary.json with its made up
+    # account, which is what the web app reads.
+    real_summary = poll_once.SUMMARY_FILE
+    poll_once.SUMMARY_FILE = tmp + ".summary"
     try:
         st = poll_once.blank_state()
         st["position"] = dict(pos)
@@ -149,8 +154,10 @@ def main():
         check("trades survive", len(back["trades"]) == 1)
     finally:
         poll_once.STATE_FILE = real
-        if os.path.exists(tmp):
-            os.remove(tmp)
+        poll_once.SUMMARY_FILE = real_summary
+        for f in (tmp, tmp + ".summary"):
+            if os.path.exists(f):
+                os.remove(f)
 
     print("\n" + "=" * 66)
     if FAILS:

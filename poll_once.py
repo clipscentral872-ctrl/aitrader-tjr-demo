@@ -31,6 +31,7 @@ reason recorded.
 """
 import argparse
 import datetime as dt
+from zoneinfo import ZoneInfo
 import functools
 import json
 import os
@@ -48,6 +49,7 @@ from engine.strategy import Config, find_setups          # noqa: E402
 from engine.multiframe import find_setups_mtf            # noqa: E402
 from data.fetch import yahoo, resample                   # noqa: E402
 from paper.risk import RiskGate, RiskRules, INSTRUMENTS  # noqa: E402
+from paper import topstep as TS                          # noqa: E402
 from tjr_exact import window                             # noqa: E402
 from futures import costs_for                            # noqa: E402
 import live                                              # noqa: E402
@@ -65,6 +67,15 @@ SYMBOLS = [("MNQ", "NQ=F"), ("MES", "ES=F")]
 EQUITY_START = 50_000.0
 RISK_PCT = 0.726          # what keeps 95% of paths inside a 10% drawdown
 FEED_LAG_LIMIT_MIN = 25   # the free CME feed runs ~10 behind; 25 is the cliff
+NYZ = ZoneInfo("America/New_York")
+
+# THE TOPSTEP BOOK risks a fixed $200 a trade, not a share of the account.
+# Chosen with topstep_odds.py, which replays the paper record through the
+# Combine's rules. At $200 the $2,000 Max Loss Limit is ten full losses and the
+# $1,000 daily limit five. If the edge is half what the paper record shows it
+# passes almost every time in about twenty trading days; the main book's $363
+# would pass faster when things go well and fail faster when they do not.
+TS_RISK = 200.0
 
 
 def blank_state():
@@ -126,6 +137,9 @@ def save_summary(state):
     })
     if state.get("wide"):
         out["wide"] = _book_summary(state["wide"])
+    if state.get("topstep") and state["topstep"].get("ts"):
+        out["topstep"] = dict(_book_summary(state["topstep"]))
+        out["topstep"]["combine"] = TS.summary(state["topstep"], out["updated"])
     with open(SUMMARY_FILE, "w", encoding="utf-8") as fh:
         json.dump(out, fh, separators=(",", ":"))
 
@@ -182,7 +196,7 @@ def feeds():
 #
 # "main" keeps the original top level keys so the record already collected is
 # not thrown away. "wide" gets its own book.
-TRACKS = [("main", 0.6, 0.8), ("wide", 1.3, 2.2)]
+TRACKS = [("main", 0.6, 0.8), ("wide", 1.3, 2.2), ("topstep", 0.6, 0.8)]
 
 
 def book_of(state, track):
@@ -191,8 +205,13 @@ def book_of(state, track):
         return state
     b = state.setdefault(track, None)
     if not b:
+        now = dt.datetime.now(dt.timezone.utc).isoformat()
         b = {"equity": EQUITY_START, "position": None, "trades": [],
-             "refused": [], "started": dt.datetime.now(dt.timezone.utc).isoformat()}
+             "refused": [], "started": now}
+        # The Topstep book plays the $50K Trading Combine by its own rules,
+        # on the same setups as the main book. See paper/topstep.py.
+        if track == "topstep":
+            TS.fresh(b, 1, now)
         state[track] = b
     return b
 
@@ -212,6 +231,9 @@ def manage_position(state, book, data):
         return
 
     inst = INSTRUMENTS[pos["symbol"]]
+    if book.get("ts") is not None:
+        manage_topstep(state, book, pos, bars, inst)
+        return
     for ts, b in bars.iterrows():
         hi, lo, op = float(b["high"]), float(b["low"]), float(b["open"])
         hit_stop = hi >= pos["stop"] if pos["side"] == "short" else lo <= pos["stop"]
@@ -228,6 +250,58 @@ def manage_position(state, book, data):
         if hit_tgt:
             close_position(state, book, pos, pos["target"], ts, "win", inst)
             return
+
+
+def _ny(ts):
+    """A bar's time in New York, as a plain datetime."""
+    t = pd.Timestamp(ts)
+    if t.tzinfo is None:
+        t = t.tz_localize("UTC")
+    return t.tz_convert(NYZ).to_pydatetime().replace(tzinfo=None)
+
+
+def manage_topstep(state, book, pos, bars, inst):
+    """The same fills as every other book, plus the Combine's own exits.
+
+    Topstep watches the account in real time with the open loss included, so
+    a trade can end before its stop: at the price where the account would
+    touch the Max Loss Limit (the attempt fails) or the day would lose $1,000
+    (done for the day, not a failure). Whichever of the stop and those two a
+    bar reaches first, nearest the entry, is the exit, and a bar that opened
+    beyond it fills at the open. Nothing is held past 16:10 New York, when
+    Topstep flattens everything, so a trade still open then is closed at that
+    bar's open. The stop still wins a bar that also reaches the target."""
+    point_value = inst.tick_value / inst.tick_size
+    opened_day = TS.ts_day(_ny(pos["opened_at"]))
+    long = pos["side"] == "long"
+    for ts, b in bars.iterrows():
+        hi, lo, op = float(b["high"]), float(b["low"]), float(b["open"])
+        when = _ny(ts)
+        if TS.must_be_flat(when) or TS.ts_day(when) != opened_day:
+            close_position(state, book, pos, op, ts, "flat", inst)
+            _topstep_closed(book, "flat")
+            return
+        mll_px, dll_px = TS.limit_prices(book, pos, point_value)
+        levels = [(pos["stop"], "loss"), (mll_px, "mll"), (dll_px, "dll")]
+        reached = [(p, k) for p, k in levels
+                   if p is not None and (lo <= p if long else hi >= p)]
+        if reached:
+            p, kind = max(reached) if long else min(reached)
+            fill = op if (op < p if long else op > p) else p
+            close_position(state, book, pos, fill, ts, kind, inst)
+            _topstep_closed(book, kind)
+            return
+        if (hi >= pos["target"]) if long else (lo <= pos["target"]):
+            close_position(state, book, pos, pos["target"], ts, "win", inst)
+            _topstep_closed(book, "win")
+            return
+
+
+def _topstep_closed(book, outcome):
+    ts = book["ts"]
+    if book["trades"]:
+        book["trades"][-1]["attempt"] = ts["attempt"]
+    TS.after_close(book, outcome)
 
 
 def close_position(state, book, pos, price, ts, outcome, inst):
@@ -305,6 +379,11 @@ def scan_and_open(state, book, track, cfg, rules, data, now_ny):
         return
 
     name, s = best
+    if book.get("ts") is not None:
+        ok, why = TS.gate(book, dt.datetime.now(NYZ).replace(tzinfo=None))
+        if not ok:
+            print(f"  [{track}] {why}")
+            return
     gate = RiskGate(rules, start_equity=EQUITY_START)
     d = gate.check(s, book["equity"], dt.datetime.now(dt.timezone.utc),
                    INSTRUMENTS[name], open_positions=0)
@@ -319,6 +398,12 @@ def scan_and_open(state, book, track, cfg, rules, data, now_ny):
     # 17 trades out of 10 real setups, which inflated the record and anything
     # concluded from it. One setup, one trade.
     inst = INSTRUMENTS[name]
+    size = d.size
+    if book.get("ts") is not None:
+        # Topstep's own cap. The stops are tight enough that $200 can ask for
+        # more than fifty micros, and the Combine will not take the order.
+        size = min(size, TS.MAX_MICROS)
+        book["ts"]["traded_today"] = True
     setup_bar = str(data[name]["m1"].index[min(s.bar, len(data[name]["m1"]) - 1)])
     ident = f"{name}|{s.side}|{setup_bar}|{s.entry:.2f}|{s.stop:.2f}"
     if book.get("last_setup") == ident:
@@ -332,13 +417,13 @@ def scan_and_open(state, book, track, cfg, rules, data, now_ny):
     tick = float(getattr(inst, "tick_size", 0.25)) or 0.25
     snap = lambda v: round(round(float(v) / tick) * tick, 4)
     book["position"] = {
-        "symbol": name, "side": s.side, "size": d.size,
+        "symbol": name, "side": s.side, "size": size,
         "entry": snap(s.entry), "stop": snap(s.stop),
         "target": snap(s.target), "rr": round(float(s.rr), 2),
         "tags": s.tags, "reason": s.reason,
         "opened_at": str(data[name]["m1"].index[-1]),
     }
-    log(state, f"OPEN [{track}] {name} {s.side} {d.size:g} @ {snap(s.entry):,.2f}  "
+    log(state, f"OPEN [{track}] {name} {s.side} {size:g} @ {snap(s.entry):,.2f}  "
                f"stop {snap(s.stop):,.2f}  target {snap(s.target):,.2f}  "
                f"rr {s.rr:.2f}  risk ${d.risk_cash:,.0f}  [{s.tags}]")
 
@@ -376,6 +461,20 @@ def main():
         b["_name"] = track
         manage_position(state, b, data)
 
+    # Onto the current Topstep day, AFTER the positions above are resolved, so
+    # a trade flattened at yesterday's 16:10 counts in yesterday's P&L before
+    # yesterday is settled.
+    tb = book_of(state, "topstep")
+    now_iso = dt.datetime.now(dt.timezone.utc).isoformat()
+    was = tb["ts"]["attempt"]
+    event = TS.roll(tb, TS.ts_day(dt.datetime.now(NYZ).replace(tzinfo=None)).isoformat(),
+                    now_iso)
+    if event == "passed" or tb["ts"]["attempt"] != was:
+        last = tb["ts"]["history"][-1] if tb["ts"]["history"] else None
+        if last:
+            log(state, f"TOPSTEP attempt {last['attempt']} {last['result'].upper()}: "
+                       f"{last['reason']}. Attempt {tb['ts']['attempt']} starts at $50,000.")
+
     if not SCAN(pd.Timestamp(dt.datetime.now(dt.timezone.utc))):
         print("  outside the London+NY window, not scanning")
         if not a.dry_run:
@@ -388,6 +487,13 @@ def main():
         cfg = dataclasses.replace(cfg_base, min_rr=lo_rr, max_rr=hi_rr)
         rules = RiskRules(risk_pct=RISK_PCT, min_rr=lo_rr, max_rr=hi_rr,
                           max_total_drawdown_pct=10.0)
+        if track == "topstep":
+            # A fixed $200, and Topstep's own limits in place of these. They
+            # are enforced in paper/topstep.py and in manage_topstep.
+            rules = RiskRules(risk_pct=TS_RISK / b["equity"] * 100,
+                              min_rr=lo_rr, max_rr=hi_rr,
+                              max_total_drawdown_pct=100.0,
+                              max_daily_loss_pct=100.0)
         scan_and_open(state, b, track, cfg, rules, data, now_ny)
 
     if not a.dry_run:
