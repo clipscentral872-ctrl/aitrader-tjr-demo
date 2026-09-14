@@ -1538,3 +1538,12 @@
 [2026-09-14 11:48 NY] CLOSE topstep MES win at 7,670.00  +0.79R  $+105  equity $50,820
 [2026-09-14 11:49 NY] OPEN [main] MES long 1 @ 7,691.50  stop 7,626.75  target 7,743.25  rr 0.80  risk $324  [m15_trend|complex_pullback|engulf|follow_through|real_gap|deep_pd|smt]
 [2026-09-14 11:49 NY] [topstep] MES refused by the gate: account too small: 1 contract risks $324 vs $200 allowed
+[2026-09-14 12:07 NY] OPEN [wide] MES long 78 @ 7,702.00  stop 7,701.00  target 7,704.25  rr 2.20  risk $390  [m15_trend|complex_pullback|engulf|follow_through|real_gap|deep_pd|smt]
+[2026-09-14 12:07 NY] OPEN [topstep] MES long 40 @ 7,702.00  stop 7,701.00  target 7,702.75  rr 0.80  risk $200  [m15_trend|complex_pullback|engulf|follow_through|real_gap|deep_pd|smt]
+[2026-09-14 12:08 NY] CLOSE wide MES win at 7,704.25  +1.80R  $+702  equity $54,895
+[2026-09-14 12:08 NY] CLOSE topstep MES win at 7,702.75  +0.30R  $+60  equity $50,880
+[2026-09-14 12:08 NY] OPEN [wide] MES long 79 @ 7,702.00  stop 7,701.00  target 7,704.25  rr 2.20  risk $395  [m15_trend|complex_pullback|engulf|follow_through|real_gap|deep_pd|smt]
+[2026-09-14 12:08 NY] OPEN [topstep] MES long 40 @ 7,702.00  stop 7,701.00  target 7,702.75  rr 0.80  risk $200  [m15_trend|complex_pullback|engulf|follow_through|real_gap|deep_pd|smt]
+[2026-09-14 12:09 NY] CLOSE topstep MES win at 7,702.75  +0.30R  $+60  equity $50,940
+[2026-09-14 12:09 NY] [topstep] MES same setup as the last trade, not re-entering
+[2026-09-14 12:10 NY] CLOSE wide MES loss at 7,701.00  -1.45R  $-573  equity $54,322
