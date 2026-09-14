@@ -1532,3 +1532,9 @@
 [2026-09-14 11:24 NY] [main] MNQ same setup as the last trade, not re-entering
 [2026-09-14 11:24 NY] [wide] MNQ same setup as the last trade, not re-entering
 [2026-09-14 11:24 NY] [topstep] MNQ same setup as the last trade, not re-entering
+[2026-09-14 11:47 NY] OPEN [main] MES long 3 @ 7,648.50  stop 7,621.75  target 7,670.00  rr 0.80  risk $403  [m15_trend|complex_pullback|engulf|follow_through|real_gap|deep_pd|smt]
+[2026-09-14 11:47 NY] OPEN [topstep] MES long 1 @ 7,648.50  stop 7,621.75  target 7,670.00  rr 0.80  risk $134  [m15_trend|complex_pullback|engulf|follow_through|real_gap|deep_pd|smt]
+[2026-09-14 11:48 NY] CLOSE main MES win at 7,670.00  +0.79R  $+316  equity $57,634
+[2026-09-14 11:48 NY] CLOSE topstep MES win at 7,670.00  +0.79R  $+105  equity $50,820
+[2026-09-14 11:49 NY] OPEN [main] MES long 1 @ 7,691.50  stop 7,626.75  target 7,743.25  rr 0.80  risk $324  [m15_trend|complex_pullback|engulf|follow_through|real_gap|deep_pd|smt]
+[2026-09-14 11:49 NY] [topstep] MES refused by the gate: account too small: 1 contract risks $324 vs $200 allowed
