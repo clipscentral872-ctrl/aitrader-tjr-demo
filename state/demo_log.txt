@@ -1573,3 +1573,4 @@
 [2026-09-16 09:35 NY] OPEN [wide] MES short 40 @ 7,680.00  stop 7,682.00  target 7,675.50  rr 2.20  risk $400  [complex_pullback|engulf|follow_through|real_gap|deep_pd]
 [2026-09-16 09:40 NY] CLOSE wide MES win at 7,675.50  +2.02R  $+810  equity $56,264
 [2026-09-16 10:24 NY] OPEN [wide] MES long 24 @ 7,676.50  stop 7,673.00  target 7,681.50  rr 1.52  risk $405  [m15_trend|follow_through|real_gap]
+[2026-09-16 10:32 NY] CLOSE wide MES loss at 7,673.00  -1.13R  $-474  equity $55,790
