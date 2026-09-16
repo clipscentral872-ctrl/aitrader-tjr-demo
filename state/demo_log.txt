@@ -1599,3 +1599,4 @@
 [2026-09-16 13:00 NY] OPEN [topstep] MNQ short 8 @ 29,480.75  stop 29,492.25  target 29,471.50  rr 0.80  risk $184  [full_efficiency|engulf|follow_through|real_gap|deep_pd]
 [2026-09-16 13:01 NY] CLOSE topstep MNQ win at 29,471.50  +0.74R  $+136  equity $51,605
 [2026-09-16 13:01 NY] [topstep] MNQ same setup as the last trade, not re-entering
+[2026-09-16 13:10 NY] CLOSE wide MNQ win at 29,455.50  +2.13R  $+882  equity $58,726
