@@ -1654,3 +1654,19 @@
 [2026-09-18 11:17 NY] [main] MNQ same setup as the last trade, not re-entering
 [2026-09-18 11:17 NY] [topstep] MNQ same setup as the last trade, not re-entering
 [2026-09-18 11:21 NY] CLOSE wide MNQ loss at 29,736.25  -1.04R  $-440  equity $59,758
+[2026-09-18 13:23 NY] OPEN [main] MNQ long 44 @ 29,730.25  stop 29,725.50  target 29,734.25  rr 0.80  risk $425  [pool3+|htf_trend|h1_trend|complex_pullback|engulf|follow_through|real_gap|deep_pd]
+[2026-09-18 13:23 NY] OPEN [wide] MNQ long 44 @ 29,730.25  stop 29,725.50  target 29,741.00  rr 2.20  risk $425  [pool3+|htf_trend|h1_trend|complex_pullback|engulf|follow_through|real_gap|deep_pd]
+[2026-09-18 13:23 NY] OPEN [topstep] MNQ long 20 @ 29,730.25  stop 29,725.50  target 29,734.25  rr 0.80  risk $193  [pool3+|htf_trend|h1_trend|complex_pullback|engulf|follow_through|real_gap|deep_pd]
+[2026-09-18 13:24 NY] CLOSE main MNQ win at 29,734.25  +0.68R  $+286  equity $58,782
+[2026-09-18 13:24 NY] CLOSE wide MNQ win at 29,741.00  +2.11R  $+880  equity $60,638
+[2026-09-18 13:24 NY] CLOSE topstep MNQ win at 29,734.25  +0.68R  $+130  equity $52,384
+[2026-09-18 13:24 NY] [main] MNQ same setup as the last trade, not re-entering
+[2026-09-18 13:24 NY] [wide] MNQ same setup as the last trade, not re-entering
+[2026-09-18 13:24 NY] [topstep] MNQ same setup as the last trade, not re-entering
+[2026-09-18 13:25 NY] OPEN [main] MES long 48 @ 7,688.00  stop 7,686.25  target 7,689.50  rr 0.80  risk $420  [htf_trend|engulf|follow_through|real_gap|deep_pd]
+[2026-09-18 13:25 NY] OPEN [wide] MES long 50 @ 7,688.00  stop 7,686.25  target 7,691.75  rr 2.20  risk $438  [htf_trend|engulf|follow_through|real_gap|deep_pd]
+[2026-09-18 13:25 NY] OPEN [topstep] MES long 22 @ 7,688.00  stop 7,686.25  target 7,689.50  rr 0.80  risk $192  [htf_trend|engulf|follow_through|real_gap|deep_pd]
+[2026-09-18 13:26 NY] CLOSE main MES win at 7,689.50  +0.60R  $+252  equity $59,034
+[2026-09-18 13:26 NY] CLOSE topstep MES win at 7,689.50  +0.60R  $+116  equity $52,499
+[2026-09-18 13:26 NY] [main] MES same setup as the last trade, not re-entering
+[2026-09-18 13:26 NY] [topstep] MES same setup as the last trade, not re-entering
