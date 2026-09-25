@@ -1760,3 +1760,4 @@
 [2026-09-24 12:29 NY] [topstep] MES same setup as the last trade, not re-entering
 [2026-09-24 12:45 NY] OPEN [wide] MES long 19 @ 7,761.75  stop 7,757.00  target 7,772.00  rr 2.20  risk $449  [engulf|follow_through|smt]
 [2026-09-24 12:50 NY] CLOSE wide MES win at 7,772.00  +2.06R  $+931  equity $64,897
+[2026-09-25 08:18 NY] TOPSTEP attempt 1 PASSED: profit $3,208 met the $3,000 target in 9 trading days. Attempt 2 starts at $50,000.
