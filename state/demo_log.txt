@@ -1795,3 +1795,6 @@
 [2026-09-25 10:50 NY] OPEN [main] MNQ short 5 @ 30,765.25  stop 30,803.50  target 30,734.75  rr 0.80  risk $381  [htf_trend|engulf|follow_through|real_gap]
 [2026-09-25 10:50 NY] OPEN [wide] MNQ short 6 @ 30,765.25  stop 30,803.50  target 30,681.50  rr 2.20  risk $458  [htf_trend|engulf|follow_through|real_gap|deep_pd]
 [2026-09-25 10:50 NY] OPEN [topstep] MNQ short 2 @ 30,765.25  stop 30,803.50  target 30,734.75  rr 0.80  risk $153  [htf_trend|engulf|follow_through|real_gap]
+[2026-09-25 11:05 NY] CLOSE main MNQ loss at 30,803.50  -1.02R  $-390  equity $61,173
+[2026-09-25 11:05 NY] CLOSE wide MNQ loss at 30,803.50  -1.02R  $-468  equity $65,221
+[2026-09-25 11:05 NY] CLOSE topstep MNQ loss at 30,803.50  -1.02R  $-156  equity $50,370
