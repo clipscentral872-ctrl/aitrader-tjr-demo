@@ -1792,3 +1792,6 @@
 [2026-09-25 10:25 NY] [main] MES same setup as the last trade, not re-entering
 [2026-09-25 10:25 NY] [wide] MES same setup as the last trade, not re-entering
 [2026-09-25 10:25 NY] [topstep] MES same setup as the last trade, not re-entering
+[2026-09-25 10:50 NY] OPEN [main] MNQ short 5 @ 30,765.25  stop 30,803.50  target 30,734.75  rr 0.80  risk $381  [htf_trend|engulf|follow_through|real_gap]
+[2026-09-25 10:50 NY] OPEN [wide] MNQ short 6 @ 30,765.25  stop 30,803.50  target 30,681.50  rr 2.20  risk $458  [htf_trend|engulf|follow_through|real_gap|deep_pd]
+[2026-09-25 10:50 NY] OPEN [topstep] MNQ short 2 @ 30,765.25  stop 30,803.50  target 30,734.75  rr 0.80  risk $153  [htf_trend|engulf|follow_through|real_gap]
