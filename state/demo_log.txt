@@ -1870,3 +1870,11 @@
 [2026-09-29 13:08 NY] CLOSE main MNQ win at 30,525.50  +0.72R  $+322  equity $63,122
 [2026-09-29 13:08 NY] CLOSE topstep MNQ win at 30,525.50  +0.72R  $+140  equity $51,211
 [2026-09-29 13:21 NY] CLOSE wide MNQ loss at 30,543.00  -1.08R  $-525  equity $67,193
+[2026-09-29 14:37 NY] OPEN [main] MNQ long 15 @ 30,603.75  stop 30,589.00  target 30,615.50  rr 0.80  risk $442  [complex_pullback|full_efficiency|engulf|follow_through|real_gap|smt]
+[2026-09-29 14:37 NY] OPEN [topstep] MNQ long 6 @ 30,603.75  stop 30,589.00  target 30,615.50  rr 0.80  risk $177  [complex_pullback|full_efficiency|engulf|follow_through|real_gap|smt]
+[2026-09-29 14:38 NY] CLOSE main MNQ win at 30,615.50  +0.75R  $+330  equity $63,452
+[2026-09-29 14:38 NY] CLOSE topstep MNQ win at 30,615.50  +0.75R  $+132  equity $51,343
+[2026-09-29 14:38 NY] [main] MNQ same setup as the last trade, not re-entering
+[2026-09-29 14:38 NY] [topstep] MNQ same setup as the last trade, not re-entering
+[2026-09-29 14:39 NY] OPEN [wide] MNQ long 30 @ 30,603.00  stop 30,595.00  target 30,589.75  rr 1.65  risk $477  [complex_pullback|full_efficiency|engulf|follow_through|real_gap|smt]
+[2026-09-29 14:40 NY] CLOSE wide MNQ loss at 30,595.00  -1.09R  $-525  equity $66,668
