@@ -1825,3 +1825,10 @@
 [2026-09-28 12:51 NY] CLOSE main MNQ loss at 30,625.75  -1.02R  $-430  equity $61,653
 [2026-09-28 12:51 NY] CLOSE wide MNQ loss at 30,625.75  -1.02R  $-430  equity $65,994
 [2026-09-28 12:51 NY] CLOSE topstep MNQ loss at 30,625.75  -1.02R  $-172  equity $50,568
+[2026-09-29 09:31 NY] OPEN [wide] MES short 95 @ 7,755.00  stop 7,756.00  target 7,752.75  rr 2.20  risk $475  [htf_trend|full_efficiency|follow_through|real_gap|deep_pd]
+[2026-09-29 09:33 NY] CLOSE wide MES loss at 7,756.00  -1.45R  $-689  equity $65,305
+[2026-09-29 09:33 NY] OPEN [wide] MES short 45 @ 7,754.50  stop 7,756.50  target 7,750.00  rr 2.20  risk $464  [htf_trend|full_efficiency|follow_through|real_gap|deep_pd]
+[2026-09-29 09:34 NY] CLOSE wide MES loss at 7,756.50  -1.23R  $-551  equity $64,754
+[2026-09-29 09:34 NY] OPEN [wide] MES short 45 @ 7,754.50  stop 7,756.50  target 7,750.00  rr 2.20  risk $464  [htf_trend|full_efficiency|follow_through|real_gap|deep_pd]
+[2026-09-29 09:36 NY] CLOSE wide MES loss at 7,756.50  -1.23R  $-551  equity $64,202
+[2026-09-29 09:36 NY] [wide] MES same setup as the last trade, not re-entering
