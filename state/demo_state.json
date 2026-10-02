@@ -1,5 +1,5 @@
 {
- "equity": 65340.32,
+ "equity": 64820.32,
  "position": null,
  "trades": [
   {
@@ -1456,211 +1456,28 @@
    "cost_r": 0.1765,
    "opened_at": "2026-10-01 17:47:31+00:00",
    "closed_at": "2026-10-01 17:48:00+00:00"
+  },
+  {
+   "symbol": "MES",
+   "side": "short",
+   "size": 20.0,
+   "entry": 7771.25,
+   "stop": 7776.0,
+   "target": 7767.5,
+   "exit": 7776.0,
+   "outcome": "loss",
+   "r": -1.095,
+   "pnl": -520.0,
+   "cost_r": 0.0947,
+   "opened_at": "2026-10-02 17:36:56+00:00",
+   "closed_at": "2026-10-02 17:50:00+00:00"
   }
  ],
  "refused": [],
  "last_bar": {},
- "polls": 9061,
+ "polls": 9076,
  "started": "2026-08-26T17:25:33.754971+00:00",
  "seen": [
-  {
-   "when": "2026-09-30T13:00:45.097644+00:00",
-   "track": "main",
-   "symbol": "MNQ",
-   "all": 32,
-   "fresh": 0,
-   "long": 13,
-   "short": 19,
-   "fresh_long": 0,
-   "fresh_short": 0
-  },
-  {
-   "when": "2026-09-30T13:00:45.097644+00:00",
-   "track": "main",
-   "symbol": "MES",
-   "all": 23,
-   "fresh": 0,
-   "long": 8,
-   "short": 15,
-   "fresh_long": 0,
-   "fresh_short": 0
-  },
-  {
-   "when": "2026-09-30T13:00:45.097644+00:00",
-   "track": "wide",
-   "symbol": "MNQ",
-   "all": 24,
-   "fresh": 0,
-   "long": 9,
-   "short": 15,
-   "fresh_long": 0,
-   "fresh_short": 0
-  },
-  {
-   "when": "2026-09-30T13:00:45.097644+00:00",
-   "track": "wide",
-   "symbol": "MES",
-   "all": 22,
-   "fresh": 0,
-   "long": 7,
-   "short": 15,
-   "fresh_long": 0,
-   "fresh_short": 0
-  },
-  {
-   "when": "2026-09-30T13:00:45.097644+00:00",
-   "track": "topstep",
-   "symbol": "MNQ",
-   "all": 32,
-   "fresh": 0,
-   "long": 13,
-   "short": 19,
-   "fresh_long": 0,
-   "fresh_short": 0
-  },
-  {
-   "when": "2026-09-30T13:00:45.097644+00:00",
-   "track": "topstep",
-   "symbol": "MES",
-   "all": 23,
-   "fresh": 0,
-   "long": 8,
-   "short": 15,
-   "fresh_long": 0,
-   "fresh_short": 0
-  },
-  {
-   "when": "2026-09-30T13:01:50.753174+00:00",
-   "track": "main",
-   "symbol": "MNQ",
-   "all": 32,
-   "fresh": 0,
-   "long": 13,
-   "short": 19,
-   "fresh_long": 0,
-   "fresh_short": 0
-  },
-  {
-   "when": "2026-09-30T13:01:50.753174+00:00",
-   "track": "main",
-   "symbol": "MES",
-   "all": 23,
-   "fresh": 0,
-   "long": 8,
-   "short": 15,
-   "fresh_long": 0,
-   "fresh_short": 0
-  },
-  {
-   "when": "2026-09-30T13:01:50.753174+00:00",
-   "track": "wide",
-   "symbol": "MNQ",
-   "all": 24,
-   "fresh": 0,
-   "long": 9,
-   "short": 15,
-   "fresh_long": 0,
-   "fresh_short": 0
-  },
-  {
-   "when": "2026-09-30T13:01:50.753174+00:00",
-   "track": "wide",
-   "symbol": "MES",
-   "all": 22,
-   "fresh": 0,
-   "long": 7,
-   "short": 15,
-   "fresh_long": 0,
-   "fresh_short": 0
-  },
-  {
-   "when": "2026-09-30T13:01:50.753174+00:00",
-   "track": "topstep",
-   "symbol": "MNQ",
-   "all": 32,
-   "fresh": 0,
-   "long": 13,
-   "short": 19,
-   "fresh_long": 0,
-   "fresh_short": 0
-  },
-  {
-   "when": "2026-09-30T13:01:50.753174+00:00",
-   "track": "topstep",
-   "symbol": "MES",
-   "all": 23,
-   "fresh": 0,
-   "long": 8,
-   "short": 15,
-   "fresh_long": 0,
-   "fresh_short": 0
-  },
-  {
-   "when": "2026-09-30T13:02:54.529824+00:00",
-   "track": "main",
-   "symbol": "MNQ",
-   "all": 32,
-   "fresh": 0,
-   "long": 13,
-   "short": 19,
-   "fresh_long": 0,
-   "fresh_short": 0
-  },
-  {
-   "when": "2026-09-30T13:02:54.529824+00:00",
-   "track": "main",
-   "symbol": "MES",
-   "all": 23,
-   "fresh": 0,
-   "long": 8,
-   "short": 15,
-   "fresh_long": 0,
-   "fresh_short": 0
-  },
-  {
-   "when": "2026-09-30T13:02:54.529824+00:00",
-   "track": "wide",
-   "symbol": "MNQ",
-   "all": 24,
-   "fresh": 0,
-   "long": 9,
-   "short": 15,
-   "fresh_long": 0,
-   "fresh_short": 0
-  },
-  {
-   "when": "2026-09-30T13:02:54.529824+00:00",
-   "track": "wide",
-   "symbol": "MES",
-   "all": 22,
-   "fresh": 0,
-   "long": 7,
-   "short": 15,
-   "fresh_long": 0,
-   "fresh_short": 0
-  },
-  {
-   "when": "2026-09-30T13:02:54.529824+00:00",
-   "track": "topstep",
-   "symbol": "MNQ",
-   "all": 32,
-   "fresh": 0,
-   "long": 13,
-   "short": 19,
-   "fresh_long": 0,
-   "fresh_short": 0
-  },
-  {
-   "when": "2026-09-30T13:02:54.529824+00:00",
-   "track": "topstep",
-   "symbol": "MES",
-   "all": 23,
-   "fresh": 0,
-   "long": 8,
-   "short": 15,
-   "fresh_long": 0,
-   "fresh_short": 0
-  },
   {
    "when": "2026-09-30T13:03:58.378546+00:00",
    "track": "main",
@@ -45462,10 +45279,208 @@
    "short": 17,
    "fresh_long": 0,
    "fresh_short": 0
+  },
+  {
+   "when": "2026-10-02T13:46:57.949758+00:00",
+   "track": "main",
+   "symbol": "MNQ",
+   "all": 22,
+   "fresh": 0,
+   "long": 8,
+   "short": 14,
+   "fresh_long": 0,
+   "fresh_short": 0
+  },
+  {
+   "when": "2026-10-02T13:46:57.949758+00:00",
+   "track": "main",
+   "symbol": "MES",
+   "all": 24,
+   "fresh": 1,
+   "long": 6,
+   "short": 18,
+   "fresh_long": 0,
+   "fresh_short": 1
+  },
+  {
+   "when": "2026-10-02T13:46:57.949758+00:00",
+   "track": "wide",
+   "symbol": "MNQ",
+   "all": 17,
+   "fresh": 0,
+   "long": 6,
+   "short": 11,
+   "fresh_long": 0,
+   "fresh_short": 0
+  },
+  {
+   "when": "2026-10-02T13:46:57.949758+00:00",
+   "track": "wide",
+   "symbol": "MES",
+   "all": 22,
+   "fresh": 1,
+   "long": 6,
+   "short": 16,
+   "fresh_long": 0,
+   "fresh_short": 1
+  },
+  {
+   "when": "2026-10-02T13:46:57.949758+00:00",
+   "track": "topstep",
+   "symbol": "MNQ",
+   "all": 22,
+   "fresh": 0,
+   "long": 8,
+   "short": 14,
+   "fresh_long": 0,
+   "fresh_short": 0
+  },
+  {
+   "when": "2026-10-02T13:46:57.949758+00:00",
+   "track": "topstep",
+   "symbol": "MES",
+   "all": 24,
+   "fresh": 1,
+   "long": 6,
+   "short": 18,
+   "fresh_long": 0,
+   "fresh_short": 1
+  },
+  {
+   "when": "2026-10-02T14:00:13.857754+00:00",
+   "track": "main",
+   "symbol": "MNQ",
+   "all": 22,
+   "fresh": 0,
+   "long": 8,
+   "short": 14,
+   "fresh_long": 0,
+   "fresh_short": 0
+  },
+  {
+   "when": "2026-10-02T14:00:13.857754+00:00",
+   "track": "main",
+   "symbol": "MES",
+   "all": 24,
+   "fresh": 0,
+   "long": 6,
+   "short": 18,
+   "fresh_long": 0,
+   "fresh_short": 0
+  },
+  {
+   "when": "2026-10-02T14:00:13.857754+00:00",
+   "track": "wide",
+   "symbol": "MNQ",
+   "all": 17,
+   "fresh": 0,
+   "long": 6,
+   "short": 11,
+   "fresh_long": 0,
+   "fresh_short": 0
+  },
+  {
+   "when": "2026-10-02T14:00:13.857754+00:00",
+   "track": "wide",
+   "symbol": "MES",
+   "all": 22,
+   "fresh": 0,
+   "long": 6,
+   "short": 16,
+   "fresh_long": 0,
+   "fresh_short": 0
+  },
+  {
+   "when": "2026-10-02T14:00:13.857754+00:00",
+   "track": "topstep",
+   "symbol": "MNQ",
+   "all": 22,
+   "fresh": 0,
+   "long": 8,
+   "short": 14,
+   "fresh_long": 0,
+   "fresh_short": 0
+  },
+  {
+   "when": "2026-10-02T14:00:13.857754+00:00",
+   "track": "topstep",
+   "symbol": "MES",
+   "all": 24,
+   "fresh": 0,
+   "long": 6,
+   "short": 18,
+   "fresh_long": 0,
+   "fresh_short": 0
+  },
+  {
+   "when": "2026-10-02T14:01:18.260718+00:00",
+   "track": "main",
+   "symbol": "MNQ",
+   "all": 22,
+   "fresh": 0,
+   "long": 8,
+   "short": 14,
+   "fresh_long": 0,
+   "fresh_short": 0
+  },
+  {
+   "when": "2026-10-02T14:01:18.260718+00:00",
+   "track": "main",
+   "symbol": "MES",
+   "all": 24,
+   "fresh": 0,
+   "long": 6,
+   "short": 18,
+   "fresh_long": 0,
+   "fresh_short": 0
+  },
+  {
+   "when": "2026-10-02T14:01:18.260718+00:00",
+   "track": "wide",
+   "symbol": "MNQ",
+   "all": 17,
+   "fresh": 0,
+   "long": 6,
+   "short": 11,
+   "fresh_long": 0,
+   "fresh_short": 0
+  },
+  {
+   "when": "2026-10-02T14:01:18.260718+00:00",
+   "track": "wide",
+   "symbol": "MES",
+   "all": 22,
+   "fresh": 0,
+   "long": 6,
+   "short": 16,
+   "fresh_long": 0,
+   "fresh_short": 0
+  },
+  {
+   "when": "2026-10-02T14:01:18.260718+00:00",
+   "track": "topstep",
+   "symbol": "MNQ",
+   "all": 22,
+   "fresh": 0,
+   "long": 8,
+   "short": 14,
+   "fresh_long": 0,
+   "fresh_short": 0
+  },
+  {
+   "when": "2026-10-02T14:01:18.260718+00:00",
+   "track": "topstep",
+   "symbol": "MES",
+   "all": 24,
+   "fresh": 0,
+   "long": 6,
+   "short": 18,
+   "fresh_long": 0,
+   "fresh_short": 0
   }
  ],
  "wide": {
-  "equity": 68910.5,
+  "equity": 68364.5,
   "position": null,
   "trades": [
    {
@@ -46652,17 +46667,32 @@
     "cost_r": 0.1765,
     "opened_at": "2026-10-01 17:47:31+00:00",
     "closed_at": "2026-10-01 17:48:00+00:00"
+   },
+   {
+    "symbol": "MES",
+    "side": "short",
+    "size": 21.0,
+    "entry": 7771.25,
+    "stop": 7776.0,
+    "target": 7761.0,
+    "exit": 7776.0,
+    "outcome": "loss",
+    "r": -1.095,
+    "pnl": -546.0,
+    "cost_r": 0.0947,
+    "opened_at": "2026-10-02 17:36:56+00:00",
+    "closed_at": "2026-10-02 17:50:00+00:00"
    }
   ],
   "refused": [],
   "started": "2026-09-01T16:12:02.041615+00:00",
   "_name": "wide",
-  "last_setup": "MNQ|long|2026-10-01 17:47:31+00:00|30850.25|30846.00"
+  "last_setup": "MES|short|2026-10-02 17:36:00+00:00|7771.27|7776.00"
  },
  "_name": "main",
- "last_setup": "MNQ|long|2026-10-01 17:47:31+00:00|30850.25|30846.00",
+ "last_setup": "MES|short|2026-10-02 17:36:00+00:00|7771.27|7776.00",
  "topstep": {
-  "equity": 52167.75,
+  "equity": 51959.75,
   "position": null,
   "trades": [
    {
@@ -47704,6 +47734,22 @@
     "opened_at": "2026-10-01 17:47:31+00:00",
     "closed_at": "2026-10-01 17:48:00+00:00",
     "attempt": 2
+   },
+   {
+    "symbol": "MES",
+    "side": "short",
+    "size": 8.0,
+    "entry": 7771.25,
+    "stop": 7776.0,
+    "target": 7767.5,
+    "exit": 7776.0,
+    "outcome": "loss",
+    "r": -1.095,
+    "pnl": -208.0,
+    "cost_r": 0.0947,
+    "opened_at": "2026-10-02 17:36:56+00:00",
+    "closed_at": "2026-10-02 17:50:00+00:00",
+    "attempt": 2
    }
   ],
   "refused": [
@@ -47724,9 +47770,9 @@
    "day_start": 52167.75,
    "best_day": 775.25,
    "days_traded": 5,
-   "traded_today": false,
+   "traded_today": true,
    "dll_hit": false,
-   "trades_in_attempt": 21,
+   "trades_in_attempt": 22,
    "history": [
     {
      "attempt": 1,
@@ -47743,6 +47789,6 @@
    "settled": "2026-10-01"
   },
   "_name": "topstep",
-  "last_setup": "MNQ|long|2026-10-01 17:47:31+00:00|30850.25|30846.00"
+  "last_setup": "MES|short|2026-10-02 17:36:00+00:00|7771.27|7776.00"
  }
 }
