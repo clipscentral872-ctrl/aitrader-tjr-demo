@@ -1934,3 +1934,4 @@
 [2026-10-06 13:29 NY] CLOSE topstep MNQ win at 31,491.50  +0.55R  $+108  equity $52,068
 [2026-10-06 13:29 NY] [main] MNQ same setup as the last trade, not re-entering
 [2026-10-06 13:29 NY] [topstep] MNQ same setup as the last trade, not re-entering
+[2026-10-06 13:36 NY] CLOSE wide MNQ loss at 31,509.25  -1.07R  $-517  equity $67,848
