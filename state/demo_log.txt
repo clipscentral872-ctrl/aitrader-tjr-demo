@@ -1950,3 +1950,12 @@
 [2026-10-07 10:42 NY] CLOSE topstep MNQ win at 31,245.00  +0.68R  $+136  equity $52,319
 [2026-10-07 10:42 NY] [main] MNQ same setup as the last trade, not re-entering
 [2026-10-07 10:42 NY] [topstep] MNQ same setup as the last trade, not re-entering
+[2026-10-07 12:16 NY] OPEN [main] MES long 54 @ 7,842.75  stop 7,841.00  target 7,844.25  rr 0.80  risk $472  [pool3+|full_efficiency|engulf|follow_through|real_gap|deep_pd]
+[2026-10-07 12:16 NY] OPEN [wide] MES long 57 @ 7,842.75  stop 7,841.00  target 7,845.50  rr 1.50  risk $499  [pool3+|full_efficiency|engulf|follow_through|real_gap|deep_pd]
+[2026-10-07 12:16 NY] OPEN [topstep] MES long 22 @ 7,842.75  stop 7,841.00  target 7,844.25  rr 0.80  risk $192  [pool3+|full_efficiency|engulf|follow_through|real_gap|deep_pd]
+[2026-10-07 12:17 NY] CLOSE main MES win at 7,844.25  +0.60R  $+284  equity $65,959
+[2026-10-07 12:17 NY] CLOSE wide MES win at 7,845.50  +1.31R  $+656  equity $69,460
+[2026-10-07 12:17 NY] CLOSE topstep MES win at 7,844.25  +0.60R  $+116  equity $52,434
+[2026-10-07 12:17 NY] [main] MES same setup as the last trade, not re-entering
+[2026-10-07 12:17 NY] [wide] MES same setup as the last trade, not re-entering
+[2026-10-07 12:17 NY] [topstep] MES same setup as the last trade, not re-entering
