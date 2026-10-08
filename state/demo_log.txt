@@ -2007,3 +2007,4 @@
 [2026-10-08 10:23 NY] [topstep] MNQ same setup as the last trade, not re-entering
 [2026-10-08 10:27 NY] CLOSE wide MNQ win at 31,265.00  +2.15R  $+1,118  equity $74,600
 [2026-10-08 10:31 NY] OPEN [wide] MES long 39 @ 7,838.75  stop 7,836.00  target 7,844.75  rr 2.20  risk $536  [htf_trend|engulf|real_gap]
+[2026-10-08 10:58 NY] CLOSE wide MES loss at 7,836.00  -1.16R  $-624  equity $73,976
