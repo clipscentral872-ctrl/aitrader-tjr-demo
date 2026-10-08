@@ -2008,3 +2008,21 @@
 [2026-10-08 10:27 NY] CLOSE wide MNQ win at 31,265.00  +2.15R  $+1,118  equity $74,600
 [2026-10-08 10:31 NY] OPEN [wide] MES long 39 @ 7,838.75  stop 7,836.00  target 7,844.75  rr 2.20  risk $536  [htf_trend|engulf|real_gap]
 [2026-10-08 10:58 NY] CLOSE wide MES loss at 7,836.00  -1.16R  $-624  equity $73,976
+[2026-10-08 12:42 NY] OPEN [main] MES long 69 @ 7,826.75  stop 7,825.25  target 7,828.00  rr 0.80  risk $492  [pool3+|htf_trend|m15_trend|engulf|smt]
+[2026-10-08 12:42 NY] OPEN [wide] MES long 75 @ 7,826.75  stop 7,825.25  target 7,829.00  rr 1.58  risk $534  [pool3+|htf_trend|m15_trend|engulf|smt]
+[2026-10-08 12:42 NY] OPEN [topstep] MES long 28 @ 7,826.75  stop 7,825.25  target 7,828.00  rr 0.80  risk $200  [pool3+|htf_trend|m15_trend|engulf|smt]
+[2026-10-08 12:43 NY] CLOSE main MES win at 7,828.00  +0.53R  $+276  equity $68,057
+[2026-10-08 12:43 NY] CLOSE wide MES win at 7,829.00  +1.20R  $+675  equity $74,652
+[2026-10-08 12:43 NY] CLOSE topstep MES win at 7,828.00  +0.53R  $+112  equity $50,247
+[2026-10-08 12:43 NY] [main] MES same setup as the last trade, not re-entering
+[2026-10-08 12:43 NY] [wide] MES same setup as the last trade, not re-entering
+[2026-10-08 12:43 NY] [topstep] MES same setup as the last trade, not re-entering
+[2026-10-08 12:50 NY] OPEN [main] MNQ long 33 @ 31,192.75  stop 31,185.25  target 31,198.75  rr 0.80  risk $493  [full_efficiency|follow_through|real_gap|deep_pd|smt]
+[2026-10-08 12:50 NY] OPEN [wide] MNQ long 36 @ 31,192.75  stop 31,185.25  target 31,209.25  rr 2.20  risk $537  [full_efficiency|follow_through|real_gap|smt]
+[2026-10-08 12:50 NY] OPEN [topstep] MNQ long 13 @ 31,192.75  stop 31,185.25  target 31,198.75  rr 0.80  risk $194  [full_efficiency|follow_through|real_gap|deep_pd|smt]
+[2026-10-08 12:51 NY] CLOSE main MNQ win at 31,198.75  +0.70R  $+347  equity $68,404
+[2026-10-08 12:51 NY] CLOSE wide MNQ win at 31,209.25  +2.10R  $+1,134  equity $75,786
+[2026-10-08 12:51 NY] CLOSE topstep MNQ win at 31,198.75  +0.70R  $+137  equity $50,384
+[2026-10-08 12:51 NY] [main] MNQ same setup as the last trade, not re-entering
+[2026-10-08 12:51 NY] [wide] MNQ same setup as the last trade, not re-entering
+[2026-10-08 12:51 NY] [topstep] MNQ same setup as the last trade, not re-entering
