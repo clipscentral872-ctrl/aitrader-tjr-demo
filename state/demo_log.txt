@@ -1997,3 +1997,4 @@
 [2026-10-07 15:31 NY] CLOSE topstep MNQ win at 31,355.00  +0.71R  $+132  equity $53,026
 [2026-10-07 15:31 NY] [main] MNQ same setup as the last trade, not re-entering
 [2026-10-07 15:31 NY] [topstep] MNQ same setup as the last trade, not re-entering
+[2026-10-08 10:03 NY] TOPSTEP attempt 2 PASSED: profit $3,026 met the $3,000 target in 8 trading days. Attempt 3 starts at $50,000.
