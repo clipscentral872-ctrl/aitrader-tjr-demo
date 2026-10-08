@@ -1998,3 +1998,12 @@
 [2026-10-07 15:31 NY] [main] MNQ same setup as the last trade, not re-entering
 [2026-10-07 15:31 NY] [topstep] MNQ same setup as the last trade, not re-entering
 [2026-10-08 10:03 NY] TOPSTEP attempt 2 PASSED: profit $3,026 met the $3,000 target in 8 trading days. Attempt 3 starts at $50,000.
+[2026-10-08 10:22 NY] OPEN [main] MNQ long 24 @ 31,242.75  stop 31,232.75  target 31,251.00  rr 0.80  risk $485  [complex_pullback|full_efficiency|follow_through|real_gap|deep_pd]
+[2026-10-08 10:22 NY] OPEN [wide] MNQ long 26 @ 31,242.75  stop 31,232.75  target 31,265.00  rr 2.20  risk $525  [pool3+|complex_pullback|follow_through|real_gap|deep_pd]
+[2026-10-08 10:22 NY] OPEN [topstep] MNQ long 9 @ 31,242.75  stop 31,232.75  target 31,251.00  rr 0.80  risk $182  [complex_pullback|full_efficiency|follow_through|real_gap|deep_pd]
+[2026-10-08 10:23 NY] CLOSE main MNQ win at 31,251.00  +0.75R  $+360  equity $67,781
+[2026-10-08 10:23 NY] CLOSE topstep MNQ win at 31,251.00  +0.75R  $+135  equity $50,135
+[2026-10-08 10:23 NY] [main] MNQ same setup as the last trade, not re-entering
+[2026-10-08 10:23 NY] [topstep] MNQ same setup as the last trade, not re-entering
+[2026-10-08 10:27 NY] CLOSE wide MNQ win at 31,265.00  +2.15R  $+1,118  equity $74,600
+[2026-10-08 10:31 NY] OPEN [wide] MES long 39 @ 7,838.75  stop 7,836.00  target 7,844.75  rr 2.20  risk $536  [htf_trend|engulf|real_gap]
