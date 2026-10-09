@@ -2050,3 +2050,17 @@
 [2026-10-09 09:53 NY] OPEN [wide] MNQ short 10 @ 31,101.75  stop 31,128.50  target 31,042.75  rr 2.20  risk $536  [htf_trend|m15_trend|real_gap|deep_pd|smt]
 [2026-10-09 09:54 NY] CLOSE wide MNQ win at 31,042.75  +2.18R  $+1,165  equity $78,062
 [2026-10-09 09:54 NY] [wide] MNQ same setup as the last trade, not re-entering
+[2026-10-09 10:05 NY] OPEN [main] MNQ short 13 @ 31,026.25  stop 31,044.50  target 31,011.75  rr 0.80  risk $474  [htf_trend|m15_trend|real_gap|deep_pd|smt]
+[2026-10-09 10:05 NY] OPEN [topstep] MNQ short 5 @ 31,026.25  stop 31,044.50  target 31,011.75  rr 0.80  risk $182  [htf_trend|m15_trend|real_gap|deep_pd|smt]
+[2026-10-09 10:06 NY] CLOSE main MNQ win at 31,011.75  +0.75R  $+357  equity $69,760
+[2026-10-09 10:06 NY] CLOSE topstep MNQ win at 31,011.75  +0.75R  $+137  equity $50,930
+[2026-10-09 10:06 NY] OPEN [main] MNQ short 13 @ 31,026.25  stop 31,044.50  target 31,011.75  rr 0.80  risk $474  [htf_trend|m15_trend|real_gap|deep_pd|smt]
+[2026-10-09 10:06 NY] OPEN [topstep] MNQ short 5 @ 31,026.25  stop 31,044.50  target 31,011.75  rr 0.80  risk $182  [htf_trend|m15_trend|real_gap|deep_pd|smt]
+[2026-10-09 10:10 NY] CLOSE main MNQ loss at 31,044.50  -1.04R  $-494  equity $69,266
+[2026-10-09 10:10 NY] CLOSE topstep MNQ loss at 31,044.50  -1.04R  $-190  equity $50,740
+[2026-10-09 10:14 NY] OPEN [main] MES short 44 @ 7,833.75  stop 7,836.00  target 7,832.00  rr 0.80  risk $500  [htf_trend|engulf|follow_through|deep_pd|smt]
+[2026-10-09 10:14 NY] OPEN [wide] MES short 49 @ 7,833.75  stop 7,836.00  target 7,828.75  rr 2.20  risk $557  [htf_trend|engulf|follow_through|deep_pd|smt]
+[2026-10-09 10:14 NY] OPEN [topstep] MES short 17 @ 7,833.75  stop 7,836.00  target 7,832.00  rr 0.80  risk $193  [htf_trend|engulf|follow_through|deep_pd|smt]
+[2026-10-09 10:15 NY] CLOSE main MES win at 7,832.00  +0.58R  $+286  equity $69,552
+[2026-10-09 10:15 NY] CLOSE topstep MES win at 7,832.00  +0.58R  $+110  equity $50,850
+[2026-10-09 10:17 NY] CLOSE wide MES loss at 7,836.00  -1.20R  $-661  equity $77,400
