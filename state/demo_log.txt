@@ -2069,3 +2069,4 @@
 [2026-10-09 10:39 NY] OPEN [topstep] MES short 13 @ 7,840.00  stop 7,843.00  target 7,837.50  rr 0.76  risk $200  [htf_trend|engulf|follow_through|deep_pd|smt]
 [2026-10-09 10:45 NY] CLOSE main MES win at 7,837.50  +0.68R  $+328  equity $69,880
 [2026-10-09 10:45 NY] CLOSE topstep MES win at 7,837.50  +0.68R  $+133  equity $50,984
+[2026-10-09 11:01 NY] CLOSE wide MES loss at 7,843.00  -1.15R  $-621  equity $76,780
