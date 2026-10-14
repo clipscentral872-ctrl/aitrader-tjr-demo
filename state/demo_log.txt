@@ -2145,3 +2145,18 @@
 [2026-10-13 15:48 NY] OPEN [wide] MES long 73 @ 7,859.25  stop 7,857.75  target 7,862.50  rr 2.20  risk $534  [htf_trend|m15_trend|engulf|follow_through|real_gap]
 [2026-10-13 15:49 NY] CLOSE wide MES loss at 7,857.75  -1.30R  $-712  equity $73,121
 [2026-10-13 15:49 NY] [wide] MES same setup as the last trade, not re-entering
+[2026-10-14 09:02 NY] OPEN [main] MES short 58 @ 7,836.50  stop 7,838.25  target 7,835.00  rr 0.80  risk $508  [htf_trend|full_efficiency|engulf|follow_through|deep_pd|smt]
+[2026-10-14 09:02 NY] OPEN [wide] MES short 60 @ 7,836.50  stop 7,838.25  target 7,832.75  rr 2.20  risk $525  [htf_trend|full_efficiency|engulf|follow_through|deep_pd|smt]
+[2026-10-14 09:02 NY] OPEN [topstep] MES short 22 @ 7,836.50  stop 7,838.25  target 7,835.00  rr 0.80  risk $192  [htf_trend|full_efficiency|engulf|follow_through|deep_pd|smt]
+[2026-10-14 09:03 NY] CLOSE main MES win at 7,835.00  +0.60R  $+304  equity $71,156
+[2026-10-14 09:03 NY] CLOSE wide MES win at 7,832.75  +1.89R  $+990  equity $74,111
+[2026-10-14 09:03 NY] CLOSE topstep MES win at 7,835.00  +0.60R  $+116  equity $51,481
+[2026-10-14 09:03 NY] OPEN [main] MES short 59 @ 7,836.50  stop 7,838.25  target 7,835.00  rr 0.80  risk $516  [htf_trend|full_efficiency|engulf|follow_through|deep_pd|smt]
+[2026-10-14 09:03 NY] OPEN [wide] MES short 61 @ 7,836.50  stop 7,838.25  target 7,832.75  rr 2.20  risk $534  [htf_trend|full_efficiency|engulf|follow_through|deep_pd|smt]
+[2026-10-14 09:04 NY] OPEN [topstep] MES short 22 @ 7,836.50  stop 7,838.25  target 7,835.00  rr 0.80  risk $192  [htf_trend|full_efficiency|engulf|follow_through|deep_pd|smt]
+[2026-10-14 09:05 NY] CLOSE main MES win at 7,835.00  +0.60R  $+310  equity $71,466
+[2026-10-14 09:05 NY] CLOSE wide MES win at 7,832.75  +1.89R  $+1,006  equity $75,118
+[2026-10-14 09:05 NY] CLOSE topstep MES win at 7,835.00  +0.60R  $+116  equity $51,597
+[2026-10-14 09:05 NY] [main] MES same setup as the last trade, not re-entering
+[2026-10-14 09:05 NY] [wide] MES same setup as the last trade, not re-entering
+[2026-10-14 09:05 NY] [topstep] MES same setup as the last trade, not re-entering
