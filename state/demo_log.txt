@@ -2167,3 +2167,18 @@
 [2026-10-15 09:59 NY] OPEN [wide] MES short 49 @ 7,738.75  stop 7,741.00  target 7,734.00  rr 2.20  risk $539  [m15_trend|follow_through|deep_pd]
 [2026-10-15 10:00 NY] CLOSE wide MES win at 7,734.00  +1.91R  $+1,054  equity $76,171
 [2026-10-15 10:00 NY] OPEN [wide] MES short 50 @ 7,738.75  stop 7,741.00  target 7,734.00  rr 2.20  risk $550  [m15_trend|follow_through|deep_pd]
+[2026-10-15 10:01 NY] CLOSE wide MES win at 7,734.00  +1.91R  $+1,075  equity $77,246
+[2026-10-15 10:01 NY] OPEN [main] MNQ short 14 @ 29,780.50  stop 29,798.75  target 29,793.75  rr 0.73  risk $511  [h1_trend|m15_trend|engulf|follow_through|real_gap]
+[2026-10-15 10:01 NY] OPEN [topstep] MNQ short 5 @ 29,780.50  stop 29,798.75  target 29,793.75  rr 0.73  risk $182  [h1_trend|m15_trend|engulf|follow_through|real_gap]
+[2026-10-15 10:02 NY] CLOSE main MNQ win at 29,793.75  -0.77R  $-392  equity $71,443
+[2026-10-15 10:02 NY] CLOSE topstep MNQ win at 29,793.75  -0.77R  $-140  equity $51,600
+[2026-10-15 10:02 NY] OPEN [main] MNQ short 14 @ 29,780.50  stop 29,798.75  target 29,793.75  rr 0.73  risk $511  [h1_trend|m15_trend|engulf|follow_through|real_gap]
+[2026-10-15 10:02 NY] OPEN [topstep] MNQ short 5 @ 29,780.50  stop 29,798.75  target 29,793.75  rr 0.73  risk $182  [h1_trend|m15_trend|engulf|follow_through|real_gap]
+[2026-10-15 10:03 NY] CLOSE main MNQ win at 29,793.75  -0.77R  $-392  equity $71,051
+[2026-10-15 10:03 NY] CLOSE topstep MNQ win at 29,793.75  -0.77R  $-140  equity $51,460
+[2026-10-15 10:03 NY] [main] MNQ same setup as the last trade, not re-entering
+[2026-10-15 10:03 NY] [topstep] MNQ same setup as the last trade, not re-entering
+[2026-10-15 10:04 NY] OPEN [main] MES short 18 @ 7,732.50  stop 7,738.00  target 7,728.00  rr 0.80  risk $495  [m15_trend|follow_through|deep_pd]
+[2026-10-15 10:04 NY] OPEN [topstep] MES short 7 @ 7,732.50  stop 7,738.00  target 7,728.00  rr 0.80  risk $192  [m15_trend|follow_through|deep_pd]
+[2026-10-15 10:05 NY] CLOSE main MES win at 7,728.00  +0.74R  $+365  equity $71,416
+[2026-10-15 10:05 NY] CLOSE topstep MES win at 7,728.00  +0.74R  $+142  equity $51,602
