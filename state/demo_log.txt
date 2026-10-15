@@ -2217,3 +2217,4 @@
 [2026-10-15 13:02 NY] CLOSE topstep MES win at 7,767.50  +0.66R  $+126  equity $52,142
 [2026-10-15 13:02 NY] [main] MES same setup as the last trade, not re-entering
 [2026-10-15 13:02 NY] [topstep] MES same setup as the last trade, not re-entering
+[2026-10-15 13:19 NY] CLOSE wide MNQ loss at 29,991.75  -1.03R  $-566  equity $78,789
