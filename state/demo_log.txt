@@ -2305,3 +2305,9 @@
 [2026-10-20 09:14 NY] [main] MNQ same setup as the last trade, not re-entering
 [2026-10-20 09:14 NY] [wide] MNQ same setup as the last trade, not re-entering
 [2026-10-20 09:14 NY] [topstep] MNQ same setup as the last trade, not re-entering
+[2026-10-20 10:25 NY] OPEN [main] MNQ long 7 @ 29,727.25  stop 29,692.00  target 29,755.50  rr 0.80  risk $494  [follow_through|real_gap|deep_pd]
+[2026-10-20 10:25 NY] OPEN [topstep] MNQ long 2 @ 29,727.25  stop 29,692.00  target 29,755.50  rr 0.80  risk $141  [follow_through|real_gap|deep_pd]
+[2026-10-20 10:26 NY] CLOSE main MNQ win at 29,755.50  +0.78R  $+385  equity $76,200
+[2026-10-20 10:26 NY] CLOSE topstep MNQ win at 29,755.50  +0.78R  $+110  equity $50,250
+[2026-10-20 10:26 NY] [main] MNQ same setup as the last trade, not re-entering
+[2026-10-20 10:26 NY] [topstep] MNQ same setup as the last trade, not re-entering
