@@ -2320,3 +2320,9 @@
 [2026-10-20 11:32 NY] [main] MNQ same setup as the last trade, not re-entering
 [2026-10-20 11:32 NY] [wide] MNQ same setup as the last trade, not re-entering
 [2026-10-20 11:32 NY] [topstep] MNQ same setup as the last trade, not re-entering
+[2026-10-20 12:33 NY] OPEN [main] MES short 37 @ 7,754.25  stop 7,757.25  target 7,751.75  rr 0.80  risk $555  [h1_trend|full_efficiency|engulf|follow_through|real_gap]
+[2026-10-20 12:33 NY] OPEN [wide] MES short 38 @ 7,754.25  stop 7,757.25  target 7,747.75  rr 2.20  risk $570  [h1_trend|full_efficiency|engulf|follow_through|real_gap]
+[2026-10-20 12:33 NY] OPEN [topstep] MES short 13 @ 7,754.25  stop 7,757.25  target 7,751.75  rr 0.80  risk $195  [h1_trend|full_efficiency|engulf|follow_through|real_gap]
+[2026-10-20 12:36 NY] CLOSE main MES loss at 7,757.25  -1.15R  $-638  equity $75,953
+[2026-10-20 12:36 NY] CLOSE wide MES loss at 7,757.25  -1.15R  $-656  equity $78,010
+[2026-10-20 12:36 NY] CLOSE topstep MES loss at 7,757.25  -1.15R  $-224  equity $50,170
