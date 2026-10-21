@@ -2378,3 +2378,4 @@
 [2026-10-21 10:15 NY] [main] MNQ same setup as the last trade, not re-entering
 [2026-10-21 10:15 NY] [topstep] MNQ same setup as the last trade, not re-entering
 [2026-10-21 10:48 NY] OPEN [wide] MES short 24 @ 7,763.00  stop 7,767.75  target 7,752.25  rr 2.20  risk $582  [h1_trend|complex_pullback|follow_through|deep_pd|smt]
+[2026-10-21 10:53 NY] CLOSE wide MES loss at 7,767.75  -1.09R  $-624  equity $79,869
