@@ -2379,3 +2379,18 @@
 [2026-10-21 10:15 NY] [topstep] MNQ same setup as the last trade, not re-entering
 [2026-10-21 10:48 NY] OPEN [wide] MES short 24 @ 7,763.00  stop 7,767.75  target 7,752.25  rr 2.20  risk $582  [h1_trend|complex_pullback|follow_through|deep_pd|smt]
 [2026-10-21 10:53 NY] CLOSE wide MES loss at 7,767.75  -1.09R  $-624  equity $79,869
+[2026-10-21 11:31 NY] OPEN [main] MES long 42 @ 7,778.75  stop 7,776.25  target 7,781.00  rr 0.80  risk $549  [complex_pullback|engulf|follow_through|real_gap|deep_pd]
+[2026-10-21 11:31 NY] OPEN [topstep] MES long 15 @ 7,778.75  stop 7,776.25  target 7,781.00  rr 0.80  risk $196  [complex_pullback|engulf|follow_through|real_gap|deep_pd]
+[2026-10-21 11:32 NY] CLOSE main MES win at 7,781.00  +0.72R  $+378  equity $76,915
+[2026-10-21 11:32 NY] CLOSE topstep MES win at 7,781.00  +0.72R  $+135  equity $50,494
+[2026-10-21 11:32 NY] [main] MES same setup as the last trade, not re-entering
+[2026-10-21 11:32 NY] [topstep] MES same setup as the last trade, not re-entering
+[2026-10-21 11:33 NY] OPEN [main] MNQ long 10 @ 29,948.25  stop 29,921.25  target 29,970.00  rr 0.80  risk $542  [engulf|follow_through|real_gap|smt]
+[2026-10-21 11:33 NY] OPEN [wide] MES long 59 @ 7,780.00  stop 7,778.00  target 7,776.00  rr 2.04  risk $579  [complex_pullback|engulf|follow_through|real_gap|deep_pd]
+[2026-10-21 11:33 NY] OPEN [topstep] MNQ long 3 @ 29,948.25  stop 29,921.25  target 29,970.00  rr 0.80  risk $163  [engulf|follow_through|real_gap|smt]
+[2026-10-21 11:34 NY] CLOSE wide MES win at 7,776.00  -2.23R  $-1,313  equity $78,556
+[2026-10-21 11:34 NY] OPEN [wide] MES long 41 @ 7,780.75  stop 7,778.00  target 7,776.00  rr 1.74  risk $564  [complex_pullback|engulf|follow_through|real_gap|deep_pd]
+[2026-10-21 11:35 NY] CLOSE main MNQ win at 29,970.00  +0.78R  $+420  equity $77,335
+[2026-10-21 11:35 NY] CLOSE wide MES win at 7,776.00  -1.89R  $-1,066  equity $77,490
+[2026-10-21 11:35 NY] CLOSE topstep MNQ win at 29,970.00  +0.78R  $+126  equity $50,620
+[2026-10-21 11:35 NY] [wide] MES same setup as the last trade, not re-entering
