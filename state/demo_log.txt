@@ -2332,3 +2332,16 @@
 [2026-10-20 12:56 NY] CLOSE main MES win at 7,757.50  +0.75R  $+390  equity $76,343
 [2026-10-20 12:56 NY] CLOSE topstep MES win at 7,757.50  +0.75R  $+142  equity $50,312
 [2026-10-20 13:04 NY] CLOSE wide MES win at 7,750.75  +2.17R  $+1,184  equity $79,195
+[2026-10-21 08:43 NY] OPEN [main] MES long 46 @ 7,777.25  stop 7,775.00  target 7,779.25  rr 0.80  risk $543  [m15_trend|engulf|follow_through|smt]
+[2026-10-21 08:43 NY] OPEN [topstep] MES long 16 @ 7,777.25  stop 7,775.00  target 7,779.25  rr 0.80  risk $189  [m15_trend|engulf|follow_through|smt]
+[2026-10-21 08:47 NY] CLOSE main MES win at 7,779.25  +0.69R  $+356  equity $76,700
+[2026-10-21 08:47 NY] CLOSE topstep MES win at 7,779.25  +0.69R  $+124  equity $50,436
+[2026-10-21 08:47 NY] OPEN [main] MES long 111 @ 7,777.25  stop 7,776.25  target 7,778.00  rr 0.80  risk $555  [m15_trend|engulf|follow_through|smt]
+[2026-10-21 08:47 NY] OPEN [wide] MES long 114 @ 7,777.25  stop 7,776.25  target 7,779.50  rr 2.20  risk $570  [m15_trend|engulf|follow_through|smt]
+[2026-10-21 08:47 NY] OPEN [topstep] MES long 40 @ 7,777.25  stop 7,776.25  target 7,778.00  rr 0.80  risk $200  [m15_trend|engulf|follow_through|smt]
+[2026-10-21 08:48 NY] CLOSE main MES win at 7,778.00  +0.30R  $+166  equity $76,866
+[2026-10-21 08:48 NY] CLOSE wide MES win at 7,779.50  +1.80R  $+1,026  equity $80,221
+[2026-10-21 08:48 NY] CLOSE topstep MES win at 7,778.00  +0.30R  $+60  equity $50,496
+[2026-10-21 08:48 NY] [main] MES same setup as the last trade, not re-entering
+[2026-10-21 08:48 NY] [wide] MES same setup as the last trade, not re-entering
+[2026-10-21 08:48 NY] [topstep] MES same setup as the last trade, not re-entering
