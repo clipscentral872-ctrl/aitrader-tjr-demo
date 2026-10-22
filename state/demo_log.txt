@@ -2423,3 +2423,4 @@
 [2026-10-22 08:44 NY] CLOSE topstep MES win at 7,728.75  +0.60R  $+116  equity $51,111
 [2026-10-22 08:44 NY] [main] MES same setup as the last trade, not re-entering
 [2026-10-22 08:44 NY] [topstep] MES same setup as the last trade, not re-entering
+[2026-10-22 09:02 NY] CLOSE wide MES loss at 7,725.50  -1.26R  $-726  equity $78,992
