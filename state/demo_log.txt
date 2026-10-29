@@ -2569,3 +2569,20 @@
 [2026-10-28 15:09 NY] CLOSE topstep MNQ win at 29,890.25  +0.77R  $+136  equity $52,679
 [2026-10-28 15:09 NY] [main] MNQ same setup as the last trade, not re-entering
 [2026-10-28 15:09 NY] [topstep] MNQ same setup as the last trade, not re-entering
+[2026-10-29 10:17 NY] OPEN [main] MNQ long 9 @ 29,593.50  stop 29,561.50  target 29,619.00  rr 0.80  risk $576  [htf_trend|complex_pullback|follow_through|real_gap]
+[2026-10-29 10:17 NY] OPEN [topstep] MNQ long 3 @ 29,593.50  stop 29,561.50  target 29,619.00  rr 0.80  risk $192  [htf_trend|complex_pullback|follow_through|real_gap]
+[2026-10-29 10:19 NY] CLOSE main MNQ loss at 29,561.50  -1.02R  $-590  equity $82,554
+[2026-10-29 10:19 NY] CLOSE topstep MNQ loss at 29,561.50  -1.02R  $-196  equity $52,482
+[2026-10-29 10:19 NY] OPEN [main] MNQ long 9 @ 29,592.00  stop 29,561.50  target 29,616.25  rr 0.80  risk $547  [htf_trend|complex_pullback|follow_through|real_gap]
+[2026-10-29 10:19 NY] OPEN [topstep] MNQ long 3 @ 29,592.00  stop 29,561.50  target 29,616.25  rr 0.80  risk $182  [htf_trend|complex_pullback|follow_through|real_gap]
+[2026-10-29 10:20 NY] CLOSE main MNQ loss at 29,561.50  -1.02R  $-562  equity $81,991
+[2026-10-29 10:20 NY] CLOSE topstep MNQ loss at 29,561.50  -1.02R  $-187  equity $52,295
+[2026-10-29 10:26 NY] OPEN [main] MES long 31 @ 7,742.50  stop 7,738.75  target 7,745.50  rr 0.80  risk $581  [htf_trend|complex_pullback|engulf|follow_through|real_gap]
+[2026-10-29 10:26 NY] OPEN [wide] MES long 33 @ 7,742.50  stop 7,738.75  target 7,750.75  rr 2.20  risk $619  [htf_trend|complex_pullback|engulf|follow_through|real_gap]
+[2026-10-29 10:26 NY] OPEN [topstep] MES long 10 @ 7,742.50  stop 7,738.75  target 7,745.50  rr 0.80  risk $188  [htf_trend|complex_pullback|engulf|follow_through|real_gap]
+[2026-10-29 10:27 NY] CLOSE main MES win at 7,745.50  +0.68R  $+395  equity $82,387
+[2026-10-29 10:27 NY] CLOSE wide MES win at 7,750.75  +2.08R  $+1,287  equity $86,570
+[2026-10-29 10:27 NY] CLOSE topstep MES win at 7,745.50  +0.68R  $+128  equity $52,422
+[2026-10-29 10:27 NY] [main] MES same setup as the last trade, not re-entering
+[2026-10-29 10:27 NY] [wide] MES same setup as the last trade, not re-entering
+[2026-10-29 10:27 NY] [topstep] MES same setup as the last trade, not re-entering
