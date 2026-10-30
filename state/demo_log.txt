@@ -2604,3 +2604,24 @@
 [2026-10-29 11:54 NY] CLOSE wide MNQ win at 29,593.50  -2.04R  $-1,212  equity $86,674
 [2026-10-29 11:55 NY] CLOSE main MNQ loss at 29,618.50  -1.03R  $-612  equity $81,532
 [2026-10-29 11:55 NY] CLOSE topstep MNQ loss at 29,618.50  -1.03R  $-204  equity $52,138
+[2026-10-30 13:16 NY] MNQ refused: feed 25 min behind
+[2026-10-30 13:16 NY] MNQ refused: feed 25 min behind
+[2026-10-30 13:16 NY] MNQ refused: feed 25 min behind
+[2026-10-30 13:17 NY] MNQ refused: feed 26 min behind
+[2026-10-30 13:17 NY] MNQ refused: feed 26 min behind
+[2026-10-30 13:17 NY] MNQ refused: feed 26 min behind
+[2026-10-30 13:18 NY] MNQ refused: feed 26 min behind
+[2026-10-30 13:18 NY] MNQ refused: feed 26 min behind
+[2026-10-30 13:18 NY] MNQ refused: feed 26 min behind
+[2026-10-30 13:19 NY] MNQ refused: feed 27 min behind
+[2026-10-30 13:19 NY] MNQ refused: feed 27 min behind
+[2026-10-30 13:19 NY] MNQ refused: feed 27 min behind
+[2026-10-30 13:20 NY] MNQ refused: feed 27 min behind
+[2026-10-30 13:20 NY] MNQ refused: feed 27 min behind
+[2026-10-30 13:20 NY] MNQ refused: feed 27 min behind
+[2026-10-30 13:21 NY] MNQ refused: feed 27 min behind
+[2026-10-30 13:21 NY] MNQ refused: feed 27 min behind
+[2026-10-30 13:21 NY] MNQ refused: feed 27 min behind
+[2026-10-30 13:22 NY] MNQ refused: feed 27 min behind
+[2026-10-30 13:22 NY] MNQ refused: feed 27 min behind
+[2026-10-30 13:22 NY] MNQ refused: feed 27 min behind
