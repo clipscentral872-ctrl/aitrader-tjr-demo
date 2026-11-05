@@ -2834,3 +2834,4 @@
 [2026-11-04 15:28 NY] [main] MES same setup as the last trade, not re-entering
 [2026-11-04 15:28 NY] [wide] MES same setup as the last trade, not re-entering
 [2026-11-04 15:28 NY] [topstep] MES same setup as the last trade, not re-entering
+[2026-11-05 10:58 NY] TOPSTEP attempt 4 PASSED: profit $3,449 met the $3,000 target in 10 trading days. Attempt 5 starts at $50,000.
