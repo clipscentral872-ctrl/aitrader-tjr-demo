@@ -2876,3 +2876,9 @@
 [2026-11-06 15:00 NY] OPEN [topstep] MNQ long 5 @ 27,168.00  stop 27,151.25  target 27,181.50  rr 0.80  risk $168  [h1_trend|engulf|follow_through|real_gap]
 [2026-11-06 15:01 NY] CLOSE main MNQ win at 27,181.50  +0.76R  $+459  equity $85,874
 [2026-11-06 15:01 NY] CLOSE topstep MNQ win at 27,181.50  +0.76R  $+128  equity $50,080
+[2026-11-06 15:07 NY] OPEN [main] MNQ long 21 @ 27,168.25  stop 27,154.00  target 27,179.50  rr 0.80  risk $595  [h1_trend|engulf|follow_through|real_gap]
+[2026-11-06 15:07 NY] OPEN [topstep] MNQ long 7 @ 27,168.25  stop 27,154.00  target 27,179.50  rr 0.80  risk $198  [h1_trend|engulf|follow_through|real_gap]
+[2026-11-06 15:08 NY] CLOSE main MNQ win at 27,179.50  +0.74R  $+441  equity $86,315
+[2026-11-06 15:08 NY] CLOSE topstep MNQ win at 27,179.50  +0.74R  $+147  equity $50,227
+[2026-11-06 15:08 NY] [main] MNQ same setup as the last trade, not re-entering
+[2026-11-06 15:08 NY] [topstep] MNQ same setup as the last trade, not re-entering
