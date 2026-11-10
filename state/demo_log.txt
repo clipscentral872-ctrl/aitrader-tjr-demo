@@ -2888,3 +2888,9 @@
 [2026-11-06 16:17 NY] CLOSE main MNQ loss at 27,212.25  -1.03R  $-627  equity $85,688
 [2026-11-06 16:17 NY] CLOSE wide MNQ loss at 27,212.25  -1.03R  $-741  equity $102,101
 [2026-11-06 16:17 NY] CLOSE topstep MNQ loss at 27,212.25  -1.03R  $-171  equity $50,056
+[2026-11-10 11:15 NY] OPEN [main] MES long 118 @ 7,551.75  stop 7,550.75  target 7,552.50  rr 0.80  risk $620  [full_efficiency|engulf|follow_through|real_gap|deep_pd]
+[2026-11-10 11:15 NY] OPEN [wide] MES long 141 @ 7,551.75  stop 7,550.75  target 7,554.00  rr 2.20  risk $740  [full_efficiency|engulf|follow_through|real_gap|deep_pd]
+[2026-11-10 11:15 NY] OPEN [topstep] MES long 38 @ 7,551.75  stop 7,550.75  target 7,552.50  rr 0.80  risk $200  [full_efficiency|engulf|follow_through|real_gap|deep_pd]
+[2026-11-10 11:16 NY] CLOSE main MES win at 7,552.50  +0.30R  $+177  equity $85,865
+[2026-11-10 11:16 NY] CLOSE wide MES win at 7,554.00  +1.80R  $+1,269  equity $103,370
+[2026-11-10 11:16 NY] CLOSE topstep MES win at 7,552.50  +0.30R  $+57  equity $50,113
