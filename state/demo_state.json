@@ -3410,7 +3410,7 @@
  ],
  "refused": [],
  "last_bar": {},
- "polls": 18134,
+ "polls": 18149,
  "started": "2026-08-26T17:25:33.754971+00:00",
  "seen": [
   {
@@ -53205,11 +53205,11 @@
    "reason": null,
    "attempt_started": "2026-11-05T14:58:31.974728+00:00",
    "mll": 48143.5,
-   "day": "2026-11-10",
-   "day_start": 50056.0,
+   "day": "2026-11-11",
+   "day_start": 50111.75,
    "best_day": 143.5,
-   "days_traded": 2,
-   "traded_today": true,
+   "days_traded": 3,
+   "traded_today": false,
    "dll_hit": false,
    "trades_in_attempt": 14,
    "history": [
@@ -53255,7 +53255,7 @@
     }
    ],
    "first_started": "2026-09-14T10:35:52.604161+00:00",
-   "settled": "2026-11-09"
+   "settled": "2026-11-10"
   },
   "_name": "topstep",
   "last_setup": "MES|long|2026-11-10 20:08:00+00:00|7526.81|7524.00"
