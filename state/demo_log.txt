@@ -2980,3 +2980,5 @@
 [2026-11-13 13:31 NY] CLOSE topstep MES loss at 7,548.00  -1.14R  $-222  equity $50,540
 [2026-11-13 13:31 NY] OPEN [main] MES long 27 @ 7,552.50  stop 7,548.00  target 7,555.50  rr 0.61  risk $618  [htf_trend|full_efficiency|engulf|follow_through|real_gap|deep_pd|smt]
 [2026-11-13 13:31 NY] OPEN [topstep] MES long 8 @ 7,552.50  stop 7,548.00  target 7,555.50  rr 0.61  risk $183  [htf_trend|full_efficiency|engulf|follow_through|real_gap|deep_pd|smt]
+[2026-11-13 13:32 NY] CLOSE main MES loss at 7,546.75  -1.38R  $-837  equity $86,075
+[2026-11-13 13:32 NY] CLOSE topstep MES loss at 7,546.75  -1.38R  $-248  equity $50,292
