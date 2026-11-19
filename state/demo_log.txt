@@ -2992,3 +2992,6 @@
 [2026-11-18 12:43 NY] CLOSE main MNQ loss at 27,080.00  -1.01R  $-576  equity $84,855
 [2026-11-18 12:43 NY] CLOSE wide MNQ loss at 27,080.00  -1.01R  $-720  equity $107,669
 [2026-11-18 12:43 NY] CLOSE topstep MNQ loss at 27,080.00  -1.01R  $-144  equity $49,964
+[2026-11-19 12:46 NY] OPEN [wide] MNQ long 15 @ 27,278.50  stop 27,252.75  target 27,335.25  rr 2.20  risk $773  [h1_trend|complex_pullback|follow_through|real_gap|deep_pd]
+[2026-11-19 12:47 NY] CLOSE wide MNQ win at 27,335.25  +2.17R  $+1,680  equity $109,349
+[2026-11-19 12:47 NY] [wide] MNQ same setup as the last trade, not re-entering
