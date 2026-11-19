@@ -2995,3 +2995,14 @@
 [2026-11-19 12:46 NY] OPEN [wide] MNQ long 15 @ 27,278.50  stop 27,252.75  target 27,335.25  rr 2.20  risk $773  [h1_trend|complex_pullback|follow_through|real_gap|deep_pd]
 [2026-11-19 12:47 NY] CLOSE wide MNQ win at 27,335.25  +2.17R  $+1,680  equity $109,349
 [2026-11-19 12:47 NY] [wide] MNQ same setup as the last trade, not re-entering
+[2026-11-19 13:04 NY] OPEN [main] MNQ long 4 @ 27,041.25  stop 26,965.50  target 27,101.75  rr 0.80  risk $606  [h1_trend|complex_pullback|engulf|follow_through|real_gap|deep_pd]
+[2026-11-19 13:04 NY] OPEN [wide] MNQ long 5 @ 27,041.25  stop 26,965.50  target 27,208.00  rr 2.20  risk $758  [h1_trend|complex_pullback|engulf|follow_through|real_gap|deep_pd]
+[2026-11-19 13:04 NY] OPEN [topstep] MNQ long 1 @ 27,041.25  stop 26,965.50  target 27,101.75  rr 0.80  risk $152  [h1_trend|complex_pullback|engulf|follow_through|real_gap|deep_pd]
+[2026-11-19 13:05 NY] CLOSE main MNQ win at 27,101.75  +0.79R  $+478  equity $85,333
+[2026-11-19 13:05 NY] CLOSE topstep MNQ win at 27,101.75  +0.79R  $+120  equity $50,083
+[2026-11-19 13:05 NY] OPEN [main] MNQ long 4 @ 27,041.25  stop 26,965.50  target 27,101.75  rr 0.80  risk $606  [h1_trend|complex_pullback|engulf|follow_through|real_gap|deep_pd]
+[2026-11-19 13:05 NY] OPEN [topstep] MNQ long 1 @ 27,041.25  stop 26,965.50  target 27,101.75  rr 0.80  risk $152  [h1_trend|complex_pullback|engulf|follow_through|real_gap|deep_pd]
+[2026-11-19 13:06 NY] CLOSE main MNQ win at 27,101.75  +0.79R  $+478  equity $85,811
+[2026-11-19 13:06 NY] CLOSE topstep MNQ win at 27,101.75  +0.79R  $+120  equity $50,202
+[2026-11-19 13:06 NY] [main] MNQ same setup as the last trade, not re-entering
+[2026-11-19 13:06 NY] [topstep] MNQ same setup as the last trade, not re-entering
