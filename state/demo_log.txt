@@ -3019,3 +3019,18 @@
 [2026-11-20 15:19 NY] CLOSE main MNQ loss at 25,563.50  -1.03R  $-630  equity $84,352
 [2026-11-20 15:19 NY] CLOSE wide MNQ loss at 25,563.50  -1.01R  $-722  equity $107,862
 [2026-11-20 15:19 NY] CLOSE topstep MNQ loss at 25,563.50  -1.03R  $-194  equity $49,745
+[2026-11-25 16:06 NY] OPEN [main] MES short 23 @ 7,201.75  stop 7,207.00  target 7,197.50  rr 0.80  risk $604  [h1_trend|complex_pullback|full_efficiency|engulf|follow_through|real_gap|deep_pd|smt]
+[2026-11-25 16:06 NY] OPEN [wide] MES short 29 @ 7,201.75  stop 7,207.00  target 7,190.25  rr 2.20  risk $761  [h1_trend|complex_pullback|full_efficiency|engulf|follow_through|real_gap|deep_pd|smt]
+[2026-11-25 16:06 NY] OPEN [topstep] MES short 7 @ 7,201.75  stop 7,207.00  target 7,197.50  rr 0.80  risk $184  [h1_trend|complex_pullback|full_efficiency|engulf|follow_through|real_gap|deep_pd|smt]
+[2026-11-25 16:07 NY] CLOSE main MES win at 7,197.50  +0.72R  $+437  equity $84,789
+[2026-11-25 16:07 NY] CLOSE wide MES win at 7,190.25  +2.10R  $+1,602  equity $109,464
+[2026-11-25 16:07 NY] CLOSE topstep MES win at 7,197.50  +0.72R  $+133  equity $49,878
+[2026-11-25 16:07 NY] OPEN [main] MES short 23 @ 7,201.75  stop 7,207.00  target 7,197.50  rr 0.80  risk $604  [h1_trend|complex_pullback|full_efficiency|engulf|follow_through|real_gap|deep_pd|smt]
+[2026-11-25 16:07 NY] OPEN [wide] MES short 30 @ 7,201.75  stop 7,207.00  target 7,190.25  rr 2.20  risk $788  [h1_trend|complex_pullback|full_efficiency|engulf|follow_through|real_gap|deep_pd|smt]
+[2026-11-25 16:07 NY] OPEN [topstep] MES short 7 @ 7,201.75  stop 7,207.00  target 7,197.50  rr 0.80  risk $184  [h1_trend|complex_pullback|full_efficiency|engulf|follow_through|real_gap|deep_pd|smt]
+[2026-11-25 16:08 NY] CLOSE main MES win at 7,197.50  +0.72R  $+437  equity $85,226
+[2026-11-25 16:08 NY] CLOSE wide MES win at 7,190.25  +2.10R  $+1,658  equity $111,122
+[2026-11-25 16:08 NY] CLOSE topstep MES win at 7,197.50  +0.72R  $+133  equity $50,011
+[2026-11-25 16:08 NY] [main] MES same setup as the last trade, not re-entering
+[2026-11-25 16:08 NY] [wide] MES same setup as the last trade, not re-entering
+[2026-11-25 16:08 NY] [topstep] MES same setup as the last trade, not re-entering
